@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Creative digital agency . Dark elegant theme. 6 portfolio ca · Home</title>
+<meta name="description" content="Creative digital agency . Dark elegant theme. 6 portfolio ca — professional website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0f172a;
+  --secondary:#1e293b;
+  --accent:#f59e0b;
+  --bg:#0f172a;
+  --text:#e2e8f0;
+  --muted:color-mix(in srgb,var(--text) 55%,transparent);
+  --border:color-mix(in srgb,var(--text) 12%,transparent);
+  --card:color-mix(in srgb, var(--bg) 85%, var(--secondary));
+  --shadow:0 4px 24px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.14);
+  --radius:14px;
+  --radius-sm:8px;
+  --font:'Space Grotesk',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block;border-radius:var(--radius)}
+a{color:var(--primary);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+
+/* ── NAV ── */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding:.9rem 5%;position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb,var(--bg) 90%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-weight:800;font-size:1.3rem;color:var(--text);letter-spacing:-.5px;display:flex;align-items:center;gap:.5rem}
+.logo span{color:var(--primary)}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block;margin-left:2px}
+.nav-links{list-style:none;display:flex;gap:1.5rem;flex-wrap:wrap}
+.nav-links a{color:var(--text);font-weight:600;font-size:.9rem;opacity:.8;transition:opacity .2s}
+.nav-links a:hover,.nav-links a[aria-current=page]{opacity:1;color:var(--primary)}
+.nav-cta{display:flex;gap:.5rem;align-items:center}
+.hamburger{display:none;background:none;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.3rem .5rem;cursor:pointer;color:var(--text)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.4rem;border-radius:var(--radius-sm);font-weight:700;font-size:.9rem;font-family:var(--font);border:2px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 4px 20px color-mix(in srgb,var(--primary) 40%,transparent)}
+.btn-ghost{border-color:var(--border);color:var(--text);background:transparent}
+.btn-ghost:hover{background:var(--card);border-color:var(--primary);color:var(--primary)}
+.btn-accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-sm{padding:.45rem .9rem;font-size:.82rem}
+.btn-lg{padding:.85rem 2rem;font-size:1rem}
+
+/* ── SECTIONS ── */
+section{padding:4rem 5%}
+main{min-height:70vh}
+.section-label{text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--primary);font-weight:800;margin-bottom:.75rem}
+.section-title{font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.5px;line-height:1.2;margin-bottom:1rem}
+.section-sub{color:var(--muted);font-size:1rem;max-width:600px;margin-bottom:2.5rem}
+
+/* ── HERO ── */
+.hero{padding:5rem 5% 4rem;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 10%,var(--bg)),var(--bg));position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:140%;border-radius:50%;background:color-mix(in srgb,var(--primary) 6%,transparent);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:40%;height:80%;border-radius:50%;background:color-mix(in srgb,var(--accent) 5%,transparent);pointer-events:none}
+.hero-inner{max-width:700px;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.75rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.25rem}
+.hero h1 .highlight{color:var(--primary)}
+.hero-sub{color:var(--muted);font-size:1.1rem;max-width:540px;margin-bottom:2rem;line-height:1.7}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .9rem;border-radius:20px;background:color-mix(in srgb,var(--primary) 12%,var(--bg));color:var(--primary);font-size:.78rem;font-weight:700;margin-bottom:1.25rem;border:1px solid color-mix(in srgb,var(--primary) 25%,transparent)}
+
+/* ── GRID & CARDS ── */
+.grid{display:grid;gap:1.5rem}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.g-auto{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--primary) 30%,transparent)}
+.card-icon{width:48px;height:48px;border-radius:12px;background:color-mix(in srgb,var(--primary) 15%,transparent);color:var(--primary);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+.card p{color:var(--muted);font-size:.92rem;line-height:1.6}
+
+/* ── PRODUCT CARDS ── */
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .25s,box-shadow .25s}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.product-card img{width:100%;height:220px;object-fit:cover;border-radius:0}
+.product-body{padding:1.1rem}
+.product-name{font-weight:700;margin-bottom:.35rem;font-size:.95rem}
+.product-meta{font-size:.8rem;color:var(--muted);margin-bottom:.75rem}
+.product-price{font-weight:900;color:var(--primary);font-size:1.1rem}
+.product-actions{display:flex;gap:.5rem;margin-top:.8rem;align-items:center;justify-content:space-between}
+.wishlist-btn{background:none;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.4rem;cursor:pointer;color:var(--muted);transition:all .2s}
+.wishlist-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── STATS STRIP ── */
+.stats-strip{background:var(--primary);padding:3rem 5%}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;max-width:900px;margin:0 auto;text-align:center}
+.stat-num{font-size:2.2rem;font-weight:900;color:#fff;display:block;letter-spacing:-.03em}
+.stat-lbl{font-size:.85rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+
+/* ── TESTIMONIALS ── */
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;position:relative}
+.testi-stars{color:var(--accent);display:flex;gap:2px;margin-bottom:.75rem}
+.testi-text{color:var(--text);font-size:.95rem;line-height:1.65;font-style:italic;margin-bottom:1rem}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.testi-name{font-weight:700;font-size:.9rem}
+.testi-role{font-size:.8rem;color:var(--muted)}
+
+/* ── PRICING ── */
+.price-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:2rem;text-align:center;transition:all .25s}
+.price-card.featured{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 5%,var(--bg));position:relative}
+.price-card.featured::before{content:'Most Popular';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.75rem;font-weight:700;padding:.25rem .9rem;border-radius:20px}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.price-name{font-size:1rem;font-weight:700;color:var(--muted);margin-bottom:.5rem}
+.price-amount{font-size:2.75rem;font-weight:900;color:var(--text);letter-spacing:-.04em;margin-bottom:.25rem}
+.price-amount span{font-size:1rem;font-weight:600;color:var(--muted)}
+.price-desc{font-size:.88rem;color:var(--muted);margin-bottom:1.5rem}
+.price-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+.price-features li{display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:var(--muted)}
+.price-features li .check{color:var(--primary);flex-shrink:0}
+
+/* ── FAQ ── */
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:.5rem}
+.faq-item summary{padding:1rem 1.25rem;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:.95rem}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:1.25rem;color:var(--primary);transition:transform .2s;flex-shrink:0}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:.75rem 1.25rem 1rem;color:var(--muted);font-size:.92rem;line-height:1.65}
+
+/* ── CONTACT FORM ── */
+.contact-form{max-width:560px;display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.35rem}
+.form-label{font-size:.85rem;font-weight:700;color:var(--text)}
+.form-input,.form-textarea{padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--card);color:var(--text);font-family:var(--font);font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.form-input:focus,.form-textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 20%,transparent)}
+.form-textarea{min-height:120px;resize:vertical}
+
+/* ── CTA BAND ── */
+.cta-band{background:linear-gradient(135deg,var(--primary),color-mix(in srgb,var(--primary) 70%,var(--accent)));padding:5rem 5%;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.cta-band h2{font-size:clamp(1.8rem,4vw,2.75rem);font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:.75rem;position:relative}
+.cta-band p{color:rgba(255,255,255,.8);font-size:1.05rem;margin-bottom:2rem;position:relative}
+.cta-band .btn{background:#fff;color:var(--primary);border-color:#fff;position:relative}
+.cta-band .btn:hover{background:rgba(255,255,255,.9);box-shadow:0 6px 24px rgba(0,0,0,.2)}
+.cta-band .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.cta-band .btn-outline:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── GALLERY ── */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.gallery-item{overflow:hidden;border-radius:var(--radius);aspect-ratio:4/3;position:relative;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.06)}
+
+/* ── TEAM ── */
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center}
+.team-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;margin:0 auto 1rem;border:3px solid color-mix(in srgb,var(--primary) 25%,transparent)}
+.team-name{font-weight:700;font-size:1rem;margin-bottom:.25rem}
+.team-role{font-size:.85rem;color:var(--primary);font-weight:600;margin-bottom:.5rem}
+.team-bio{font-size:.85rem;color:var(--muted);line-height:1.5}
+
+/* ── BLOG ── */
+.blog-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .25s,box-shadow .25s}
+.blog-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.blog-card img{width:100%;height:180px;object-fit:cover;border-radius:0}
+.blog-body{padding:1.25rem}
+.blog-tag{display:inline-block;padding:.2rem .7rem;border-radius:4px;background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);font-size:.75rem;font-weight:700;margin-bottom:.75rem}
+.blog-title{font-weight:700;font-size:1rem;margin-bottom:.5rem;line-height:1.4}
+.blog-meta{font-size:.8rem;color:var(--muted)}
+
+/* ── FOOTER ── */
+.footer{background:color-mix(in srgb,var(--secondary) 25%,var(--bg));border-top:1px solid var(--border);padding:4rem 5% 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:2rem;margin-bottom:3rem}
+.footer-brand .logo{margin-bottom:.75rem}
+.footer-brand p{color:var(--muted);font-size:.88rem;line-height:1.7;max-width:260px}
+.footer-col h4{font-weight:700;font-size:.88rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col a{font-size:.9rem;color:var(--text);opacity:.7;transition:opacity .2s}
+.footer-col a:hover{opacity:1;color:var(--primary)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.85rem;color:var(--muted)}
+.footer-links{display:flex;gap:1.25rem}
+.footer-links a{font-size:.85rem;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--primary)}
+
+/* ── PAGE HEAD ── */
+.page-head{padding:3rem 5% 2rem;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 8%,var(--bg)),var(--bg))}
+.page-head h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.5rem}
+.page-head p{color:var(--muted);font-size:1rem;max-width:600px}
+
+/* ── NEWSLETTER ── */
+.newsletter-form{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem;max-width:480px}
+.newsletter-form .form-input{flex:1;min-width:200px}
+
+/* ── CONTACT INFO ── */
+.contact-info{display:flex;flex-direction:column;gap:1rem}
+.contact-item{display:flex;align-items:flex-start;gap:1rem}
+.contact-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-label{font-size:.8rem;color:var(--muted);margin-bottom:.15rem}
+.contact-value{font-weight:600;font-size:.95rem}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--text);color:var(--bg);padding:.75rem 1.25rem;border-radius:var(--radius-sm);font-size:.85rem;font-weight:600;z-index:9999;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){.g4{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.g3,.g4{grid-template-columns:repeat(2,1fr)}.nav-links,.nav-cta{display:none}.hamburger{display:block}.nav.open .nav-links,.nav.open .nav-cta{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 5%;gap:.5rem}.footer-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.g2,.g3,.g4{grid-template-columns:1fr}.hero h1{font-size:2rem}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="index.html">Creative digital agency . Dark elegant theme. 6 portfolio ca</a>
+  <nav><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+  <div class="nav-cta"><a class="btn btn-primary btn-sm" href="contact.html">Start a Project</a></div>
+  <button class="hamburger" aria-label="Menu"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</header>
+<main><section>
+<div class="section-label">Why Choose Us</div>
+<h2 class="section-title">Everything You Need</h2>
+<p class="section-sub">Powerful features designed to help you succeed, from day one.</p>
+<div class="grid g3"><div class="card">
+  <div class="card-icon"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg></div>
+  <h3>Brand Strategy</h3>
+  <p>Positioning that cuts through noise</p>
+</div><div class="card">
+  <div class="card-icon"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+  <h3>UI/UX Design</h3>
+  <p>Interfaces people love to use</p>
+</div><div class="card">
+  <div class="card-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+  <h3>Development</h3>
+  <p>Scalable, fast, beautiful code</p>
+</div><div class="card">
+  <div class="card-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+  <h3>SEO &amp; Marketing</h3>
+  <p>Data-driven growth strategies</p>
+</div></div>
+</section><section>
+<div class="section-label">Featured</div>
+<h2 class="section-title">Our Offerings</h2>
+<div class="grid g-auto"><div class="product-card">
+  <img src="https://picsum.photos/seed/6925255home0/400/280" alt="Fintech Rebrand" width="400" height="280" loading="lazy">
+  <div class="product-body">
+    <p class="product-meta">New Arrival</p>
+    <div class="product-name">Fintech Rebrand</div>
+    <div class="product-price">Brand Identity</div>
+    <div class="product-actions"><a class="btn btn-primary btn-sm" href="#">View →</a></div>
+  </div>
+</div><div class="product-card">
+  <img src="https://picsum.photos/seed/6925255home1/440/320" alt="E-Commerce Launch" width="440" height="320" loading="lazy">
+  <div class="product-body">
+    <p class="product-meta">Best Seller</p>
+    <div class="product-name">E-Commerce Launch</div>
+    <div class="product-price">Web Design</div>
+    <div class="product-actions"><a class="btn btn-primary btn-sm" href="#">View →</a></div>
+  </div>
+</div><div class="product-card">
+  <img src="https://picsum.photos/seed/6925255home2/480/280" alt="SaaS Dashboard" width="480" height="280" loading="lazy">
+  <div class="product-body">
+    <p class="product-meta">Limited Edition</p>
+    <div class="product-name">SaaS Dashboard</div>
+    <div class="product-price">UX Design</div>
+    <div class="product-actions"><a class="btn btn-primary btn-sm" href="#">View →</a></div>
+  </div>
+</div><div class="product-card">
+  <img src="https://picsum.photos/seed/6925255home3/400/320" alt="Restaurant Chain" width="400" height="320" loading="lazy">
+  <div class="product-body">
+    <p class="product-meta">New Arrival</p>
+    <div class="product-name">Restaurant Chain</div>
+    <div class="product-price">Full Brand</div>
+    <div class="product-actions"><a class="btn btn-primary btn-sm" href="#">View →</a></div>
+  </div>
+</div></div>
+</section><section>
+<div class="section-label">Gallery</div>
+<h2 class="section-title">Our Work & Moments</h2>
+<div class="gallery-grid"><div class="gallery-item"><img src="https://picsum.photos/seed/g69252550/600/400" alt="Gallery 1" width="600" height="400" loading="lazy"></div><div class="gallery-item"><img src="https://picsum.photos/seed/g69252551/680/460" alt="Gallery 2" width="680" height="460" loading="lazy"></div><div class="gallery-item"><img src="https://picsum.photos/seed/g69252552/760/400" alt="Gallery 3" width="760" height="400" loading="lazy"></div><div class="gallery-item"><img src="https://picsum.photos/seed/g69252553/600/460" alt="Gallery 4" width="600" height="460" loading="lazy"></div></div>
+</section><section>
+<div class="section-label">Our Team</div>
+<h2 class="section-title">The People Behind the Magic</h2>
+<div class="grid g3"><div class="team-card">
+  <img class="team-avatar" src="https://picsum.photos/seed/tm69252550/160/160" alt="Arjun Kapoor" width="90" height="90">
+  <div class="team-name">Arjun Kapoor</div>
+  <div class="team-role">Chief Executive Officer</div>
+  <p class="team-bio">Visionary leader with 15+ years in tech and business strategy.</p>
+</div><div class="team-card">
+  <img class="team-avatar" src="https://picsum.photos/seed/tm69252551/160/160" alt="Priya Nair" width="90" height="90">
+  <div class="team-name">Priya Nair</div>
+  <div class="team-role">Head of Design</div>
+  <p class="team-bio">Award-winning designer creating beautiful, functional experiences.</p>
+</div><div class="team-card">
+  <img class="team-avatar" src="https://picsum.photos/seed/tm69252552/160/160" alt="Rohan Verma" width="90" height="90">
+  <div class="team-name">Rohan Verma</div>
+  <div class="team-role">Lead Developer</div>
+  <p class="team-bio">Full-stack engineer who loves clean, scalable architecture.</p>
+</div><div class="team-card">
+  <img class="team-avatar" src="https://picsum.photos/seed/tm69252553/160/160" alt="Anita Sharma" width="90" height="90">
+  <div class="team-name">Anita Sharma</div>
+  <div class="team-role">Marketing Director</div>
+  <p class="team-bio">Data-driven marketer growing brands from zero to hero.</p>
+</div></div>
+</section><section class="hero">
+
+<div class="hero-inner">
+  <p class="hero-badge">🏆 Award-Winning Agency</p>
+  <h1>Strategy Meets <span class="highlight">Creativity</span></h1>
+  <p class="hero-sub">From brand identity to digital campaigns — we craft experiences that captivate</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary btn-lg" href="contact.html">Start a Project <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+    <a class="btn btn-ghost btn-lg" href="work.html">Our Work</a>
+  </div>
+</div>
+</section></main>
+<footer class="footer">
+<div class="footer-grid">
+  <div class="footer-brand">
+    <div class="logo">Creative digital agency . Dark elegant theme. 6 portfolio ca</div>
+    <p>Building exceptional experiences for our customers every single day.</p>
+  </div>
+  <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+  <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookie Policy</a></li></ul></div>
+  <div class="footer-col"><h4>Connect</h4>
+    <ul>
+      <li><a href="#">Twitter / X</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">YouTube</a></li>
+    </ul>
+  </div>
+</div>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2025 Creative digital agency . Dark elegant theme. 6 portfolio ca. All rights reserved.</span>
+  <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+</div>
+</footer>
+<div id="toast" class="toast"></div>
+<script>
+document.querySelector('.hamburger')?.addEventListener('click',function(){
+  document.querySelector('.nav').classList.toggle('open');
+});
+document.querySelectorAll('.nav a').forEach(a=>{
+  if(a.href===location.href)a.setAttribute('aria-current','page');
+});
+function addToCart(name,price){
+  let c=document.getElementById('cart-count');
+  if(c){c.textContent=parseInt(c.textContent||0)+1}
+  showToast('Added '+name+' to cart!');
+}
+function showToast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+document.querySelectorAll('.faq-item').forEach(d=>{
+  d.addEventListener('toggle',()=>{
+    if(d.open) document.querySelectorAll('.faq-item[open]').forEach(o=>{if(o!==d)o.removeAttribute('open');});
+  });
+});
+document.querySelectorAll('.contact-form').forEach(f=>{
+  f.addEventListener('submit',e=>{e.preventDefault();showToast('Message sent! We\'ll reply soon.');f.reset();});
+});
+document.querySelectorAll('.newsletter-form').forEach(f=>{
+  f.addEventListener('submit',e=>{e.preventDefault();showToast('Subscribed! Welcome aboard.');f.reset();});
+});
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='none';obs.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.card,.product-card,.price-card,.testi-card,.blog-card,.team-card,.gallery-item').forEach(el=>{
+  el.style.opacity=0;el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease,transform .5s ease,box-shadow .25s,border-color .25s';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

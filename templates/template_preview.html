@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Template Preview - Promptrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f4f1eb;color:#201914}
+.top{position:sticky;top:0;z-index:15;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#fff;border-bottom:1px solid #dfd5c9}
+.wrap{max-width:1280px;margin:0 auto;padding:18px}
+.back{border:1px solid #dfd5c9;background:#f2ede5;padding:7px 10px;border-radius:8px;cursor:pointer}
+.preview{background:#fff;border:1px solid #dfd5c9;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.preview iframe{width:100%;height:calc(100vh - 120px);border:0;display:block}
+</style>
+</head>
+<body>
+<div class="top">
+  <strong id="title">Template Preview</strong>
+  <button class="back" onclick="window.close();window.location='/templates'">Back</button>
+</div>
+<div class="wrap">
+  <div class="preview"><iframe id="frame"></iframe></div>
+</div>
+<script>
+const industries = [
+  { name: 'SaaS', pages: ['home', 'features', 'pricing', 'contact'], image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Agency', pages: ['home', 'services', 'work', 'contact'], image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Restaurant', pages: ['home', 'menu', 'gallery', 'contact'], image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Clinic', pages: ['home', 'doctors', 'services', 'contact'], image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Gym', pages: ['home', 'classes', 'plans', 'contact'], image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Ecommerce', pages: ['home', 'shop', 'about', 'contact'], image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Portfolio', pages: ['home', 'projects', 'about', 'contact'], image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Real Estate', pages: ['home', 'listings', 'agents', 'contact'], image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Travel', pages: ['home', 'destinations', 'packages', 'contact'], image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Education', pages: ['home', 'courses', 'teachers', 'contact'], image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Finance', pages: ['home', 'solutions', 'team', 'contact'], image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Law Firm', pages: ['home', 'practice', 'cases', 'contact'], image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Dentist', pages: ['home', 'services', 'team', 'contact'], image: 'https://images.unsplash.com/photo-1559591933-5011c7e23b0e?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Salon', pages: ['home', 'services', 'gallery', 'contact'], image: 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Cafe', pages: ['home', 'menu', 'story', 'contact'], image: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Logistics', pages: ['home', 'solutions', 'fleet', 'contact'], image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Construction', pages: ['home', 'projects', 'services', 'contact'], image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Hotel', pages: ['home', 'rooms', 'amenities', 'contact'], image: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'NGO', pages: ['home', 'impact', 'donate', 'contact'], image: 'https://images.unsplash.com/photo-1517022812141-23620dba5c23?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Event', pages: ['home', 'schedule', 'speakers', 'contact'], image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Photography', pages: ['home', 'gallery', 'stories', 'contact'], image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Music', pages: ['home', 'releases', 'shows', 'contact'], image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Sports', pages: ['home', 'teams', 'schedule', 'contact'], image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Wedding', pages: ['home', 'story', 'gallery', 'contact'], image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Tech Startup', pages: ['home', 'product', 'team', 'contact'], image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Consulting', pages: ['home', 'approach', 'results', 'contact'], image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Cybersecurity', pages: ['home', 'services', 'audit', 'contact'], image: 'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Marketing', pages: ['home', 'services', 'case-studies', 'contact'], image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Crypto', pages: ['home', 'tokens', 'roadmap', 'contact'], image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'AI', pages: ['home', 'models', 'use-cases', 'contact'], image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Fashion', pages: ['home', 'collection', 'lookbook', 'contact'], image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Furniture', pages: ['home', 'catalog', 'studio', 'contact'], image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Auto', pages: ['home', 'inventory', 'finance', 'contact'], image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Pet Care', pages: ['home', 'services', 'gallery', 'contact'], image: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Beauty', pages: ['home', 'treatments', 'gallery', 'contact'], image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'HR', pages: ['home', 'jobs', 'culture', 'contact'], image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Accounting', pages: ['home', 'services', 'reports', 'contact'], image: 'https://images.unsplash.com/photo-1554224154-26032fced8bd?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Architecture', pages: ['home', 'projects', 'studio', 'contact'], image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Energy', pages: ['home', 'solutions', 'impact', 'contact'], image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Healthcare', pages: ['home', 'services', 'care-team', 'contact'], image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Fintech', pages: ['home', 'solutions', 'pricing', 'contact'], image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Blockchain', pages: ['home', 'tokens', 'roadmap', 'contact'], image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Marketplace', pages: ['home', 'categories', 'sellers', 'contact'], image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Publishing', pages: ['home', 'articles', 'authors', 'contact'], image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Nonprofit', pages: ['home', 'impact', 'donate', 'contact'], image: 'https://images.unsplash.com/photo-1517022812141-23620dba5c23?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'B2B Services', pages: ['home', 'services', 'case-studies', 'contact'], image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Manufacturing', pages: ['home', 'factory', 'process', 'contact'], image: 'https://images.unsplash.com/photo-1483058712412-4245e9b90334?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Wellness', pages: ['home', 'programs', 'plans', 'contact'], image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Beauty Clinic', pages: ['home', 'treatments', 'gallery', 'contact'], image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80' },
+  { name: 'Interior Design', pages: ['home', 'projects', 'studio', 'contact'], image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80' }
+];
+
+const layouts = ['split','centered','image-left','image-right','cards','minimal','gradient','magazine','stacked','clean','hero-left','hero-right','full-bleed','sidebar','editorial','bento','panel','showcase','immersive','nav-top'];
+const palettes = [
+  ['#d4550a','#0b6f6e','#f6a400'],['#1d4ed8','#0f766e','#f59e0b'],['#be123c','#7c3aed','#f97316'],['#0f172a','#334155','#22c55e'],
+  ['#4338ca','#0ea5e9','#f43f5e'],['#166534','#0f766e','#d97706'],['#4c1d95','#6d28d9','#ec4899'],['#0c4a6e','#0369a1','#22d3ee'],
+  ['#7f1d1d','#991b1b','#f59e0b'],['#1f2937','#4b5563','#84cc16'],['#78350f','#b45309','#f59e0b'],['#312e81','#6366f1','#a78bfa'],
+  ['#064e3b','#047857','#34d399'],['#0f172a','#1d4ed8','#38bdf8'],['#3f1d2e','#be185d','#fb7185'],['#1e293b','#0f766e','#facc15']
+];
+
+function preset(i) {
+  const industry = industries[i % industries.length];
+  const layout = layouts[i % layouts.length];
+  const p = palettes[i % palettes.length];
+  const id = i + 1;
+  const templateName = getTemplateLabel(id);
+  const pageList = inferPageBundle(templateName, industry.pages);
+  const pageKey = pageList[0];
+  return {
+    id,
+    name: templateName,
+    industry: templateName.replace(/\s+Website$/i, '') || industry.name,
+    pages: pageList,
+    image: industry.image,
+    layout,
+    primary: p[0],
+    secondary: p[1],
+    accent: p[2],
+    heroTitle: (templateName.replace(/\s+Website$/i, '') || industry.name) + ' that looks premium',
+    heroSubtitle: 'Distinct fixed preview for template #' + id,
+    pageName: pageKey
+  };
+}
+
+function getTemplateLabel(id) {
+  const p = new URLSearchParams(window.location.search);
+  const name = (p.get('name') || '').trim();
+  if (name) return decodeURIComponent(name);
+  return 'Template ' + id;
+}
+
+function inferPageBundle(name, fallbackPages) {
+  const n = (name || '').toLowerCase();
+  if (/(restaurant|food|cafe|bakery|kitchen)/.test(n)) return ['home','menu','gallery','contact'];
+  if (/(shop|store|e-commerce|shopping|grocery|delivery|deals|coupon)/.test(n)) return ['home','shop','offers','contact'];
+  if (/(school|college|course|coaching|tuition|study|exam|quiz|education)/.test(n)) return ['home','courses','teachers','contact'];
+  if (/(gym|fitness|yoga|meditation|wellness|diet|trainer)/.test(n)) return ['home','classes','plans','contact'];
+  if (/(travel|tour|hotel|booking|rent|rental|cab)/.test(n)) return ['home','destinations','packages','contact'];
+  if (/(news|blog|story|poetry|writing|wiki|knowledge)/.test(n)) return ['home','articles','trending','contact'];
+  if (/(doctor|hospital|health|pharmacy|medicine|mental)/.test(n)) return ['home','services','care-team','contact'];
+  if (/(finance|bank|loan|insurance|investment|trading|crypto|accounting|billing)/.test(n)) return ['home','solutions','pricing','contact'];
+  if (/(saas|software|app|ai|tool|api|cloud|data|analytics|developer|debug)/.test(n)) return ['home','features','pricing','contact'];
+  if (/(portfolio|photography|design|logo|template|ui|icon|font|video|audio|music|podcast)/.test(n)) return ['home','work','gallery','contact'];
+  if (/(ngo|donation|charity|volunteer|environment|pollution|farming|agriculture)/.test(n)) return ['home','impact','programs','contact'];
+  if (/(dashboard|admin|crm|erp|project|task|planner|calendar|habit|goal)/.test(n)) return ['home','dashboard','reports','contact'];
+  return fallbackPages || ['home','about','services','contact'];
+}
+
+function getTid() {
+  const p = new URLSearchParams(window.location.search);
+  const n = parseInt(p.get('tid') || '1', 10);
+  if (Number.isNaN(n) || n < 1) return 1;
+  return Math.min(200, n);
+}
+
+function getPageKey(t) {
+  const p = new URLSearchParams(window.location.search);
+  const page = (p.get('page') || t.pages[0] || 'home').toLowerCase();
+  return t.pages.includes(page) ? page : (t.pages[0] || 'home');
+}
+
+function navLinks(t, activePage) {
+  return t.pages.map(function(page) {
+    const label = page === 'home' ? 'Home' : page.charAt(0).toUpperCase() + page.slice(1);
+    const href = '/template-preview?tid=' + t.id + '&page=' + page;
+    const active = page === activePage ? 'font-weight:800;text-decoration:underline' : 'opacity:.9';
+    return '<a href="' + href + '" style="color:white;text-decoration:none;margin-left:14px;' + active + '">' + label + '</a>';
+  }).join('');
+}
+
+function blocksFor(t, page) {
+  const common = {
+    home: ['Premium first impression', 'Clear value proposition', 'Strong CTA'],
+    about: ['Brand story', 'Mission', 'Team credibility'],
+    pricing: ['Starter', 'Pro', 'Enterprise'],
+    contact: ['Contact form', 'Map / office', 'Support details'],
+    services: ['Service one', 'Service two', 'Service three'],
+    work: ['Case study A', 'Case study B', 'Case study C'],
+    menu: ['Chef special', 'Seasonal menu', 'Reserve table'],
+    gallery: ['Food gallery', 'Ambience shots', 'Events'],
+    doctors: ['Senior doctor', 'Specialist', 'Consultant'],
+    classes: ['Strength', 'Cardio', 'Mobility'],
+    plans: ['Basic plan', 'Pro plan', 'Elite plan'],
+    shop: ['Featured items', 'Bestsellers', 'New arrivals'],
+    projects: ['Selected project', 'Design system', 'Launch story'],
+    listings: ['Luxury listing', 'Family home', 'Studio apartment'],
+    destinations: ['Beach escape', 'City break', 'Adventure trip'],
+    courses: ['Beginner', 'Intermediate', 'Advanced'],
+    solutions: ['Consulting', 'Implementation', 'Growth'],
+    practice: ['Business law', 'IP law', 'Litigation'],
+    teams: ['Leadership', 'Clinical care', 'Support team'],
+    story: ['Our story', 'Our values', 'Our promise'],
+    impact: ['People served', 'Projects launched', 'Communities reached'],
+    schedule: ['Day 1', 'Day 2', 'Day 3']
+  };
+  return common[page] || [t.industry + ' block 1', t.industry + ' block 2', t.industry + ' block 3'];
+}
+
+function contentFor(t, page) {
+  const image = t.image;
+  const pageTitleMap = {
+    home: 'Home', about: 'About', pricing: 'Pricing', contact: 'Contact', services: 'Services', work: 'Work',
+    menu: 'Menu', gallery: 'Gallery', doctors: 'Doctors', classes: 'Classes', plans: 'Plans', shop: 'Shop',
+    projects: 'Projects', listings: 'Listings', destinations: 'Destinations', courses: 'Courses', solutions: 'Solutions',
+    practice: 'Practice Areas', story: 'Story', impact: 'Impact', schedule: 'Schedule'
+  };
+  const title = pageTitleMap[page] || page.charAt(0).toUpperCase() + page.slice(1);
+  const list = blocksFor(t, page);
+
+  if (page === 'contact') {
+    return `<section style="padding:72px 0;background:linear-gradient(145deg,${t.primary}22,${t.accent}22), url('${image}') center/cover no-repeat"><div class="in" style="display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center"><div style="background:rgba(255,255,255,.82);padding:22px;border-radius:18px"><h1 style="font-size:46px;line-height:1.05;margin:0 0 10px">Contact ${t.industry}</h1><p style="margin:0 0 14px;color:#475569">${t.heroSubtitle}</p><div style="display:grid;gap:10px"><div style="padding:12px;border-radius:12px;background:#fff;border:1px solid #e2e8f0">Email, phone, address</div><div style="padding:12px;border-radius:12px;background:#fff;border:1px solid #e2e8f0">Support hours and response time</div></div></div><div style="background:#fff;border-radius:18px;padding:18px;box-shadow:0 18px 42px rgba(0,0,0,.18)"><h3 style="margin:0 0 12px">Send a message</h3><div style="display:grid;gap:10px"><input placeholder="Name" style="padding:11px;border:1px solid #e2e8f0;border-radius:10px"><input placeholder="Email" style="padding:11px;border:1px solid #e2e8f0;border-radius:10px"><textarea placeholder="Message" style="padding:11px;border:1px solid #e2e8f0;border-radius:10px;min-height:120px"></textarea><button class="btn">Submit</button></div></div></div></section><section style="padding:36px 0"><div class="in"><h2 style="margin:0 0 12px">What happens next</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">${list.map(function(b){return '<article style="padding:14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px"><strong>'+b+'</strong><p style="margin:6px 0 0;color:#64748b">'+t.industry+' contact detail block.</p></article>';}).join('')}</div></div></section>`;
+  }
+
+  if (page === 'menu') {
+    return `<section style="padding:68px 0;background:url('${image}') center/cover no-repeat"><div class="in"><div style="max-width:700px;background:rgba(255,255,255,.82);padding:20px;border-radius:18px"><p style="font-size:12px;text-transform:uppercase;letter-spacing:1.3px">Restaurant menu</p><h1 style="font-size:48px;line-height:1.05;margin:10px 0 12px">Signature dishes</h1><p style="margin:0;color:#475569">Chef curated menu, seasonal ingredients and table booking flow.</p></div></div></section><section style="padding:36px 0"><div class="in"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">${list.map(function(b,idx){return '<article style="overflow:hidden;border-radius:14px;background:#fff;border:1px solid #e2e8f0"><div style="height:160px;background:url(\''+image+'\') center/cover no-repeat;filter:hue-rotate('+(idx*14)+'deg)"></div><div style="padding:14px"><strong>'+b+'</strong><p style="margin:6px 0 0;color:#64748b">Fresh ingredients and premium plating.</p></div></article>';}).join('')}</div></div></section>`;
+  }
+
+  if (page === 'shop') {
+    return `<section style="padding:66px 0;background:linear-gradient(145deg,${t.primary}22,${t.accent}22), url('${image}') center/cover no-repeat"><div class="in"><h1 style="font-size:50px;line-height:1.05;margin:0 0 10px">Shop the collection</h1><p style="margin:0 0 14px;max-width:760px;color:#475569">Premium product grid with conversion-focused detail.</p><button class="btn">View products</button></div></section><section style="padding:34px 0"><div class="in"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">${list.map(function(b){return '<article style="padding:14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px"><div style="height:160px;background:url(\''+image+'\') center/cover no-repeat;border-radius:10px;margin-bottom:10px"></div><strong>'+b+'</strong><p style="margin:6px 0 0;color:#64748b">Featured item card.</p></article>';}).join('')}</div></div></section>`;
+  }
+
+  return `<section style="padding:72px 0;background:linear-gradient(145deg,${t.primary}22,${t.accent}22), url('${image}') center/cover no-repeat"><div class="in" style="display:grid;grid-template-columns:1.08fr .92fr;gap:20px;align-items:center"><div style="background:rgba(255,255,255,.82);padding:20px;border-radius:18px"><p style="font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#475569;margin:0 0 10px">${title}</p><h1 style="font-size:46px;line-height:1.05;margin:0 0 10px">${t.heroTitle}</h1><p style="margin:0 0 14px;color:#475569">${t.heroSubtitle}</p><button class="btn">Get started</button></div><div style="min-height:320px;border-radius:20px;background:url('${image}') center/cover no-repeat;box-shadow:0 18px 42px rgba(0,0,0,.18)"></div></div></section><section style="padding:38px 0"><div class="in"><h2 style="margin:0 0 14px">${title} highlights</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">${list.map(function(b){return '<article style="padding:14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px"><strong>'+b+'</strong><p style="margin:6px 0 0;color:#64748b">Tailored detail for '+title.toLowerCase()+'.</p></article>';}).join('')}</div></div></section>`;
+}
+
+function pageFrame(t, page) {
+  const nav = navLinks(t, page);
+  const content = contentFor(t, page);
+  const layoutName = t.layout;
+  return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${t.name} - ${page}</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#0f172a}a{text-decoration:none}.in{max-width:1120px;margin:auto;padding:0 18px}.btn{padding:10px 14px;border:0;border-radius:10px;background:linear-gradient(135deg,${t.primary},${t.accent});color:#fff;font-weight:800;cursor:pointer}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.chip{padding:8px 11px;border-radius:999px;background:${t.secondary}20;border:1px solid ${t.secondary}55;font-size:12px}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(135deg,${t.primary},${t.secondary});color:#fff;backdrop-filter:blur(8px)}
+@media(max-width:800px){h1{font-size:34px!important} .navwrap{flex-direction:column;align-items:flex-start;gap:8px}}
+</style></head><body>
+<header><div class="in navwrap" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center"><div><strong>${t.name}</strong><div style="font-size:12px;opacity:.9">${layoutName} layout · ${t.industry}</div></div><nav style="display:flex;flex-wrap:wrap;justify-content:flex-end">${nav}</nav></div></header>
+<main>${content}</main>
+<footer style="padding:24px 0;background:#0f172a;color:#e2e8f0"><div class="in">Preview mode · ${t.name}</div></footer>
+</body></html>`;
+}
+
+const tid = getTid();
+const t = preset(tid - 1);
+const page = getPageKey(t);
+document.getElementById('title').textContent = t.name + ' - ' + page.toUpperCase();
+document.getElementById('frame').srcdoc = pageFrame(t, page);
+</script>
+</body>
+</html>

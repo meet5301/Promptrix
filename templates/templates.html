@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Template Library - Promptrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f4ef;
+  --surface:#fff;
+  --line:#dfd5c9;
+  --text:#201914;
+  --muted:#7f7367;
+  --brand:#cc4c07;
+  --brand2:#0b6f6e;
+  --radius:12px;
+}
+html,body{background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);min-height:100%}
+.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+.logo{font-weight:800;font-size:20px}
+.logo span{color:var(--brand)}
+.back{border:1px solid var(--line);background:#f4eee6;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700}
+.wrap{max-width:1420px;margin:0 auto;padding:22px 20px 32px}
+.h1{font-size:32px;font-weight:800;letter-spacing:-.4px}
+.sub{margin-top:6px;color:var(--muted);font-size:14px}
+.tools{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.search{width:320px;max-width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+.search:focus{outline:none;border-color:var(--brand)}
+.grid{margin-top:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.2s;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.08)}
+.thumb{height:134px;position:relative;overflow:hidden}
+.mock-nav{height:22px;opacity:.9}
+.mock-hero{height:48px;margin:8px 10px;border-radius:8px;opacity:.85}
+.mock-row{display:flex;gap:8px;margin:0 10px}
+.mock-col{height:34px;flex:1;border-radius:6px;opacity:.75}
+.meta{padding:10px 10px 12px}
+.name{font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.desc{margin-top:3px;font-size:11px;color:var(--muted)}
+.actions{margin-top:9px;display:flex;gap:7px}
+.btn{flex:1;border-radius:8px;padding:7px 8px;font-size:11px;font-weight:800;cursor:pointer}
+.btn-custom{border:0;color:#fff;background:linear-gradient(135deg,var(--brand),#9f3602)}
+.btn-prev{border:1px solid var(--brand);background:#fff;color:var(--brand);text-decoration:none;text-align:center}
+.drawer{display:none;position:fixed;inset:0;z-index:35;background:#fff}
+.drawer.active{display:flex;flex-direction:column}
+.d-head{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--brand),#9f3602);color:#fff;padding:14px 18px}
+.d-title{font-weight:800}
+.close{width:34px;height:34px;border:0;border-radius:8px;background:rgba(255,255,255,.22);color:#fff;cursor:pointer;font-size:18px}
+.d-body{padding:16px;background:var(--bg);overflow:auto;flex:1}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tab{border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:999px;cursor:pointer;font-weight:700;color:var(--muted);font-size:12px}
+.tab.active{background:var(--brand);border-color:var(--brand);color:#fff}
+.pane{display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pane.active{display:grid}
+.box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.box h4{font-size:11px;font-weight:800;margin-bottom:9px;text-transform:uppercase;letter-spacing:.5px}
+.fg{margin-bottom:10px}
+.fg label{display:block;font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px}
+input[type="text"],input[type="number"],textarea,select,input[type="color"]{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:#fff;font-family:inherit;font-size:12px}
+textarea{min-height:70px;resize:vertical}
+.row{display:flex;gap:6px}
+.gbtn{padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;font-size:11px;font-weight:800;color:var(--muted)}
+.gbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.result{display:none;margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+.result.show{display:block}
+.result-switch{display:flex;gap:6px;margin-bottom:8px}
+.rtab{padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;font-size:11px;font-weight:800;color:var(--muted)}
+.rtab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.live{display:block}
+.live.hide{display:none}
+.live iframe{width:100%;height:440px;border:1px solid var(--line);border-radius:8px}
+.code{display:none}
+.code.show{display:block}
+pre{background:#1f1d1a;color:#ddd2c4;border-radius:8px;padding:10px;max-height:440px;overflow:auto;font-size:11px;line-height:1.45}
+.ca{display:flex;gap:8px;margin-top:8px}
+.cab{flex:1;border:0;border-radius:8px;padding:9px 10px;color:#fff;font-weight:800;cursor:pointer;background:var(--brand)}
+.cab.alt{background:var(--brand2)}
+#page-switcher{display:flex;gap:6px;flex-wrap:wrap;padding:0 0 8px}
+.foot{padding:12px 16px;border-top:1px solid var(--line);background:#fff;display:flex;gap:8px}
+.cancel,.gen{flex:1;border-radius:10px;padding:10px 12px;font-weight:800;cursor:pointer}
+.cancel{border:1px solid var(--brand);color:var(--brand);background:#fff}
+.gen{border:0;background:linear-gradient(135deg,var(--brand),#9f3602);color:#fff}
+@media (max-width:1200px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.pane{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pane{grid-template-columns:1fr}.live iframe{height:330px}}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo">Prompt<span>rix</span></div>
+  <button class="back" onclick="window.location='/'">Back</button>
+</div>
+
+<div class="wrap">
+  <h1 class="h1">200 Fixed Templates</h1>
+  <p class="sub">Har template alag preset ke saath hai. Preview naya page me khulta hai. Customize selected template se start hota hai.</p>
+  <div class="tools">
+    <input id="search" class="search" placeholder="Search template by name or category" oninput="filterTemplates()">
+  </div>
+  <div id="grid" class="grid"></div>
+</div>
+
+<div id="drawer" class="drawer">
+  <div class="d-head">
+    <div class="d-title" id="dTitle">Customize Template</div>
+    <button class="close" onclick="closeDrawer()">x</button>
+  </div>
+  <div class="d-body">
+    <div class="tabs">
+      <button class="tab active" onclick="showPane(0)">Basic</button>
+      <button class="tab" onclick="showPane(1)">Design</button>
+      <button class="tab" onclick="showPane(2)">Advanced</button>
+      <button class="tab" onclick="showPane(3)">SEO</button>
+    </div>
+
+    <div class="pane active">
+      <div class="box">
+        <h4>Brand</h4>
+        <div class="fg"><label>Brand Name</label><input id="brandName" type="text"></div>
+        <div class="fg"><label>Tagline</label><input id="tagline" type="text"></div>
+        <div class="fg"><label>Company</label><input id="company" type="text"></div>
+      </div>
+      <div class="box">
+        <h4>Header + Hero</h4>
+        <div class="fg"><label>Menu Count</label><input id="menuCount" min="2" max="10" type="number"></div>
+        <div class="fg"><label>Hero Title</label><input id="heroTitle" type="text"></div>
+        <div class="fg"><label>Hero Subtitle</label><input id="heroSubtitle" type="text"></div>
+        <div class="fg"><label>CTA Label</label><input id="ctaText" type="text"></div>
+      </div>
+      <div class="box">
+        <h4>Sections</h4>
+        <div class="fg"><label>Feature Cards</label><input id="sectionCount" min="2" max="12" type="number"></div>
+        <div class="fg"><label>Header Style</label><div class="row" id="headerStyleRow"></div></div>
+      </div>
+    </div>
+
+    <div class="pane">
+      <div class="box">
+        <h4>Colors</h4>
+        <div class="fg"><label>Primary</label><input id="cPrimary" type="color"></div>
+        <div class="fg"><label>Secondary</label><input id="cSecondary" type="color"></div>
+        <div class="fg"><label>Accent</label><input id="cAccent" type="color"></div>
+      </div>
+      <div class="box">
+        <h4>Typography</h4>
+        <div class="fg"><label>Font Family</label><select id="fontFamily"><option>Plus Jakarta Sans</option><option>Georgia</option><option>Trebuchet MS</option><option>Verdana</option></select></div>
+        <div class="fg"><label>Font Size</label><div class="row" id="fontSizeRow"></div></div>
+      </div>
+      <div class="box">
+        <h4>Theme Effects</h4>
+        <div class="fg"><label>Dark Mode</label><div class="row" id="darkModeRow"></div></div>
+        <div class="fg"><label>Animation Style</label><div class="row" id="animRow"></div></div>
+        <div class="fg"><label>Interactive Elements</label><div class="row" id="interactRow"></div></div>
+        <div class="fg"><label>Special Effects</label><div class="row" id="effectsRow"></div></div>
+        <div class="fg"><label>Loading Animation</label><div class="row" id="loadingRow"></div></div>
+        <div class="fg"><label>Scroll Behavior</label><div class="row" id="scrollRow"></div></div>
+        <div class="fg"><label>Hover Effects</label><div class="row" id="hoverRow"></div></div>
+      </div>
+    </div>
+
+    <div class="pane">
+      <div class="box">
+        <h4>Pages + Layout</h4>
+        <div class="fg"><label>Total Pages</label><input id="totalPages" min="1" max="20" type="number"></div>
+        <div class="fg"><label>Spacing</label><div class="row" id="spacingRow"></div></div>
+        <div class="fg"><label>Radius</label><div class="row" id="radiusRow"></div></div>
+      </div>
+      <div class="box">
+        <h4>Extra Blocks</h4>
+        <div class="fg"><label>Show Testimonials</label><div class="row" id="testiRow"></div></div>
+        <div class="fg"><label>Show Newsletter</label><div class="row" id="newsRow"></div></div>
+        <div class="fg"><label>Show Pricing</label><div class="row" id="pricingRow"></div></div>
+        <div class="fg"><label>Show Gallery</label><div class="row" id="galleryRow"></div></div>
+        <div class="fg"><label>Show FAQ</label><div class="row" id="faqRow"></div></div>
+        <div class="fg"><label>Show Stats</label><div class="row" id="statsRow"></div></div>
+        <div class="fg"><label>Show Team</label><div class="row" id="teamRow"></div></div>
+        <div class="fg"><label>Show Contact Form</label><div class="row" id="contactRow"></div></div>
+        <div class="fg"><label>Show Blog</label><div class="row" id="blogRow"></div></div>
+      </div>
+      <div class="box">
+        <h4>Description</h4>
+        <div class="fg"><label>Site Description</label><textarea id="siteDesc"></textarea></div>
+      </div>
+    </div>
+
+    <div class="pane">
+      <div class="box">
+        <h4>Meta</h4>
+        <div class="fg"><label>SEO Title</label><input id="seoTitle" type="text"></div>
+        <div class="fg"><label>SEO Description</label><textarea id="seoDesc"></textarea></div>
+        <div class="fg"><label>Keywords</label><textarea id="seoKeywords"></textarea></div>
+      </div>
+      <div class="box">
+        <h4>Tracking</h4>
+        <div class="fg"><label>Analytics ID</label><input id="analyticsId" type="text" placeholder="G-XXXXXX"></div>
+      </div>
+      <div class="box">
+        <h4>Social</h4>
+        <div class="fg"><label>OG Image URL</label><input id="ogImage" type="text"></div>
+      </div>
+    </div>
+
+    <div id="result" class="result">
+      <div class="result-switch">
+        <button id="rtPreview" class="rtab active" onclick="showResult('preview')">Live Preview</button>
+        <button id="rtCode" class="rtab" onclick="showResult('code')">Code</button>
+      </div>
+      <div id="page-switcher" style="display:none"></div>
+      <div id="live" class="live"><iframe id="liveFrame"></iframe></div>
+      <div id="code" class="code">
+        <pre id="codeView"></pre>
+        <div class="ca">
+          <button class="cab" onclick="copyCode()">Copy Code</button>
+          <button class="cab alt" onclick="downloadCode()">Download HTML</button>
+          <button class="cab alt" style="background:#1d4ed8" onclick="downloadReact()">Download React</button>
+          <button class="cab alt" style="background:#059669" onclick="downloadEmail()">Download Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <button class="cancel" onclick="closeDrawer()">Cancel</button>
+    <button class="gen" onclick="generateWebsite()">Generate Website</button>
+  </div>
+</div>
+
+<script>
+const TEMPLATE_NAMES = [
+  "Restaurant Website","Food Blog Website","E-commerce Website","School Website","College Website","Coaching Classes Website","Tuition Website","Gym Website","Fitness Website","Yoga Website",
+  "Travel Website","Tour Website","Hotel Website","Booking Website","News Website","Tech Blog Website","Personal Blog Website","Portfolio Website","Photography Website","Video Website",
+  "Music Website","Podcast Website","Gaming Website","Sports Website","Cricket Website","Football Website","Job Website","Resume Website","Freelancing Website","Business Website",
+  "Startup Website","Company Website","Agency Website","Marketing Website","SEO Website","Affiliate Website","Review Website","Comparison Website","Coupon Website","Deals Website",
+  "Social Media Website","Chat Website","Forum Website","Community Website","Dating Website","Matrimony Website","Event Website","Ticket Booking Website","Movie Website","OTT Website",
+  "Education Website","Online Course Website","Quiz Website","Test Website","Notes Website","PDF Website","Library Website","Knowledge Website","Wiki Website","Question Answer Website",
+  "Health Website","Doctor Website","Hospital Website","Medicine Website","Pharmacy Website","Fitness Trainer Website","Diet Website","Mental Health Website","Meditation Website","Wellness Website",
+  "Real Estate Website","Property Website","Rent Website","Car Website","Bike Website","Rental Website","Cab Booking Website","Transport Website","Logistics Website","Courier Website",
+  "Banking Website","Finance Website","Loan Website","Insurance Website","Investment Website","Stock Market Website","Crypto Website","Trading Website","Accounting Website","Billing Website",
+  "SaaS Website","Software Website","App Website","AI Website","Tool Website","Converter Website","Generator Website","Downloader Website","File Sharing Website","Cloud Website",
+  "Image Website","Video Website","Audio Website","Editing Website","Design Website","Logo Website","Template Website","UI Kit Website","Icon Website","Font Website",
+  "Blog Website","Story Website","Poetry Website","Writing Website","News Blog Website","Lifestyle Website","Fashion Website","Beauty Website","Makeup Website","Shopping Website",
+  "Grocery Website","Vegetable Website","Fruit Website","Dairy Website","Bakery Website","Fast Food Website","Cafe Website","Street Food Website","Delivery Website","Kitchen Website",
+  "NGO Website","Donation Website","Charity Website","Volunteer Website","Religious Website","Temple Website","Astrology Website","Horoscope Website","Spiritual Website","Motivation Website",
+  "Kids Website","Parenting Website","Baby Care Website","Pet Website","Animal Website","Adoption Website","Farming Website","Agriculture Website","Gardening Website","Environment Website",
+  "Weather Website","Pollution Website","Alert Website","Government Website","Service Website","Complaint Website","Feedback Website","Survey Website","Voting Website","Poll Website",
+  "Dashboard Website","Admin Panel Website","CRM Website","ERP Website","Project Website","Task Website","Time Tracking Website","Productivity Website","Notes App Website","Planner Website",
+  "Calendar Website","Reminder Website","Habit Website","Goal Website","Bookmark Website","Reading Website","Study Website","Exam Website","Result Website","Certificate Website",
+  "Meme Website","Joke Website","Fun Website","Entertainment Website","Viral Website","Trending Website","Status Website","Quotes Website","Shayari Website","Wallpaper Website",
+  "Tool Website","Utility Website","Checker Website","Analyzer Website","Tester Website","Debug Website","Developer Website","API Website","Data Website","Analytics Website",
+  "Law Firm Website","Legal Services Website","Consulting Website","Architecture Website","Interior Design Website","Construction Website","Manufacturing Website","Engineering Website",
+  "Jewelry Website","Watch Website","Luxury Brand Website","Art Gallery Website","Museum Website","Theater Website","Concert Hall Website","Stadium Website","Sports Club Website",
+  "Church Website","Mosque Website","Gurdwara Website","Buddhist Temple Website","Spiritual Center Website","Meditation Center Website","Yoga Retreat Website","Wellness Spa Website",
+  "Dentist Website","Veterinary Website","Pharmacy Store Website","Medical Lab Website","Clinic Website","Nursing Home Website","Rehabilitation Website","Mental Health Clinic Website",
+  "Car Rental Website","Bike Rental Website","Boat Rental Website","Vacation Rental Website","Property Management Website","Real Estate Agent Website","Home Builder Website",
+  "Electrician Website","Plumber Website","Carpenter Website","Painter Website","Cleaning Service Website","Landscaping Website","Pest Control Website","Home Repair Website",
+  "Wedding Website","Photography Studio Website","Catering Website","Event Planning Website","Party Supplies Website","Flower Shop Website","Gift Shop Website",
+  "Book Store Website","Stationery Shop Website","Toy Store Website","Game Store Website","Electronics Store Website","Furniture Store Website","Clothing Store Website",
+  "Coffee Shop Website","Tea House Website","Juice Bar Website","Ice Cream Parlor Website","Dessert Shop Website","Chocolate Shop Website","Bakery Chain Website",
+  "Fitness Center Website","CrossFit Website","Martial Arts Website","Dance Studio Website","Personal Trainer Website","Nutritionist Website","Health Coach Website",
+  "Language School Website","Music School Website","Art School Website","Dance School Website","Cooking School Website","Driving School Website","Swimming School Website",
+  "Tech Startup Website","Mobile App Website","Software Company Website","IT Services Website","Cybersecurity Website","Cloud Services Website","Data Analytics Website",
+  "Marketing Agency Website","Advertising Agency Website","Digital Agency Website","Creative Agency Website","Design Studio Website","Brand Agency Website","PR Agency Website",
+  "Nonprofit Website","Foundation Website","Community Service Website","Volunteer Organization Website","Social Enterprise Website","Impact Investment Website",
+  "Science Website","Research Website","Laboratory Website","Innovation Website","Technology Blog Website","Tech News Website","Gadget Review Website",
+  "Fashion Brand Website","Clothing Brand Website","Shoe Store Website","Accessory Shop Website","Handbag Website","Watch Brand Website","Sunglasses Website",
+  "Beauty Salon Website","Hair Salon Website","Nail Salon Website","Spa Website","Wellness Center Website","Massage Therapy Website","Skincare Website",
+  "Pet Store Website","Pet Grooming Website","Veterinary Clinic Website","Animal Shelter Website","Pet Training Website","Pet Supplies Website","Dog Park Website",
+  "Garden Center Website","Plant Nursery Website","Landscaping Service Website","Outdoor Equipment Website","Camping Gear Website","Hiking Store Website","Adventure Sports Website"
+];
+const layouts = [
+  "split","centered","image-left","image-right","cards","minimal","gradient","magazine","stacked","clean",
+  "hero-left","hero-right","full-bleed","sidebar","editorial","bento","panel","showcase","immersive","nav-top",
+  "masonry","grid","list","carousel","timeline","accordion","tabs","modal","parallax","video-background",
+  "split-screen","asymmetric","overlap","floating","geometric","organic","tech-bold","elegant-modern","retro-vintage","futuristic-neon"
+];
+const palettes = [
+  ["#d4550a","#0b6f6e","#f6a400"],["#1d4ed8","#0f766e","#f59e0b"],["#be123c","#7c3aed","#f97316"],["#0f172a","#334155","#22c55e"],
+  ["#4338ca","#0ea5e9","#f43f5e"],["#166534","#0f766e","#d97706"],["#4c1d95","#6d28d9","#ec4899"],["#0c4a6e","#0369a1","#22d3ee"],
+  ["#7f1d1d","#991b1b","#f59e0b"],["#1f2937","#4b5563","#84cc16"],["#78350f","#b45309","#f59e0b"],["#312e81","#6366f1","#a78bfa"],
+  ["#064e3b","#047857","#34d399"],["#0f172a","#1d4ed8","#38bdf8"],["#3f1d2e","#be185d","#fb7185"],["#1e293b","#0f766e","#facc15"],
+  ["#831843","#be185d","#f472b6"],["#134e4a","#0d9488","#5eead4"],["#422006","#92400e","#fbbf24"],["#1e1b4b","#4c1d95","#818cf8"],
+  ["#18181b","#3f3f46","#a1a1aa"],["#0c0a09","#44403c","#a8a29e"],["#1c1917","#57534e","#d6d3d1"],["#020617","#1e293b","#64748b"],
+  ["#f97316","#ea580c","#fed7aa"],["#dc2626","#b91c1c","#fecaca"],["#059669","#047857","#a7f3d0"],["#0891b2","#0e7490","#cffafe"],
+  ["#7c3aed","#6d28d9","#ddd6fe"],["#db2777","#be185d","#fbcfe8"],["#ca8a04","#a16207","#fef3c7"],["#0284c7","#0369a1","#bae6fd"]
+];
+const tones = ["clean","luxury","bold","warm","cool","editorial","modern","premium","friendly","sharp","minimalist","industrial","organic","tech","playful","elegant","rustic","corporate","artistic","retro"];
+
+const animationStyles = ["none","subtle","smooth","bounce","slide","fade","zoom","flip","rotate","glow","wave","pulse","shake","wiggle","float","parallax"];
+const interactiveElements = ["hover","click","scroll","mouse","touch","keyboard","form","gallery","carousel","tabs","accordion","modal","dropdown","tooltip","notification","progress","timeline","countdown","timer","quiz"];
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=80"
+];
+
+function inferPageBundle(name) {
+  const n = name.toLowerCase();
+  if (/(restaurant|food|cafe|bakery|kitchen|coffee|tea|juice|ice cream|dessert|chocolate)/.test(n)) return ['home','menu','gallery','reservation','contact'];
+  if (/(shop|store|e-commerce|shopping|grocery|delivery|deals|coupon|clothing|fashion|beauty|electronics)/.test(n)) return ['home','products','categories','deals','contact'];
+  if (/(school|college|course|coaching|tuition|study|exam|quiz|education|language|music|art|dance|cooking|driving|swimming)/.test(n)) return ['home','courses','programs','admissions','contact'];
+  if (/(gym|fitness|yoga|meditation|wellness|diet|trainer|crossfit|martial|dance|personal trainer|nutritionist|health coach)/.test(n)) return ['home','programs','schedule','trainers','contact'];
+  if (/(travel|tour|hotel|booking|rent|rental|cab|car|bike|boat|vacation|property)/.test(n)) return ['home','destinations','packages','booking','contact'];
+  if (/(news|blog|story|poetry|writing|wiki|knowledge|tech|gadget|review|science|research|laboratory)/.test(n)) return ['home','articles','categories','trending','contact'];
+  if (/(doctor|hospital|health|pharmacy|medicine|mental|dentist|veterinary|clinic|nursing|rehabilitation)/.test(n)) return ['home','services','specialists','appointment','contact'];
+  if (/(finance|bank|loan|insurance|investment|trading|crypto|accounting|billing|stock market)/.test(n)) return ['home','solutions','tools','pricing','contact'];
+  if (/(saas|software|app|ai|tool|api|cloud|data|analytics|developer|debug|cybersecurity|it services)/.test(n)) return ['home','features','integrations','pricing','contact'];
+  if (/(portfolio|photography|design|logo|template|ui|icon|font|video|audio|music|podcast|art gallery|museum)/.test(n)) return ['home','portfolio','services','about','contact'];
+  if (/(ngo|donation|charity|volunteer|environment|pollution|farming|agriculture|garden|plant nursery)/.test(n)) return ['home','mission','programs','impact','contact'];
+  if (/(dashboard|admin|crm|erp|project|task|planner|calendar|habit|goal|productivity|notes)/.test(n)) return ['home','dashboard','features','pricing','contact'];
+  if (/(law|legal|consulting|architecture|interior design|construction|manufacturing|engineering)/.test(n)) return ['home','services','projects','team','contact'];
+  if (/(jewelry|watch|luxury|art|theater|concert|stadium|sports club|church|mosque|temple|spiritual)/.test(n)) return ['home','about','services','events','contact'];
+  if (/(wedding|photography studio|catering|event planning|party supplies|flower|gift)/.test(n)) return ['home','services','portfolio','packages','contact'];
+  if (/(book store|stationery|toy|game|furniture|pet|garden|outdoor|camping|hiking|adventure)/.test(n)) return ['home','products','categories','specials','contact'];
+  if (/(marketing|advertising|digital|creative|design studio|brand|pr|agency)/.test(n)) return ['home','services','portfolio','case-studies','contact'];
+  return ['home','about','services','contact'];
+}
+
+function createTemplatePreset(i) {
+  const name = TEMPLATE_NAMES[i];
+  const category = name.replace(/\s+Website$/i, '');
+  const layout = layouts[i % layouts.length];
+  const p = palettes[i % palettes.length];
+  const id = i + 1;
+  const tone = tones[i % tones.length];
+  const animStyle = animationStyles[i % animationStyles.length];
+  const interactType = interactiveElements[i % interactiveElements.length];
+  const bundle = inferPageBundle(name);
+  return {
+    id,
+    slug: "template-" + id,
+    name,
+    category,
+    layout,
+    primary: p[0],
+    secondary: p[1],
+    accent: p[2],
+    heroImage: `https://picsum.photos/seed/promptrix-hero-${id}/1600/900`,
+    brandName: category + " Studio " + id,
+    tagline: tone + " " + category + " experience",
+    company: category + " Group",
+    heroTitle: category + " that feels different",
+    heroSubtitle: "High-end preset #" + id + " with a unique page flow",
+    ctaText: i % 2 === 0 ? "Get started" : "Book a demo",
+    menuCount: 4 + (i % 5),
+    sectionCount: 4 + (i % 5),
+    totalPages: bundle.length,
+    siteDesc: "Professional " + category + " website template with " + tone + " tone and " + animStyle + " animations",
+    seoTitle: category + " website template " + id,
+    seoDesc: "High-converting template for " + category + " with " + layout + " layout and " + interactType + " interactions",
+    seoKeywords: category.toLowerCase() + ", website, template, business, " + layout + ", " + animStyle + ", " + interactType,
+    headerStyle: i % 3 === 0 ? "solid" : (i % 3 === 1 ? "glass" : "transparent"),
+    fontSize: i % 3 === 0 ? "small" : (i % 3 === 1 ? "medium" : "large"),
+    darkMode: i % 2 === 0 ? "off" : "on",
+    animation: animStyle,
+    interactions: interactType,
+    spacing: i % 3 === 0 ? "compact" : (i % 3 === 1 ? "normal" : "spacious"),
+    radius: i % 3 === 0 ? "sharp" : (i % 3 === 1 ? "rounded" : "pill"),
+    showTestimonials: i % 2 === 0 ? "yes" : "no",
+    showNewsletter: i % 2 === 1 ? "yes" : "no",
+    showPricing: i % 3 === 2 ? "yes" : "no",
+    showGallery: i % 2 === 0 ? "yes" : "no",
+    showFaq: i % 3 === 1 ? "yes" : "no",
+    showStats: i % 4 === 0 ? "yes" : "no",
+    showTeam: i % 5 === 0 ? "yes" : "no",
+    showContact: i % 2 === 0 ? "yes" : "no",
+    showBlog: i % 3 === 0 ? "yes" : "no",
+    pages: bundle,
+    features: getCategoryProfile(category).features || [],
+    specialEffects: i % 4 === 0 ? "particles" : (i % 4 === 1 ? "gradients" : (i % 4 === 2 ? "shadows" : "minimal")),
+    loadingAnimation: i % 3 === 0 ? "spinner" : (i % 3 === 1 ? "skeleton" : "fade-in"),
+    scrollBehavior: i % 2 === 0 ? "smooth" : "instant",
+    hoverEffects: i % 2 === 0 ? "lift" : "glow"
+  };
+}
+
+const TEMPLATES = TEMPLATE_NAMES.map((_, i) => createTemplatePreset(i));
+let filtered = [...TEMPLATES];
+let selected = null;
+let generatedHTML = "";
+let generatedSiteId = "";
+let generatedPages = [];
+let generatedFilename = "index.html";
+let currentPreviewHTML = "";
+let currentBuiltPages = [];
+let currentPreviewPage = 'home';
+
+const state = {
+  headerStyle: "solid",
+  fontSize: "medium",
+  darkMode: "off",
+  animation: "subtle",
+  spacing: "normal",
+  radius: "rounded",
+  showTestimonials: "yes",
+  showNewsletter: "yes",
+  showPricing: "no",
+  showGallery: "yes",
+  showFaq: "yes",
+  showStats: "yes",
+  showTeam: "no",
+  showContact: "yes",
+  showBlog: "no",
+  interactions: "hover",
+  specialEffects: "minimal",
+  loadingAnimation: "fade-in",
+  scrollBehavior: "smooth",
+  hoverEffects: "lift"
+};
+
+function optRow(rootId, key, options) {
+  const root = document.getElementById(rootId);
+  root.innerHTML = "";
+  options.forEach(v => {
+    const b = document.createElement("button");
+    b.className = "gbtn" + (state[key] === v ? " active" : "");
+    b.textContent = v;
+    b.onclick = () => {
+      state[key] = v;
+      optRow(rootId, key, options);
+      refreshLivePreview();
+    };
+    root.appendChild(b);
+  });
+}
+
+function cardThumb(t) {
+  return `<div class="thumb" style="background:linear-gradient(145deg,${t.primary}22,${t.secondary}22)">
+    <div class="mock-nav" style="background:${t.primary}"></div>
+    <div class="mock-hero" style="background:linear-gradient(135deg,${t.primary},${t.secondary})"></div>
+    <div class="mock-row"><div class="mock-col" style="background:${t.secondary}"></div><div class="mock-col" style="background:${t.accent}"></div></div>
+  </div>`;
+}
+
+function renderGrid() {
+  const grid = document.getElementById("grid");
+  grid.innerHTML = filtered.map(t => `
+    <article class="card">
+      ${cardThumb(t)}
+      <div class="meta">
+        <div class="name">${t.name}</div>
+        <div class="desc">${t.category} · ${t.layout} layout</div>
+        <div class="actions">
+          <button class="btn btn-custom" onclick="openCustomize(${t.id})">Customize</button>
+          <a class="btn btn-prev" href="/template-preview?tid=${t.id}&name=${encodeURIComponent(t.name)}" target="_blank" rel="noopener">Preview</a>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function filterTemplates() {
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  filtered = TEMPLATES.filter(t => (t.name + " " + t.category + " " + t.layout).toLowerCase().includes(q));
+  renderGrid();
+}
+
+function showPane(i) {
+  document.querySelectorAll(".tab").forEach((t,idx)=>t.classList.toggle("active", idx===i));
+  document.querySelectorAll(".pane").forEach((p,idx)=>p.classList.toggle("active", idx===i));
+}
+
+function setVal(id, v){document.getElementById(id).value = v;}
+function getVal(id){return document.getElementById(id).value;}
+
+function openCustomize(id) {
+  selected = TEMPLATES.find(t => t.id === id);
+  if (!selected) return;
+  document.getElementById("dTitle").textContent = "Customize: " + selected.name;
+  setVal("brandName", selected.brandName);
+  setVal("tagline", selected.tagline);
+  setVal("company", selected.company);
+  setVal("menuCount", selected.menuCount);
+  setVal("heroTitle", selected.heroTitle);
+  setVal("heroSubtitle", selected.heroSubtitle);
+  setVal("ctaText", selected.ctaText);
+  setVal("sectionCount", selected.sectionCount);
+  setVal("cPrimary", selected.primary);
+  setVal("cSecondary", selected.secondary);
+  setVal("cAccent", selected.accent);
+  setVal("fontFamily", "Plus Jakarta Sans");
+  setVal("totalPages", selected.totalPages);
+  setVal("siteDesc", selected.siteDesc);
+  setVal("seoTitle", selected.seoTitle);
+  setVal("seoDesc", selected.seoDesc);
+  setVal("seoKeywords", selected.seoKeywords);
+  setVal("analyticsId", "");
+  setVal("ogImage", "");
+
+  state.headerStyle = selected.headerStyle;
+  state.fontSize = selected.fontSize;
+  state.darkMode = selected.darkMode;
+  state.animation = selected.animation;
+  state.spacing = selected.spacing;
+  state.radius = selected.radius;
+  state.showTestimonials = selected.showTestimonials;
+  state.showNewsletter = selected.showNewsletter;
+  state.showPricing = selected.showPricing;
+  state.showGallery = selected.showGallery;
+  state.showFaq = selected.showFaq;
+  state.showStats = selected.showStats;
+  state.showTeam = selected.showTeam;
+  state.showContact = selected.showContact;
+  state.showBlog = selected.showBlog;
+  state.animation = selected.animation;
+  state.interactions = selected.interactions;
+  state.specialEffects = selected.specialEffects;
+  state.loadingAnimation = selected.loadingAnimation;
+  state.scrollBehavior = selected.scrollBehavior;
+  state.hoverEffects = selected.hoverEffects;
+
+  optRow("headerStyleRow","headerStyle",["solid","glass","transparent"]);
+  optRow("fontSizeRow","fontSize",["small","medium","large"]);
+  optRow("darkModeRow","darkMode",["off","on"]);
+  optRow("animRow","animation",animationStyles);
+  optRow("interactRow","interactions",interactiveElements);
+  optRow("effectsRow","specialEffects",["particles","gradients","shadows","minimal"]);  
+  optRow("loadingRow","loadingAnimation",["spinner","skeleton","fade-in"]);
+  optRow("scrollRow","scrollBehavior",["smooth","instant"]);
+  optRow("hoverRow","hoverEffects",["lift","glow"]);
+  optRow("spacingRow","spacing",["compact","normal","spacious"]);
+  optRow("radiusRow","radius",["sharp","rounded","pill"]);
+  optRow("testiRow","showTestimonials",["yes","no"]);
+  optRow("newsRow","showNewsletter",["yes","no"]);
+  optRow("pricingRow","showPricing",["yes","no"]);
+  optRow("galleryRow","showGallery",["yes","no"]);
+  optRow("faqRow","showFaq",["yes","no"]);
+  optRow("statsRow","showStats",["yes","no"]);
+  optRow("teamRow","showTeam",["yes","no"]);
+  optRow("contactRow","showContact",["yes","no"]);
+  optRow("blogRow","showBlog",["yes","no"]);
+
+  document.getElementById("result").classList.remove("show");
+  document.getElementById("drawer").classList.add("active");
+  showPane(0);
+  refreshLivePreview();
+}
+
+function closeDrawer(){document.getElementById("drawer").classList.remove("active");}
+
+function buildAllPages(cfg) {
+  const pages = cfg.templatePages || ['home','about','services','contact'];
+  return pages.map(pageKey => {
+    const html = buildHTML(cfg, pageKey);
+    const label = getPageLabel(pageKey, cfg.templateCategory);
+    return { filename: pageKey === 'home' ? 'index.html' : pageKey + '.html', name: label, key: pageKey, html };
+  });
+}
+
+function refreshLivePreview() {
+  if (!selected) return;
+  const cfg = collectConfig();
+  const allPages = buildAllPages(cfg);
+  currentBuiltPages = allPages;
+  currentPreviewPage = 'home';
+  const homePage = allPages.find(p => p.key === 'home') || allPages[0];
+  currentPreviewHTML = homePage.html;
+  document.getElementById('liveFrame').srcdoc = currentPreviewHTML;
+  document.getElementById('codeView').textContent = currentPreviewHTML;
+  document.getElementById('result').classList.add('show');
+  renderPageSwitcher(allPages, 'home', cfg);
+  showResult('preview');
+}
+
+function renderPageSwitcher(pages, activePage, cfg) {
+  const sw = document.getElementById('page-switcher');
+  if (pages.length <= 1) { sw.style.display = 'none'; return; }
+  sw.style.display = 'flex';
+  sw.innerHTML = pages.map(p =>
+    `<button class="rtab${p.key === activePage ? ' active' : ''}" onclick="switchPreviewPage('${p.key}')">${p.name}</button>`
+  ).join('');
+}
+
+function switchPreviewPage(pageKey) {
+  if (!currentBuiltPages) return;
+  currentPreviewPage = pageKey;
+  const page = currentBuiltPages.find(p => p.key === pageKey);
+  if (!page) return;
+  currentPreviewHTML = page.html;
+  document.getElementById('liveFrame').srcdoc = page.html;
+  document.getElementById('codeView').textContent = page.html;
+  const cfg = collectConfig();
+  renderPageSwitcher(currentBuiltPages, pageKey, cfg);
+}
+
+// Category-specific design patterns
+function getCategoryDesign(category, cfg) {
+  const n = (category || "").toLowerCase();
+  if (/(restaurant|food|cafe|bakery|kitchen|coffee|tea|juice|ice cream|dessert)/.test(n)) {
+    return {
+      heroPattern: "food-hero",
+      cardPattern: "menu-card",
+      colorScheme: "warm-appetite",
+      layoutPattern: "restaurant-layout",
+      navigationPattern: "dining-nav",
+      typography: "food-fonts"
+    };
+  }
+  if (/(shop|store|e-commerce|shopping|fashion|electronics)/.test(n)) {
+    return {
+      heroPattern: "shop-hero",
+      cardPattern: "product-card",
+      colorScheme: "shop-scheme",
+      layoutPattern: "shop-layout",
+      navigationPattern: "shop-nav",
+      typography: "shop-fonts"
+    };
+  }
+  if (/(school|college|education|course|coaching)/.test(n)) {
+    return {
+      heroPattern: "education-hero",
+      cardPattern: "course-card",
+      colorScheme: "education-scheme",
+      layoutPattern: "education-layout",
+      navigationPattern: "education-nav",
+      typography: "education-fonts"
+    };
+  }
+  if (/(hospital|doctor|health|medical|clinic)/.test(n)) {
+    return {
+      heroPattern: "health-hero",
+      cardPattern: "service-card",
+      colorScheme: "health-scheme",
+      layoutPattern: "health-layout",
+      navigationPattern: "health-nav",
+      typography: "health-fonts"
+    };
+  }
+  if (/(travel|hotel|tour|booking|vacation)/.test(n)) {
+    return {
+      heroPattern: "travel-hero",
+      cardPattern: "destination-card",
+      colorScheme: "travel-scheme",
+      layoutPattern: "travel-layout",
+      navigationPattern: "travel-nav",
+      typography: "travel-fonts"
+    };
+  }
+  return {
+    heroPattern: "business-hero",
+    cardPattern: "service-card",
+    colorScheme: "business-scheme",
+    layoutPattern: "business-layout",
+    navigationPattern: "business-nav",
+    typography: "business-fonts"
+  };
+}
+
+function getNavigationStyle(category, cfg) {
+  const n = (category || "").toLowerCase();
+  if (/(restaurant|food|cafe)/.test(n)) return "mega-menu";
+  if (/(shop|store|e-commerce)/.test(n)) return "shop-nav";
+  if (/(school|college|education)/.test(n)) return "academic-nav";
+  if (/(travel|hotel|tour)/.test(n)) return "travel-nav";
+  return "standard-nav";
+}
+
+function getPageStructure(category, cfg) {
+  const n = (category || "").toLowerCase();
+  if (/(restaurant|food|cafe)/.test(n)) {
+    return {
+      hero: "food-hero",
+      sections: ["menu", "specials", "gallery", "reviews", "contact"],
+      footer: "restaurant-footer"
+    };
+  }
+  if (/(shop|store|e-commerce)/.test(n)) {
+    return {
+      hero: "shop-hero",
+      sections: ["featured", "categories", "products", "deals", "testimonials"],
+      footer: "shop-footer"
+    };
+  }
+  if (/(school|college|education)/.test(n)) {
+    return {
+      hero: "education-hero",
+      sections: ["programs", "faculty", "facilities", "admissions", "achievements"],
+      footer: "education-footer"
+    };
+  }
+  return {
+    hero: "business-hero",
+    sections: ["services", "about", "team", "testimonials", "contact"],
+    footer: "business-footer"
+  };
+}
+
+function getPageLabel(page, category) {
+  const n = (category || "").toLowerCase();
+  const labels = {
+    home: "Home",
+    about: "About Us",
+    services: "Services",
+    products: "Products",
+    menu: "Menu",
+    gallery: "Gallery",
+    contact: "Contact",
+    courses: "Courses",
+    faculty: "Faculty",
+    admissions: "Admissions",
+    pricing: "Pricing",
+    blog: "Blog",
+    team: "Team",
+    reservations: "Reservations",
+    booking: "Booking",
+    shop: "Shop",
+    cart: "Cart",
+    checkout: "Checkout"
+  };
+  
+  // Category-specific labels
+  if (/(restaurant|food|cafe)/.test(n)) {
+    if (page === "services") return "Our Menu";
+    if (page === "about") return "Our Story";
+    if (page === "contact") return "Visit Us";
+  }
+  if (/(shop|store|e-commerce)/.test(n)) {
+    if (page === "products") return "Shop";
+    if (page === "services") return "Collections";
+  }
+  if (/(school|college|education)/.test(n)) {
+    if (page === "services") return "Programs";
+    if (page === "about") return "About Institute";
+  }
+  
+  return labels[page] || page.charAt(0).toUpperCase() + page.slice(1);
+}
+
+function buildNavigation(pages, style, cfg, currentPage) {
+  // pages = array of {key, label} objects
+  const menuLinks = pages.map(p => {
+    const key = p.key || p;
+    const label = p.label || getPageLabel(key, cfg.templateCategory);
+    const file = key === 'home' ? 'index.html' : key + '.html';
+    const isActive = key === currentPage;
+    return `<a href="${file}" class="nav-link${isActive ? ' active' : ''}">${label}</a>`;
+  }).join('');
+
+  if (style === 'mega-menu') {
+    return `<nav class="mega-nav">
+      <div class="nav-menu">${pages.map(p => {
+        const key = p.key||p; const label = p.label||getPageLabel(key,cfg.templateCategory);
+        const file = key==='home'?'index.html':key+'.html';
+        return `<div class="nav-item"><a href="${file}" class="nav-link${key===currentPage?' active':''}">` + label + `</a></div>`;
+      }).join('')}</div>
+      <div class="nav-actions"><button class="nav-cta">${cfg.ctaText||'Order Now'}</button></div>
+    </nav>`;
+  }
+  if (style === 'shop-nav') {
+    return `<nav class="shop-nav">
+      <div class="nav-menu">${menuLinks}</div>
+      <div class="nav-actions">
+        <button class="nav-search">🔍</button>
+        <button class="nav-cart">🛒</button>
+        <button class="nav-account">👤</button>
+      </div>
+    </nav>`;
+  }
+  return `<nav class="standard-nav">
+    <div class="nav-menu">${menuLinks}</div>
+    <div class="nav-actions"><button class="nav-cta">${cfg.ctaText||'Get Started'}</button></div>
+  </nav>`;
+}
+
+function getCardContent(category, index, cfg) {
+  const n = (category || "").toLowerCase();
+  
+  if (/(restaurant|food|cafe)/.test(n)) {
+    const foodItems = [
+      "Signature dishes crafted with love and fresh ingredients",
+      "Chef's special recipes passed down through generations",
+      "Ambiance that combines comfort with elegance",
+      "Farm-to-table concept supporting local farmers",
+      "Innovative fusion cuisine blending traditional and modern"
+    ];
+    return foodItems[index % foodItems.length];
+  }
+  
+  if (/(shop|store|e-commerce)/.test(n)) {
+    const shopItems = [
+      "Premium quality products at competitive prices",
+      "Latest trends and timeless classics collection",
+      "Curated selection for discerning customers",
+      "Sustainable and ethically sourced merchandise",
+      "Exclusive deals and member benefits"
+    ];
+    return shopItems[index % shopItems.length];
+  }
+  
+  if (/(school|college|education)/.test(n)) {
+    const eduItems = [
+      "Comprehensive curriculum designed for future leaders",
+      "Experienced faculty with industry expertise",
+      "State-of-the-art facilities and technology",
+      "Personalized attention and mentorship programs",
+      "Strong alumni network and career opportunities"
+    ];
+    return eduItems[index % eduItems.length];
+  }
+  
+  return [
+    `${cfg.templateCategory} block with premium spacing and ${cfg.templateLayout} flow.`,
+    `Designed to feel custom for ${cfg.brandName} and ${cfg.company}.`,
+    `Conversion-focused content for ${category} pages.`
+  ][index % 3];
+}
+
+function getCardStyle(category, cfg) {
+  const n = (category || "").toLowerCase();
+  
+  if (/(restaurant|food|cafe)/.test(n)) {
+    return "menu-card";
+  }
+  if (/(shop|store|e-commerce)/.test(n)) {
+    return "product-card";
+  }
+  if (/(school|college|education)/.test(n)) {
+    return "course-card";
+  }
+  return "feature-card";
+}
+
+function buildCategoryCard(title, image, detail, style, cfg) {
+  const baseClass = style || "feature-card";
+  
+  if (style === "menu-card") {
+    return `<article class="${baseClass}">
+      <div class="card-image" style="background-image:url('${image}')"></div>
+      <div class="card-content">
+        <div class="card-header">
+          <h3>${title}</h3>
+          <span class="price">₹${Math.floor(Math.random() * 500) + 100}</span>
+        </div>
+        <p>${detail}</p>
+        <div class="card-actions">
+          <button class="btn-primary">Order Now</button>
+          <button class="btn-secondary">View Details</button>
+        </div>
+      </div>
+    </article>`;
+  }
+  
+  if (style === "product-card") {
+    return `<article class="${baseClass}">
+      <div class="card-image" style="background-image:url('${image}')"></div>
+      <div class="card-content">
+        <span class="badge">New</span>
+        <h3>${title}</h3>
+        <div class="rating">⭐ ${Math.floor(Math.random() * 2) + 4}.0</div>
+        <p>${detail}</p>
+        <div class="price">₹${Math.floor(Math.random() * 2000) + 500}</div>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+    </article>`;
+  }
+  
+  if (style === "course-card") {
+    return `<article class="${baseClass}">
+      <div class="card-image" style="background-image:url('${image}')"></div>
+      <div class="card-content">
+        <div class="course-meta">
+          <span class="duration">${Math.floor(Math.random() * 12) + 1} weeks</span>
+          <span class="level">${['Beginner', 'Intermediate', 'Advanced'][Math.floor(Math.random() * 3)]}</span>
+        </div>
+        <h3>${title}</h3>
+        <p>${detail}</p>
+        <div class="instructor">By Prof. ${['Smith', 'Johnson', 'Williams', 'Brown'][Math.floor(Math.random() * 4)]}</div>
+        <button class="btn-primary">Enroll Now</button>
+      </div>
+    </article>`;
+  }
+  
+  return `<article class="${baseClass}">
+    <div class="card-media" style="background-image:url('${image}')"></div>
+    <div class="card-body">
+      <h3>${title}</h3>
+      <p>${detail}</p>
+    </div>
+  </article>`;
+}
+
+function getCategoryCSS(category, cfg) {
+  const n = (category || "").toLowerCase();
+  
+  if (/(restaurant|food|cafe|bakery|kitchen)/.test(n)) {
+    return `
+      /* Restaurant Specific Styles */
+      .food-hero { background: linear-gradient(135deg, ${cfg.primary}dd, ${cfg.secondary}dd), url('${cfg.heroImage}'); }
+      .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+      .restaurant-footer { background: ${cfg.primary}; color: white; padding: 40px 0; }
+      .price-tag { background: ${cfg.accent}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+    `;
+  }
+  
+  if (/(shop|store|e-commerce|shopping)/.test(n)) {
+    return `
+      /* E-commerce Specific Styles */
+      .shop-hero { background: linear-gradient(135deg, ${cfg.primary}cc, ${cfg.secondary}cc), url('${cfg.heroImage}'); }
+      .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+      .shop-footer { background: #f8f9fa; border-top: 1px solid #e9ecef; padding: 30px 0; }
+      .cart-badge { background: ${cfg.accent}; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; }
+    `;
+  }
+  
+  if (/(school|college|education|course|coaching)/.test(n)) {
+    return `
+      /* Education Specific Styles */
+      .education-hero { background: linear-gradient(135deg, ${cfg.primary}ee, ${cfg.secondary}ee), url('${cfg.heroImage}'); }
+      .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+      .education-footer { background: ${cfg.primary}; color: white; padding: 35px 0; }
+      .course-badge { background: ${cfg.accent}; color: white; padding: 6px 12px; border-radius: 15px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+    `;
+  }
+  
+  if (/(hospital|doctor|health|medical|clinic)/.test(n)) {
+    return `
+      /* Healthcare Specific Styles */
+      .health-hero { background: linear-gradient(135deg, ${cfg.primary}dd, ${cfg.secondary}dd), url('${cfg.heroImage}'); }
+      .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+      .health-footer { background: ${cfg.primary}; color: white; padding: 40px 0; }
+      .emergency-banner { background: ${cfg.accent}; color: white; padding: 15px; text-align: center; font-weight: bold; }
+    `;
+  }
+  
+  if (/(travel|hotel|tour|booking|vacation)/.test(n)) {
+    return `
+      /* Travel Specific Styles */
+      .travel-hero { background: linear-gradient(135deg, ${cfg.primary}cc, ${cfg.secondary}cc), url('${cfg.heroImage}'); }
+      .destination-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+      .travel-footer { background: ${cfg.primary}; color: white; padding: 35px 0; }
+      .booking-widget { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    `;
+  }
+  
+  return `
+    /* Default Business Styles */
+    .business-hero { background: linear-gradient(135deg, ${cfg.primary}dd, ${cfg.secondary}dd), url('${cfg.heroImage}'); }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .business-footer { background: ${cfg.primary}; color: white; padding: 40px 0; }
+  `;
+}
+
+function getCategoryProfile(category) {
+  const n = (category || "").toLowerCase();
+  if (/(restaurant|food|cafe|bakery|kitchen|delivery|grocery|coffee|tea|juice|ice cream|dessert|chocolate)/.test(n)) {
+    return {
+      label: "Food & Hospitality",
+      stats: ["40+ dishes", "12 min response", "4.9 rating", "24/7 delivery"],
+      cards: ["Menu spotlight", "Chef special", "Table booking", "Ambience gallery", "Special offers"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Online Ordering", "Reservation System", "Menu Management", "Customer Reviews", "Delivery Tracking"]
+    };
+  }
+  if (/(school|college|course|coaching|tuition|study|exam|quiz|education|language|music|art|dance|cooking|driving|swimming)/.test(n)) {
+    return {
+      label: "Education",
+      stats: ["1200+ students", "85% success", "24/7 support", "50+ courses"],
+      cards: ["Admissions", "Courses", "Faculty", "Results", "Student Life"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Course Catalog", "Student Portal", "Online Classes", "Assessment Tools", "Certificate Programs"]
+    };
+  }
+  if (/(shop|store|e-commerce|shopping|grocery|delivery|deals|coupon|clothing|fashion|beauty|electronics)/.test(n)) {
+    return {
+      label: "Commerce",
+      stats: ["New arrivals", "Fast checkout", "Secure payment", "1000+ products"],
+      cards: ["Featured products", "Best sellers", "Collections", "Offers", "Trending items"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "Order Tracking", "Customer Reviews"]
+    };
+  }
+  if (/(travel|tour|hotel|booking|rent|rental|cab|car|bike|boat|vacation|property)/.test(n)) {
+    return {
+      label: "Travel & Hospitality",
+      stats: ["50+ destinations", "24/7 booking", "Trusted guides", "100+ hotels"],
+      cards: ["Destination cards", "Packages", "Experiences", "Map & support", "Travel guides"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Destination Search", "Booking Engine", "Travel Insurance", "Tour Packages", "Itinerary Planner"]
+    };
+  }
+  if (/(portfolio|photography|design|logo|template|ui|icon|font|video|audio|music|podcast|art gallery|museum)/.test(n)) {
+    return {
+      label: "Creative & Media",
+      stats: ["Award winning", "Brand systems", "Launch ready", "200+ projects"],
+      cards: ["Case study", "Creative process", "Gallery", "Services", "Client work"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Portfolio Gallery", "Project Showcase", "Client Testimonials", "Service Packages", "Creative Process"]
+    };
+  }
+  if (/(saas|software|app|ai|tool|api|cloud|data|analytics|developer|debug|cybersecurity|it services)/.test(n)) {
+    return {
+      label: "SaaS & Technology",
+      stats: ["99.9% uptime", "3x faster workflow", "Enterprise ready", "500+ integrations"],
+      cards: ["Features", "Integrations", "Security", "Automation", "API docs"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Feature Dashboard", "API Documentation", "Integration Hub", "Security Center", "Analytics Tools"]
+    };
+  }
+  if (/(doctor|hospital|health|pharmacy|medicine|mental|dentist|veterinary|clinic|nursing|rehabilitation)/.test(n)) {
+    return {
+      label: "Healthcare & Wellness",
+      stats: ["Same day help", "Verified doctors", "24/7 care", "50+ specialists"],
+      cards: ["Services", "Doctors", "Appointments", "Care plans", "Health resources"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Appointment Booking", "Doctor Directory", "Health Records", "Telemedicine", "Emergency Care"]
+    };
+  }
+  if (/(law|legal|consulting|architecture|interior design|construction|manufacturing|engineering)/.test(n)) {
+    return {
+      label: "Professional Services",
+      stats: ["15+ years experience", "500+ projects", "Expert team", "98% client satisfaction"],
+      cards: ["Services", "Projects", "Team", "Process", "Case studies"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Service Catalog", "Project Portfolio", "Team Profiles", "Consultation Booking", "Client Portal"]
+    };
+  }
+  if (/(wedding|photography studio|catering|event planning|party supplies|flower|gift)/.test(n)) {
+    return {
+      label: "Events & Celebrations",
+      stats: ["1000+ events", "Creative team", "Full service", "5-star reviews"],
+      cards: ["Services", "Portfolio", "Packages", "Gallery", "Testimonials"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Event Planning", "Service Packages", "Photo Gallery", "Booking System", "Vendor Network"]
+    };
+  }
+  if (/(marketing|advertising|digital|creative|design studio|brand|pr|agency)/.test(n)) {
+    return {
+      label: "Marketing & Agency",
+      stats: ["200+ campaigns", "ROI focused", "Creative team", "Data driven"],
+      cards: ["Services", "Portfolio", "Case studies", "Team", "Process"],
+      showGallery: true,
+      showTestimonialWall: true,
+      showFaq: true,
+      features: ["Service Showcase", "Campaign Portfolio", "Team Expertise", "Client Results", "Strategy Process"]
+    };
+  }
+  return {
+    label: "Business",
+    stats: ["Trusted brand", "High conversion", "Responsive build", "Professional team"],
+    cards: ["Overview", "Value", "Features", "Contact", "About us"],
+    showGallery: true,
+    showTestimonialWall: true,
+    showFaq: true,
+    features: ["Business Overview", "Service Features", "Company Team", "Contact Information", "Client Testimonials"]
+  };
+}
+
+function cardImage(seed, idx) {
+  return `https://picsum.photos/seed/promptrix-card-${seed}-${idx}/1200/800`;
+}
+
+function buildHTML(cfg, currentPage = 'home') {
+  const dark = cfg.darkMode === "on";
+  const bg = dark ? "#0e1117" : "#f6f8fb";
+  const text = dark ? "#eef2ff" : "#0f172a";
+  const muted = dark ? "#94a3b8" : "#475569";
+  const surface = dark ? "#151a24" : "#ffffff";
+  const radius = cfg.radius === "sharp" ? "2px" : (cfg.radius === "pill" ? "999px" : "12px");
+  const spacing = cfg.spacing === "compact" ? "14px" : (cfg.spacing === "spacious" ? "30px" : "22px");
+  const fs = cfg.fontSize === "small" ? "14px" : (cfg.fontSize === "large" ? "17px" : "15px");
+  const shadow = cfg.animation === "rich" ? "0 24px 50px rgba(2,8,23,.28)" : "0 10px 24px rgba(2,8,23,.14)";
+  const variant = (cfg.templateId - 1) % 8;
+  const heroImage = cfg.heroImage || HERO_IMAGES[cfg.templateId % HERO_IMAGES.length];
+  const profile = getCategoryProfile(cfg.templateCategory);
+  
+  // Category-specific design patterns
+  const categoryDesign = getCategoryDesign(cfg.templateCategory, cfg);
+  const navigationStyle = getNavigationStyle(cfg.templateCategory, cfg);
+  const pageStructure = getPageStructure(cfg.templateCategory, cfg);
+
+  const pageKeys = cfg.templatePages || ['home','about','services','contact'];
+  const navItems = pageKeys.slice(0, Math.max(3, cfg.menuCount)).map(k => ({
+    key: k,
+    label: getPageLabel(k, cfg.templateCategory)
+  }));
+  while (navItems.length < cfg.menuCount && navItems.length < pageKeys.length) {
+    const k = pageKeys[navItems.length];
+    navItems.push({ key: k, label: getPageLabel(k, cfg.templateCategory) });
+  }
+  const pageLabels = navItems.map(x => x.label);
+  const nav = buildNavigation(navItems, navigationStyle, cfg, currentPage);
+
+  const sectionBase = profile.cards;
+  const cards = Array.from({length: cfg.sectionCount}, (_, idx) => {
+    const title = sectionBase[(idx + variant) % sectionBase.length];
+    const image = cardImage(cfg.templateId, idx + variant);
+    const detail = getCardContent(cfg.templateCategory, idx, cfg);
+    const cardStyle = getCardStyle(cfg.templateCategory, cfg);
+    return buildCategoryCard(title, image, detail, cardStyle, cfg);
+  }).join("");
+
+  const statsStrip = `<section class="block stats-wrap"><div class="shell stats-grid">${profile.stats.map((s, idx) => `<article class="stat-box"><strong>${String(idx + 1).padStart(2, "0")}</strong><span>${s}</span></article>`).join("")}</div></section>`;
+
+  const gallery = profile.showGallery ? `<section class="block"><div class="shell"><div class="section-head"><h2>${profile.label} Gallery</h2><p>Visual sections tailored for ${cfg.templateName}.</p></div><div class="gallery-grid">${Array.from({length: 4}, (_, idx) => `<article class="gallery-card" style="background-image:linear-gradient(135deg,${cfg.primary}33,${cfg.secondary}33),url('${cardImage(cfg.templateId + 3, idx)}')"><span>Showcase ${idx + 1}</span></article>`).join("")}</div></div></section>` : "";
+
+  const pricing = cfg.showPricing === "yes" ? `<section class="block"><div class="shell"><div class="section-head"><h2>Pricing Plans</h2><p>Simple plans that match the ${cfg.templateLayout} presentation.</p></div><div class="three-col"><article class="p-card"><h3>Starter</h3><p>$19/mo</p><ul><li>Core features</li><li>Email support</li><li>Fast launch</li></ul></article><article class="p-card focus"><h3>Pro</h3><p>$49/mo</p><ul><li>Advanced features</li><li>Priority support</li><li>Growth tools</li></ul></article><article class="p-card"><h3>Scale</h3><p>$99/mo</p><ul><li>Custom modules</li><li>Dedicated support</li><li>Enterprise build</li></ul></article></div></div></section>` : "";
+  const testimonials = cfg.showTestimonials === "yes" ? `<section class="block soft"><div class="shell"><div class="section-head"><h2>Client Stories</h2><p>Real-looking proof blocks for conversion.</p></div><div class="two-col"><blockquote><strong>"Premium look and fast launch."</strong><span>Used to improve trust and engagement.</span></blockquote><blockquote><strong>"Feels custom, not template-like."</strong><span>Better layout hierarchy and visual clarity.</span></blockquote></div></div></section>` : "";
+  const faq = profile.showFaq ? `<section class="block"><div class="shell"><div class="section-head"><h2>Frequently Asked Questions</h2><p>Common questions your users will ask.</p></div><div class="faq-list">${["How fast can we launch?", "Can we edit sections later?", "Do you support multiple pages?"].map((q, idx) => `<article class="faq-item"><strong>${q}</strong><p>${cfg.templateCategory} answer ${idx + 1} for ${cfg.brandName} and ${cfg.templateLayout} setup.</p></article>`).join("")}</div></div></section>` : "";
+  const proofWall = profile.showTestimonialWall ? `<section class="block proof-wall"><div class="shell"><div class="proof-grid">${Array.from({length: 3}, (_, idx) => `<article class="proof-card"><div class="proof-image" style="background-image:url('${cardImage(cfg.templateId + 7, idx)}')"></div><div><h3>${profile.cards[idx % profile.cards.length]}</h3><p>${profile.label} proof block ${idx + 1} for ${cfg.company}.</p></div></article>`).join("")}</div></div></section>` : "";
+  const news = cfg.showNewsletter === "yes" ? `<section class="newsletter"><div class="shell row"><strong>Weekly updates from ${cfg.brandName}</strong><input placeholder="Enter your email"><button>${cfg.ctaText}</button></div></section>` : "";
+  const finalCta = `<section class="block"><div class="shell"><div class="final-cta" style="background-image:linear-gradient(120deg,${cfg.primary}cc,${cfg.secondary}cc),url('${heroImage}')"><div><p class="eyebrow">${cfg.templateLayout} ready</p><h2>Launch ${cfg.brandName} with a distinct look</h2><p>${cfg.siteDesc}</p></div><button>${cfg.ctaText}</button></div></div></section>`;
+
+  // Category-specific CSS
+  const categoryCSS = getCategoryCSS(cfg.templateCategory, cfg);
+
+  // Page-specific hero
+  const hero = getHeroContent(cfg, currentPage, heroImage, variant, pageLabels);
+
+  // For non-home pages: only show page-specific content, not all home sections
+  const iframeNavJS = `
+<scr`+`ipt>
+(function(){
+  document.querySelectorAll('a[href]').forEach(function(a){
+    var href=a.getAttribute('href');
+    if(href&&!href.startsWith('#')&&!href.startsWith('http')&&href.endsWith('.html')){
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        window.parent.postMessage({type:'nav',page:href.replace('.html','').replace('index','home')},'*');
+      });
+    }
+  });
+})();
+</scr`+`ipt>`;
+
+  const isHome = currentPage === 'home';
+  const pageSpecificContent = getPageContent(cfg, currentPage);
+
+  const homeBody = isHome ? `
+${statsStrip}
+<section class="block"><div class="shell"><div class="section-head"><h2>Core sections</h2><p>${profile.label} blocks for ${cfg.templateName}.</p></div><div class="feature-grid">${cards}</div></div></section>
+${gallery}
+${pricing}
+${testimonials}
+${proofWall}
+${news}
+${faq}
+${finalCta}` : pageSpecificContent;
+  
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${cfg.seoTitle}</title>
+<meta name="description" content="${cfg.seoDesc}">
+<meta name="keywords" content="${cfg.seoKeywords}">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:${cfg.fontFamily},sans-serif;background:${bg};color:${text};font-size:${fs};line-height:1.6}
+a{text-decoration:none}
+.shell{max-width:1180px;margin:auto;padding:0 18px}
+${categoryCSS}
+.top{position:sticky;top:0;z-index:100;background:linear-gradient(120deg,${cfg.primary},${cfg.secondary});box-shadow:0 2px 12px rgba(0,0,0,0.12)}
+.top-inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px;gap:16px}
+.brand{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.brand strong{color:#fff;font-size:18px;font-weight:800;letter-spacing:-.3px}
+.brand small{color:rgba(255,255,255,.7);font-size:11px}
+/* Navigation Styles */
+.mega-nav,.shop-nav,.standard-nav{display:flex;align-items:center;justify-content:space-between;width:100%}
+.mega-nav .nav-brand,.shop-nav .nav-brand,.standard-nav .nav-brand{display:none}
+.mega-nav .nav-menu,.shop-nav .nav-menu,.standard-nav .nav-menu{display:flex;align-items:center;gap:4px;flex:1;justify-content:center}
+.mega-nav .nav-item{display:flex}
+.nav-link{color:rgba(255,255,255,.85);font-weight:600;font-size:13px;padding:8px 14px;border-radius:6px;transition:all .2s;border:none;background:transparent;cursor:pointer;text-decoration:none}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.15)}
+.shop-nav .nav-link{color:${cfg.primary};background:transparent}
+.shop-nav .nav-link:hover{background:rgba(0,0,0,.05);color:${cfg.primary}}
+.mega-nav .nav-cta,.standard-nav .nav-cta{background:#fff;color:${cfg.primary};border:none;padding:9px 18px;border-radius:${radius};font-weight:800;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.mega-nav .nav-cta:hover,.standard-nav .nav-cta:hover{opacity:.9;transform:translateY(-1px)}
+.mega-nav .nav-actions,.shop-nav .nav-actions,.standard-nav .nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.shop-nav .nav-search,.shop-nav .nav-cart,.shop-nav .nav-account{background:transparent;border:1.5px solid ${cfg.primary};color:${cfg.primary};padding:7px 11px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .2s}
+.shop-nav .nav-search:hover,.shop-nav .nav-cart:hover,.shop-nav .nav-account:hover{background:${cfg.primary};color:#fff}
+
+/* Category-specific Card Styles */
+.menu-card{background:${surface};border-radius:${radius};overflow:hidden;box-shadow:${shadow};transition:all 0.3s ease}
+.menu-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+.menu-card .card-image{height:200px;background:center/cover no-repeat;position:relative}
+.menu-card .card-content{padding:${spacing}}
+.menu-card .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.menu-card .price{color:${cfg.primary};font-size:24px;font-weight:800}
+.menu-card .card-actions{display:flex;gap:10px;margin-top:16px}
+.menu-card .btn-primary{background:${cfg.primary};color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer}
+.menu-card .btn-secondary{background:transparent;color:${cfg.primary};border:2px solid ${cfg.primary};padding:8px 18px;border-radius:8px;font-weight:600;cursor:pointer}
+
+.product-card{background:${surface};border-radius:${radius};overflow:hidden;box-shadow:${shadow};transition:all 0.3s ease;position:relative}
+.product-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+.product-card .badge{position:absolute;top:15px;right:15px;background:${cfg.accent};color:#fff;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:800;z-index:2}
+.product-card .card-image{height:220px;background:center/cover no-repeat}
+.product-card .card-content{padding:${spacing}}
+.product-card .rating{color:#fbbf24;margin:8px 0;font-size:14px}
+.product-card .price{color:${cfg.primary};font-size:28px;font-weight:800;margin:12px 0}
+.product-card .btn-primary{background:${cfg.primary};color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;width:100%;transition:all 0.3s ease}
+.product-card .btn-primary:hover{background:${cfg.accent}}
+
+.course-card{background:${surface};border-radius:${radius};overflow:hidden;box-shadow:${shadow};transition:all 0.3s ease}
+.course-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+.course-card .card-image{height:180px;background:center/cover no-repeat;position:relative}
+.course-card .card-content{padding:${spacing}}
+.course-card .course-meta{display:flex;gap:10px;margin-bottom:12px}
+.course-card .duration{background:#e0f2fe;color:#0277bd;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.course-card .level{background:#f3e5f5;color:#7b1fa2;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.course-card .instructor{color:${muted};font-size:13px;margin:12px 0;font-style:italic}
+.course-card .btn-primary{background:${cfg.primary};color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;width:100%;transition:all 0.3s ease}
+
+.hero{padding:64px 0}
+.hero-title{font-size:clamp(34px,5vw,66px);line-height:1.04;margin:8px 0 14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:${muted};margin:0}
+.hero p{margin:0 0 18px;color:${muted}}
+.hero button,.newsletter button{border:0;border-radius:${radius};padding:11px 16px;background:linear-gradient(135deg,${cfg.primary},${cfg.accent});color:#fff;font-weight:800;cursor:pointer;transition:all 0.3s ease}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:${spacing};align-items:center}
+.hero-image{min-height:360px;background:center/cover no-repeat;border-radius:${radius};box-shadow:${shadow}}
+.glass{background:rgba(255,255,255,.82);padding:${spacing};border-radius:${radius};box-shadow:${shadow}}
+.center{text-align:center;max-width:760px}
+.hero-center{background:center/cover no-repeat;color:#fff}
+.hero-center .eyebrow,.hero-center p{color:#e2e8f0}
+.bento{display:grid;grid-template-columns:1.15fr .85fr;gap:${spacing}}
+.b1,.b2,.b3{border-radius:${radius};padding:${spacing};background:${surface};box-shadow:${shadow}}
+.b2{min-height:320px;background:center/cover no-repeat}
+.line{width:80px;height:6px;background:linear-gradient(90deg,${cfg.primary},${cfg.accent});border-radius:999px}
+.sub{max-width:760px}
+.media{height:360px;margin-top:22px;border-radius:${radius};background:center/cover no-repeat;box-shadow:${shadow}}
+.metrics{display:grid;gap:12px}
+.metrics div{padding:16px;border-radius:${radius};background:${surface};box-shadow:${shadow}}
+.metrics strong{display:block;font-size:30px;line-height:1}
+.spot{min-height:420px;border-radius:${radius};padding:28px;display:flex;flex-direction:column;justify-content:flex-end;background:center/cover no-repeat;box-shadow:${shadow}}
+.with-side{display:grid;grid-template-columns:320px 1fr;gap:${spacing}}
+.with-side aside{padding:${spacing};background:${surface};border-radius:${radius};box-shadow:${shadow}}
+.with-side aside nav{display:grid;gap:8px;margin-top:12px}
+.with-side aside a{color:${cfg.primary};font-weight:700}
+.hero-immersive{background:center/cover no-repeat;color:#fff}
+.hero-immersive .eyebrow,.hero-immersive p{color:#dbeafe}
+.page-hero{padding:40px 0 28px;background:linear-gradient(135deg,${cfg.primary}15,${bg});border-bottom:1px solid rgba(148,163,184,.15)}
+.page-title{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.page-subtitle{color:${muted};font-size:15px}
+.block{padding:56px 0}
+.soft{background:${dark ? "#0b1220" : "#eef2ff"}}
+.feature-grid,.three-col,.two-col{display:grid;gap:14px}
+.feature-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.three-col{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.two-col{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.section-head p{margin:0;color:${muted}}
+.feature-card,.p-card,blockquote,.faq-item,.stat-box,.proof-card{background:${surface};border-radius:${radius};box-shadow:${shadow};margin:0}
+.feature-card{overflow:hidden}
+.image-card .card-media{height:170px;background:center/cover no-repeat}
+.image-card .card-body{padding:${spacing}}
+.feature-card p,.p-card p,blockquote,.faq-item p,.proof-card p,.stat-box span{color:${muted}}
+.focus{outline:2px solid ${cfg.accent}}
+.stats-wrap{padding-top:24px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat-box{padding:${spacing};border:1px solid rgba(148,163,184,.2)}
+.stat-box strong{display:block;font-size:28px;line-height:1;color:${cfg.primary}}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.gallery-card{min-height:220px;border-radius:${radius};padding:${spacing};display:flex;align-items:flex-end;background:center/cover no-repeat;box-shadow:${shadow};color:#fff;font-weight:800;text-shadow:0 8px 18px rgba(0,0,0,.35)}
+.faq-list{display:grid;gap:12px}
+.faq-item{padding:${spacing};border:1px solid rgba(148,163,184,.15)}
+.proof-wall{padding-top:10px}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.proof-card{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:14px;align-items:center}
+.proof-image{height:100px;border-radius:${radius};background:center/cover no-repeat}
+.proof-card h3,.faq-item strong{margin:0 0 6px}
+.newsletter{padding:30px 0;background:linear-gradient(120deg,${cfg.primary},${cfg.secondary});color:#fff}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.newsletter input{padding:10px 12px;border:0;border-radius:${radius};min-width:240px}
+.final-cta{min-height:220px;border-radius:${radius};padding:${spacing};display:flex;align-items:center;justify-content:space-between;gap:16px;background:center/cover no-repeat;box-shadow:${shadow};color:#fff}
+.final-cta p{color:#eef2ff;margin:0 0 10px}
+.final-cta button{border:0;border-radius:${radius};padding:12px 18px;background:#fff;color:${cfg.primary};font-weight:900;cursor:pointer}
+footer{padding:28px 0;background:${dark ? "#05070f" : "#0f172a"};color:#dbeafe}
+@media (max-width:980px){
+  .hero-grid,.bento,.with-side{grid-template-columns:1fr}
+  .hero-image,.b2,.media{min-height:260px}
+  .top-inner{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:760px){
+  .hero{padding:48px 0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="shell top-inner">
+    <div class="brand"><strong>${cfg.brandName}</strong><small>${cfg.tagline}</small></div>
+    ${nav}
+  </div>
+</header>
+${hero}
+${homeBody}
+<footer><div class="shell">&copy; 2026 ${cfg.company}. All rights reserved. ${cfg.templateName} &middot; ${cfg.templateLayout} theme.</div></footer>
+${iframeNavJS}
+</body>
+</html>`;
+}
+
+function getHeroContent(cfg, currentPage, heroImage, variant, pageLabels) {
+  const heroVariants = [
+    `<section class="hero hero-split"><div class="shell hero-grid"><article class="glass"><p class="eyebrow">${cfg.templateLayout}</p><h1 class="hero-title">${cfg.heroTitle}</h1><p>${cfg.heroSubtitle}</p><button>${cfg.ctaText}</button></article><div class="hero-image" style="background-image:url('${heroImage}')"></div></div></section>`,
+    `<section class="hero hero-center" style="background-image:linear-gradient(140deg,${cfg.primary}cc,${cfg.secondary}cc),url('${heroImage}')"><div class="shell center"><p class="eyebrow">${cfg.templateCategory}</p><h1 class="hero-title">${cfg.heroTitle}</h1><p>${cfg.heroSubtitle}</p><button>${cfg.ctaText}</button></div></section>`,
+    `<section class="hero hero-bento"><div class="shell bento"><article class="b1"><p class="eyebrow">${cfg.templateName}</p><h1 class="hero-title">${cfg.heroTitle}</h1><p>${cfg.heroSubtitle}</p><button>${cfg.ctaText}</button></article><article class="b2" style="background-image:url('${heroImage}')"></article><article class="b3"><h3>${cfg.company}</h3><p>${cfg.siteDesc}</p></article></div></section>`,
+    `<section class="hero hero-editorial"><div class="shell"><div class="line"></div><h1 class="hero-title">${cfg.heroTitle}</h1><p class="sub">${cfg.heroSubtitle}</p><div class="media" style="background-image:url('${heroImage}')"></div></div></section>`,
+    `<section class="hero hero-min"><div class="shell hero-grid"><article><p class="eyebrow">Minimal ${cfg.templateCategory}</p><h1 class="hero-title">${cfg.heroTitle}</h1><p>${cfg.heroSubtitle}</p><button>${cfg.ctaText}</button></article><aside class="metrics"><div><strong>${cfg.sectionCount * 3}+</strong><span>Key Modules</span></div><div><strong>${cfg.totalPages}</strong><span>Core Pages</span></div><div><strong>${cfg.menuCount}</strong><span>Nav Items</span></div></aside></div></section>`,
+    `<section class="hero hero-show"><div class="shell"><article class="spot" style="background-image:linear-gradient(120deg,${cfg.primary}55,${cfg.secondary}55),url('${heroImage}')"><h1 class="hero-title">${cfg.heroTitle}</h1><p>${cfg.heroSubtitle}</p><button>${cfg.ctaText}</button></article></div></section>`,
+    `<section class="hero hero-sidebar"><div class="shell with-side"><aside><h3>${cfg.brandName}</h3><p>${cfg.tagline}</p><nav>${(pageLabels||[]).slice(0,4).map(x => `<a href="#">${x}</a>`).join("")}</nav></aside><article><h1 class="hero-title">${cfg.heroTitle}</h1><p>${cfg.heroSubtitle}</p><div class="hero-image" style="background-image:url('${heroImage}')"></div></article></div></section>`,
+    `<section class="hero hero-immersive" style="background-image:linear-gradient(120deg,rgba(2,6,23,.78),rgba(2,6,23,.4)),url('${heroImage}')"><div class="shell"><p class="eyebrow">${cfg.templateLayout} theme</p><h1 class="hero-title">${cfg.heroTitle}</h1><p>${cfg.heroSubtitle}</p><button>${cfg.ctaText}</button></div></section>`
+  ];
+  
+  if (currentPage === 'home') return heroVariants[variant];
+  return `<section class="page-hero"><div class="shell"><h1 class="page-title">${currentPage.charAt(0).toUpperCase() + currentPage.slice(1)}</h1><p class="page-subtitle">${cfg.tagline}</p></div></section>`;
+}
+
+function getPageContent(cfg, currentPage) {
+  const category = cfg.templateCategory.toLowerCase();
+  if (currentPage === 'home') return '';
+  const dark = cfg.darkMode === 'on';
+  const surface = dark ? '#151a24' : '#ffffff';
+  const muted = dark ? '#94a3b8' : '#475569';
+  const radius = cfg.radius === 'sharp' ? '2px' : (cfg.radius === 'pill' ? '999px' : '12px');
+  const shadow = '0 10px 24px rgba(2,8,23,.14)';
+  const spacing = cfg.spacing === 'compact' ? '14px' : (cfg.spacing === 'spacious' ? '30px' : '22px');
+  const cardImage = (seed, idx) => `https://picsum.photos/seed/promptrix-card-${seed}-${idx}/1200/800`;
+  
+  if (currentPage === 'about') {
+    if (/(restaurant|food|cafe|bakery|kitchen)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Story</h2><p>Passion for food since 2010</p></div><div class="two-col"><article><h3>Our Journey</h3><p>Started as a small family restaurant, now serving thousands of happy customers daily with authentic flavors and warm hospitality.</p></article><article><h3>Our Values</h3><p>Fresh ingredients, traditional recipes, and exceptional service are the cornerstones of our establishment.</p></article></div><div class="two-col"><article><h3>Our Chef</h3><p>Executive Chef with 15+ years of international experience, bringing fusion of traditional and modern techniques.</p></article><article><h3>Our Ambience</h3><p>Cozy atmosphere with perfect lighting, comfortable seating, and background music that complements your dining experience.</p></article></div></div></section>`;
+    }
+    if (/(shop|store|e-commerce|shopping)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>About ${cfg.brandName}</h2><p>Your trusted shopping partner since 2018</p></div><div class="two-col"><article><h3>Our Mission</h3><p>To provide quality products at competitive prices with exceptional customer service and fast delivery.</p></article><article><h3>Our Promise</h3><p>100% authentic products, secure shopping, and hassle-free returns for complete customer satisfaction.</p></article></div><div class="two-col"><article><h3>Quality Assurance</h3><p>Every product undergoes strict quality checks before reaching our customers.</p></article><article><h3>Customer Service</h3><p>24/7 support team ready to help with any queries or concerns.</p></article></div></div></section>`;
+    }
+    if (/(school|college|education|course|coaching)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>About ${cfg.brandName}</h2><p>Excellence in education since 2015</p></div><div class="two-col"><article><h3>Our Philosophy</h3><p>Creating future leaders through innovative teaching methods, personalized attention, and comprehensive development programs.</p></article><article><h3>Our Achievements</h3><p>Over 5000 successful graduates, 95% placement rate, and partnerships with leading companies worldwide.</p></article></div><div class="two-col"><article><h3>Our Faculty</h3><p>Highly qualified educators with industry experience and passion for teaching.</p></article><article><h3>Our Infrastructure</h3><p>State-of-the-art facilities including modern classrooms, labs, library, and sports complex.</p></article></div></div></section>`;
+    }
+    if (/(hospital|doctor|health|medical|clinic|pharmacy)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>About ${cfg.brandName}</h2><p>Compassionate healthcare since 2005</p></div><div class="two-col"><article><h3>Our Mission</h3><p>To provide exceptional medical care with compassion, dignity, and respect for every patient.</p></article><article><h3>Our Expertise</h3><p>Specialized medical services with latest technology and experienced healthcare professionals.</p></article></div><div class="two-col"><article><h3>Our Facilities</h3><p>Modern medical equipment, comfortable patient rooms, emergency care unit, and diagnostic center.</p></article><article><h3>Our Values</h3><p>Patient-first approach, ethical practice, continuous learning, and community health focus.</p></article></div></div></section>`;
+    }
+    if (/(travel|hotel|tour|booking|vacation)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>About ${cfg.brandName}</h2><p>Making travel memorable since 2012</p></div><div class="two-col"><article><h3>Our Story</h3><p>Born from a passion for exploration, we've helped thousands discover the world's beauty.</p></article><article><h3>Our Expertise</h3><p>Specialized in curated travel experiences with local insights and global partnerships.</p></article></div><div class="two-col"><article><h3>Our Promise</h3><p>Hassle-free booking, best price guarantee, and 24/7 travel support.</p></article><article><h3>Our Team</h3><p>Experienced travel consultants with firsthand destination knowledge.</p></article></div></div></section>`;
+    }
+    if (/(portfolio|photography|design|creative)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>About ${cfg.brandName}</h2><p>Creative excellence since 2016</p></div><div class="two-col"><article><h3>Our Approach</h3><p>Blending creativity with strategy to deliver designs that inspire and engage.</p></article><article><h3>Our Process</h3><p>Collaborative design process from concept to completion with client involvement at every stage.</p></article></div><div class="two-col"><article><h3>Our Expertise</h3><p>Branding, UI/UX design, web development, and digital marketing solutions.</p></article><article><h3>Our Awards</h3><p>Recognized with multiple design awards and featured in top design publications.</p></article></div></div></section>`;
+    }
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>About ${cfg.brandName}</h2><p>Professional excellence in every project</p></div><div class="two-col"><article><h3>Our Mission</h3><p>To deliver exceptional quality and innovative solutions that exceed client expectations and drive success.</p></article><article><h3>Our Vision</h3><p>To become an industry leader through continuous improvement, customer focus, and technological advancement.</p></article></div><div class="two-col"><article><h3>Our Values</h3><p>Integrity, innovation, quality, and customer satisfaction drive everything we do.</p></article><article><h3>Our Team</h3><p>Experienced professionals dedicated to delivering excellence in every project.</p></article></div></div></section>`;
+  }
+  
+  if (currentPage === 'services') {
+    if (/(restaurant|food|cafe|bakery|kitchen)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Services</h2><p>Complete dining experience</p></div><div class="menu-grid">${['Catering Services', 'Event Planning', 'Delivery', 'Private Dining'].map(item => `<div class="menu-category"><h3>${item}</h3><p>Professional catering for events of all sizes, custom menus, and impeccable service.</p></div>`).join('')}</div><div class="menu-grid">${['Birthday Parties', 'Corporate Events', 'Wedding Catering', 'Holiday Specials'].map(item => `<div class="menu-category"><h3>${item}</h3><p>Special packages and seasonal offerings to make your celebrations memorable.</p></div>`).join('')}</div></div></section>`;
+    }
+    if (/(shop|store|e-commerce|shopping)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Services</h2><p>Shopping convenience at its best</p></div><div class="product-grid">${['Fast Delivery', 'Easy Returns', 'Gift Wrapping', 'Personal Shopping'].map(item => `<div class="product-category"><h3>${item}</h3><p>Quick and reliable delivery within 24 hours, with real-time tracking.</p></div>`).join('')}</div><div class="product-grid">${['Customer Support', 'Secure Payment', 'Warranty Service', 'Exchange Policy'].map(item => `<div class="product-category"><h3>${item}</h3><p>Comprehensive support and protection for every purchase you make.</p></div>`).join('')}</div></div></section>`;
+    }
+    if (/(school|college|education|course|coaching)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Services</h2><p>Comprehensive educational support</p></div><div class="course-grid">${['Tutoring Programs', 'Career Counseling', 'Exam Preparation', 'Skill Development'].map(item => `<div class="course-category"><h3>${item}</h3><p>Personalized tutoring with expert educators to help students excel in their studies.</p></div>`).join('')}</div><div class="course-grid">${['Online Learning', 'Library Access', 'Lab Facilities', 'Sports Programs'].map(item => `<div class="course-category"><h3>${item}</h3><p>Modern facilities and resources to support holistic student development.</p></div>`).join('')}</div></div></section>`;
+    }
+    if (/(hospital|doctor|health|medical|clinic)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Services</h2><p>Comprehensive healthcare solutions</p></div><div class="service-grid">${['General Medicine', 'Emergency Care', 'Specialized Treatments', 'Preventive Care'].map(item => `<div class="service-category"><h3>${item}</h3><p>Primary care services for all ages with focus on prevention and early detection.</p></div>`).join('')}</div><div class="service-grid">${['Diagnostic Services', 'Surgical Procedures', 'Rehabilitation', 'Mental Health'].map(item => `<div class="service-category"><h3>${item}</h3><p>Advanced medical services with state-of-the-art equipment and experienced specialists.</p></div>`).join('')}</div></div></section>`;
+    }
+    if (/(travel|hotel|tour|booking)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Services</h2><p>Complete travel solutions</p></div><div class="destination-grid">${['Tour Packages', 'Hotel Booking', 'Flight Booking', 'Travel Insurance'].map(item => `<div class="destination-category"><h3>${item}</h3><p>All-inclusive travel packages with guided tours and local experiences.</p></div>`).join('')}</div><div class="destination-grid">${['Visa Assistance', 'Transportation', 'Travel Guides', '24/7 Support'].map(item => `<div class="destination-category"><h3>${item}</h3><p>End-to-end travel support from planning to execution.</p></div>`).join('')}</div></div></section>`;
+    }
+    if (/(portfolio|photography|design|creative)/.test(category)) {
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Services</h2><p>Creative solutions that inspire</p></div><div class="service-grid">${['Brand Design', 'Web Development', 'Digital Marketing', 'Content Creation'].map(item => `<div class="service-category"><h3>${item}</h3><p>Strategic brand identity development that captures your essence and resonates with your audience.</p></div>`).join('')}</div><div class="service-grid">${['UI/UX Design', 'Photography', 'Video Production', 'Print Design'].map(item => `<div class="service-category"><h3>${item}</h3><p>User-centered design solutions that combine aesthetics with functionality.</p></div>`).join('')}</div></div></section>`;
+    }
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Services</h2><p>Comprehensive solutions for your needs</p></div><div class="service-grid">${['Consulting', 'Development', 'Support', 'Training'].map(item => `<div class="service-category"><h3>${item}</h3><p>Professional services delivered by experts with years of experience and proven track record of success.</p></div>`).join('')}</div></div></section>`;
+  }
+  
+  if (currentPage === 'contact') {
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Contact Us</h2><p>Get in touch with ${cfg.brandName}</p></div><div class="two-col"><article><h3>Visit Us</h3><p><strong>Address:</strong> 123 Business Street, City, State 12345<br><strong>Phone:</strong> +1 (555) 123-4567<br><strong>Email:</strong> info@${cfg.brandName.toLowerCase().replace(/\s+/g, '')}.com</p></article><article><h3>Send Message</h3><form><input type="text" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:8px;"><input type="email" placeholder="Your Email" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:8px;"><textarea placeholder="Your Message" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:8px;min-height:120px;"></textarea><button type="submit" style="background:${cfg.primary};color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Send Message</button></form></article></div></div></section>`;
+  }
+  
+  if (currentPage === 'gallery') {
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Gallery</h2><p>Explore our work and achievements</p></div><div class="gallery-grid">${Array.from({length: 8}, (_, idx) => {
+      const img = cardImage(cfg.templateId + 10, idx);
+      return '<article class="gallery-card" style="background:linear-gradient(135deg,'+cfg.primary+'33,'+cfg.secondary+'33),url('+JSON.stringify(img)+') center/cover"><span>'+cfg.templateCategory+' Gallery '+(idx+1)+'</span></article>';
+    }).join('')}</div></div></section>`;
+  }
+  
+  if (currentPage === 'team') {
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Team</h2><p>Meet the talented people behind ${cfg.brandName}</p></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">${Array.from({length: 4}, (_, idx) => {
+      const img = cardImage(cfg.templateId + 20, idx);
+      const names = ['John Smith','Sarah Johnson','Michael Brown','Emily Davis'];
+      const roles = ['CEO & Founder','Creative Director','Lead Developer','Marketing Manager'];
+      return '<article style="background:'+surface+';border-radius:'+radius+';padding:16px;box-shadow:'+shadow+';text-align:center"><img src="'+img+'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:block"><h3 style="font-size:15px;margin-bottom:4px">'+names[idx]+'</h3><p style="color:'+cfg.primary+';font-size:12px;font-weight:700">'+roles[idx]+'</p><p style="color:'+muted+';font-size:12px;margin-top:6px">Expert in '+cfg.templateCategory+' with '+(10+idx*5)+'+ years of experience.</p></article>';
+    }).join('')}</div></div></section>`;
+  }
+  
+  if (currentPage === 'blog') {
+    const posts = [
+      ['The Future of Technology','Design','12 Jan 2025'],
+      ['Building for Scale','Engineering','8 Jan 2025'],
+      ['Customer First Philosophy','Culture','5 Jan 2025'],
+      ['Top Productivity Hacks','Tips','2 Jan 2025'],
+      ['The Art of Storytelling','Marketing','28 Dec 2024'],
+      ['Remote Work Done Right','Culture','22 Dec 2024']
+    ];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Blog</h2><p>Latest news and insights from ${cfg.brandName}</p></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">${Array.from({length: 6}, (_, idx) => {
+      const img = cardImage(cfg.templateId + 30, idx);
+      const [title, tag, date] = posts[idx % posts.length];
+      return '<article style="background:'+surface+';border-radius:'+radius+';overflow:hidden;box-shadow:'+shadow+'"><img src="'+img+'" style="width:100%;height:160px;object-fit:cover;display:block"><div style="padding:14px"><span style="background:'+cfg.primary+'22;color:'+cfg.primary+';padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700">'+tag+'</span><h3 style="margin:8px 0;font-size:15px">'+title+'</h3><p style="color:'+muted+';font-size:12px">'+date+' · 5 min read</p></div></article>';
+    }).join('')}</div></div></section>`;
+  }
+  
+  if (currentPage === 'pricing') {
+    const plans = [
+      {name:'Starter', price:'₹999', period:'/mo', features:['Basic access','Email support','5 projects','Community forum']},
+      {name:'Pro', price:'₹2,499', period:'/mo', features:['Everything in Starter','Priority support','Unlimited projects','Analytics dashboard','API access']},
+      {name:'Enterprise', price:'Custom', period:'', features:['Everything in Pro','Dedicated manager','Custom integrations','SLA guarantee','On-premise option']}
+    ];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Pricing Plans</h2><p>Simple, transparent pricing for ${cfg.brandName}</p></div><div class="three-col">${plans.map((p,i)=>`<article class="p-card${i===1?' focus':''}"><h3>${p.name}</h3><div style="font-size:28px;font-weight:900;margin:8px 0">${p.price}<span style="font-size:14px;font-weight:400">${p.period}</span></div><ul style="list-style:none;display:grid;gap:6px;margin:12px 0">${p.features.map(f=>`<li>✓ ${f}</li>`).join('')}</ul><button style="width:100%;padding:10px;background:${i===1?cfg.primary:'transparent'};color:${i===1?'#fff':cfg.primary};border:2px solid ${cfg.primary};border-radius:8px;font-weight:700;cursor:pointer">${i===0?'Get Started':i===1?'Most Popular':'Contact Us'}</button></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- menu / food items page ---
+  if (currentPage === 'menu') {
+    const items = ['Butter Chicken','Paneer Tikka','Dal Makhani','Biryani Royal','Naan Platter','Tandoori Grill','Gulab Jamun','Mango Lassi','Veg Thali','Fish Curry','Chole Bhature','Masala Dosa'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Menu</h2><p>Fresh ingredients, authentic recipes at ${cfg.brandName}</p></div><div class="feature-grid">${items.slice(0,cfg.sectionCount||6).map((item,i)=>`<article class="menu-card"><div class="card-image" style="background:linear-gradient(135deg,${cfg.primary}33,${cfg.secondary}33),url('${cardImage(cfg.templateId,i+10)}') center/cover"></div><div class="card-content"><div class="card-header"><h3>${item}</h3><span style="color:${cfg.primary};font-weight:800">₹${180+i*40}</span></div><p>Freshly prepared with premium ingredients and authentic spices.</p><div class="card-actions"><button class="btn-primary">Order Now</button></div></div></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- products / shop page ---
+  if (['products','shop','categories','deals','specials'].includes(currentPage)) {
+    const items = ['Premium Collection','Best Sellers','New Arrivals','Featured Items','Top Rated','Limited Edition','Sale Items','Trending Now'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>${currentPage.charAt(0).toUpperCase()+currentPage.slice(1)}</h2><p>Explore our curated selection at ${cfg.brandName}</p></div><div class="feature-grid">${items.slice(0,cfg.sectionCount||6).map((item,i)=>`<article class="product-card"><div class="card-image" style="height:200px;background:linear-gradient(135deg,${cfg.primary}22,${cfg.accent}22),url('${cardImage(cfg.templateId,i+20)}') center/cover"></div><div class="card-content"><span class="badge">New</span><h3>${item}</h3><div class="rating">⭐ ${(4+Math.random()).toFixed(1)}</div><div class="price">₹${(999+i*500).toLocaleString()}</div><button class="btn-primary">Add to Cart</button></div></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- courses / programs / admissions page ---
+  if (['courses','programs','admissions'].includes(currentPage)) {
+    const courses = ['Full Stack Development','Data Science & AI','UI/UX Design','Digital Marketing','Python Programming','Business Analytics','Cloud Computing','Cybersecurity'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>${currentPage.charAt(0).toUpperCase()+currentPage.slice(1)}</h2><p>Expert-led programs at ${cfg.brandName}</p></div><div class="feature-grid">${courses.slice(0,cfg.sectionCount||6).map((c,i)=>`<article class="course-card"><div class="card-image" style="height:160px;background:linear-gradient(135deg,${cfg.primary}33,${cfg.secondary}33),url('${cardImage(cfg.templateId,i+30)}') center/cover"></div><div class="card-content"><div class="course-meta"><span class="duration">${4+i*2} weeks</span><span class="level">${['Beginner','Intermediate','Advanced'][i%3]}</span></div><h3>${c}</h3><p>Industry-aligned curriculum with hands-on projects and mentorship.</p><div class="instructor">By Expert Faculty</div><button class="btn-primary">Enroll Now — ₹${(2999+i*1000).toLocaleString()}</button></div></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- destinations / packages / booking page ---
+  if (['destinations','packages','booking'].includes(currentPage)) {
+    const places = ['Goa Beach Escape','Manali Snow Trek','Kerala Backwaters','Rajasthan Heritage','Andaman Islands','Ladakh Expedition','Bali Adventure','Europe Grand Tour'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>${currentPage.charAt(0).toUpperCase()+currentPage.slice(1)}</h2><p>Handpicked experiences by ${cfg.brandName}</p></div><div class="feature-grid">${places.slice(0,cfg.sectionCount||6).map((p,i)=>`<article style="background:${surface};border-radius:${radius};overflow:hidden;box-shadow:${shadow}"><div style="height:180px;background:linear-gradient(135deg,${cfg.primary}55,${cfg.secondary}55),url('${cardImage(cfg.templateId,i+40)}') center/cover;display:flex;align-items:flex-end;padding:12px"><span style="color:#fff;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.5)">${p}</span></div><div style="padding:14px"><p style="color:${muted};font-size:13px">5 Days · 4 Nights · All Inclusive</p><div style="font-size:20px;font-weight:900;color:${cfg.primary};margin:6px 0">₹${(8999+i*3000).toLocaleString()}</div><button style="width:100%;padding:9px;background:${cfg.primary};color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">Book Now</button></div></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- portfolio / work page ---
+  if (['portfolio','work','case-studies'].includes(currentPage)) {
+    const projects = ['Brand Identity Redesign','E-Commerce Platform','Mobile App UI','Dashboard Design','Marketing Campaign','Product Launch','Corporate Website','Social Media Kit'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Work</h2><p>Selected projects by ${cfg.brandName}</p></div><div class="gallery-grid">${projects.slice(0,cfg.sectionCount||6).map((p,i)=>`<article class="gallery-card" style="background:linear-gradient(135deg,${cfg.primary}55,${cfg.secondary}55),url('${cardImage(cfg.templateId,i+50)}') center/cover"><span>${p}</span></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- specialists / doctors / appointment page ---
+  if (['specialists','appointment'].includes(currentPage)) {
+    const doctors = ['Dr. Arjun Sharma — Cardiologist','Dr. Priya Nair — Neurologist','Dr. Rohan Mehta — Orthopedics','Dr. Sneha Patel — Pediatrics','Dr. Amit Singh — Dermatology','Dr. Kavita Rao — Gynecology'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>${currentPage === 'appointment' ? 'Book Appointment' : 'Our Specialists'}</h2><p>${currentPage === 'appointment' ? 'Schedule a visit at '+cfg.brandName : 'Expert doctors at '+cfg.brandName}</p></div>${currentPage === 'appointment' ? `<div class="two-col"><article><h3>Book Online</h3><form style="display:grid;gap:10px;margin-top:12px"><input type="text" placeholder="Full Name" style="padding:10px;border:1px solid #ddd;border-radius:8px"><input type="tel" placeholder="Phone Number" style="padding:10px;border:1px solid #ddd;border-radius:8px"><select style="padding:10px;border:1px solid #ddd;border-radius:8px"><option>Select Department</option><option>Cardiology</option><option>Neurology</option><option>Orthopedics</option><option>Pediatrics</option></select><input type="date" style="padding:10px;border:1px solid #ddd;border-radius:8px"><button type="submit" style="padding:12px;background:${cfg.primary};color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">Confirm Appointment</button></form></article><article><h3>Emergency</h3><p style="font-size:24px;font-weight:900;color:${cfg.primary}">📞 +91 98765 43210</p><p>24/7 Emergency services available. Walk-in patients welcome.</p></article></div>` : `<div class="feature-grid">${doctors.slice(0,cfg.sectionCount||4).map((d,i)=>`<article style="background:${surface};border-radius:${radius};padding:16px;box-shadow:${shadow};text-align:center"><div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,${cfg.primary},${cfg.secondary});margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px">👨‍⚕️</div><h3 style="font-size:14px">${d.split('—')[0].trim()}</h3><p style="color:${cfg.primary};font-size:12px;font-weight:700">${d.split('—')[1]?.trim()}</p><button style="margin-top:10px;padding:8px 16px;background:${cfg.primary};color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer">Book Appointment</button></article>`).join('')}</div>`}</div></section>`;
+  }
+
+  // --- mission / impact / programs (NGO) page ---
+  if (['mission','impact'].includes(currentPage)) {
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>${currentPage === 'mission' ? 'Our Mission' : 'Our Impact'}</h2><p>${cfg.brandName} — making a difference</p></div><div class="two-col"><article><h3>${currentPage === 'mission' ? 'What We Stand For' : 'Lives Changed'}</h3><p>We believe in creating lasting change through community-driven programs, sustainable initiatives, and compassionate action. Every effort counts.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">${['10K+ Beneficiaries','50+ Programs','15 Cities','₹2Cr Raised'].map(s=>`<div style="padding:12px;background:${surface};border-radius:8px;border:1px solid rgba(0,0,0,.08);text-align:center;font-weight:700;color:${cfg.primary}">${s}</div>`).join('')}</div></article><article><h3>Get Involved</h3><p>Join our volunteer network, donate to our cause, or partner with us to amplify impact across communities.</p><div style="display:grid;gap:8px;margin-top:12px">${['Volunteer','Donate','Partner','Spread Awareness'].map(a=>`<button style="padding:10px;background:transparent;border:2px solid ${cfg.primary};color:${cfg.primary};border-radius:8px;font-weight:700;cursor:pointer">${a}</button>`).join('')}</div></article></div></div></section>`;
+  }
+
+  // --- features / integrations / solutions page ---
+  if (['features','integrations','solutions','tools'].includes(currentPage)) {
+    const feats = ['Real-time Collaboration','Smart Automation','Advanced Analytics','500+ Integrations','Enterprise Security','24/7 Support','Custom Workflows','API Access'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>${currentPage.charAt(0).toUpperCase()+currentPage.slice(1)}</h2><p>Everything you need in ${cfg.brandName}</p></div><div class="feature-grid">${feats.slice(0,cfg.sectionCount||6).map((f,i)=>`<article style="background:${surface};border-radius:${radius};padding:20px;box-shadow:${shadow}"><div style="width:44px;height:44px;border-radius:10px;background:${cfg.primary}22;color:${cfg.primary};display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px">${['⚡','🔄','📊','🔗','🔒','💬','⚙️','🛠'][i%8]}</div><h3>${f}</h3><p style="color:${muted};font-size:13px">Powerful capability designed to help your team move faster and smarter.</p></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- articles / trending / categories (blog/news) page ---
+  if (['articles','trending','categories'].includes(currentPage)) {
+    const posts = ['The Future of Technology','Top 10 Industry Trends','Expert Guide to Success','Breaking News Update','In-Depth Analysis Report','Community Spotlight Story','How-To: Getting Started','Weekly Roundup Edition'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>${currentPage.charAt(0).toUpperCase()+currentPage.slice(1)}</h2><p>Latest from ${cfg.brandName}</p></div><div class="feature-grid">${posts.slice(0,cfg.sectionCount||6).map((p,i)=>`<article style="background:${surface};border-radius:${radius};overflow:hidden;box-shadow:${shadow}"><div style="height:160px;background:linear-gradient(135deg,${cfg.primary}33,${cfg.secondary}33),url('${cardImage(cfg.templateId,i+60)}') center/cover"></div><div style="padding:14px"><span style="background:${cfg.primary}22;color:${cfg.primary};padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700">${['Tech','Business','Health','Travel','Education','Finance'][i%6]}</span><h3 style="margin:8px 0;font-size:15px">${p}</h3><p style="color:${muted};font-size:12px">${new Date(Date.now()-i*86400000*3).toLocaleDateString()} · 5 min read</p></div></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- schedule / trainers (gym/fitness) page ---
+  if (['schedule','trainers'].includes(currentPage)) {
+    if (currentPage === 'schedule') {
+      const classes = ['Morning Yoga 6AM','HIIT Cardio 7AM','Power Lifting 8AM','Zumba Dance 9AM','CrossFit WOD 5PM','Pilates Core 6PM','Boxing 7PM','Spin Cycling 8PM'];
+      return `<section class="block"><div class="shell"><div class="section-head"><h2>Class Schedule</h2><p>Weekly timetable at ${cfg.brandName}</p></div><div class="feature-grid">${classes.slice(0,cfg.sectionCount||6).map((c,i)=>`<article style="background:${surface};border-radius:${radius};padding:16px;box-shadow:${shadow};border-left:4px solid ${cfg.primary}"><h3 style="font-size:14px">${c}</h3><p style="color:${muted};font-size:12px">Duration: 60 min · ${['Mon-Wed-Fri','Tue-Thu-Sat','Daily','Mon-Fri'][i%4]}</p><button style="margin-top:8px;padding:7px 14px;background:${cfg.primary};color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer">Book Class</button></article>`).join('')}</div></div></section>`;
+    }
+    const trainers = ['Alex Power — Strength Coach','Maya Flex — Yoga Expert','Jake Cardio — HIIT Specialist','Sara Zen — Pilates Instructor'];
+    return `<section class="block"><div class="shell"><div class="section-head"><h2>Our Trainers</h2><p>Expert coaches at ${cfg.brandName}</p></div><div class="feature-grid">${trainers.slice(0,cfg.sectionCount||4).map((t,i)=>`<article style="background:${surface};border-radius:${radius};padding:16px;box-shadow:${shadow};text-align:center"><div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,${cfg.primary},${cfg.accent});margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px">💪</div><h3 style="font-size:14px">${t.split('—')[0].trim()}</h3><p style="color:${cfg.primary};font-size:12px;font-weight:700">${t.split('—')[1]?.trim()}</p></article>`).join('')}</div></div></section>`;
+  }
+
+  // --- generic fallback for any other page key ---
+  const pageTitle = currentPage.charAt(0).toUpperCase() + currentPage.slice(1).replace(/-/g,' ');
+  return `<section class="block"><div class="shell"><div class="section-head"><h2>${pageTitle}</h2><p>${cfg.brandName} — ${pageTitle.toLowerCase()} page</p></div><div class="feature-grid">${Array.from({length:cfg.sectionCount||4},(_,i)=>`<article style="background:${surface};border-radius:${radius};padding:20px;box-shadow:${shadow}"><h3>${pageTitle} Section ${i+1}</h3><p style="color:${muted}">Detailed content for ${cfg.brandName}'s ${pageTitle.toLowerCase()} section. Customize this with your specific information.</p></article>`).join('')}</div></div></section>`;
+}
+
+function collectConfig() {
+  return {
+    templateId: selected ? selected.id : 1,
+    templateName: selected ? selected.name : "Custom",
+    templateCategory: selected ? selected.category : "Business",
+    templateLayout: selected ? selected.layout : "modern",
+    heroImage: selected ? selected.heroImage : HERO_IMAGES[0],
+    brandName: getVal("brandName"),
+    tagline: getVal("tagline"),
+    company: getVal("company"),
+    menuCount: parseInt(getVal("menuCount") || "5",10),
+    heroTitle: getVal("heroTitle"),
+    heroSubtitle: getVal("heroSubtitle"),
+    ctaText: getVal("ctaText"),
+    sectionCount: parseInt(getVal("sectionCount") || "4",10),
+    primary: getVal("cPrimary"),
+    secondary: getVal("cSecondary"),
+    accent: getVal("cAccent"),
+    fontFamily: getVal("fontFamily"),
+    totalPages: parseInt(getVal("totalPages") || "5",10),
+    siteDesc: getVal("siteDesc"),
+    seoTitle: getVal("seoTitle"),
+    seoDesc: getVal("seoDesc"),
+    seoKeywords: getVal("seoKeywords"),
+    analyticsId: getVal("analyticsId"),
+    ogImage: getVal("ogImage"),
+    templatePages: selected && Array.isArray(selected.pages) ? selected.pages : ["home","about","services","contact"],
+    headerStyle: state.headerStyle,
+    fontSize: state.fontSize,
+    darkMode: state.darkMode,
+    animation: state.animation,
+    spacing: state.spacing,
+    radius: state.radius,
+    showTestimonials: state.showTestimonials,
+    showNewsletter: state.showNewsletter,
+    showPricing: state.showPricing,
+    showGallery: state.showGallery,
+    showFaq: state.showFaq,
+    showStats: state.showStats,
+    showTeam: state.showTeam,
+    showContact: state.showContact,
+    showBlog: state.showBlog,
+    interactions: state.interactions,
+    specialEffects: state.specialEffects,
+    loadingAnimation: state.loadingAnimation,
+    scrollBehavior: state.scrollBehavior,
+    hoverEffects: state.hoverEffects
+  };
+}
+
+function intentFromTemplateName(name) {
+  const n = (name || "").toLowerCase();
+  if (/(restaurant|food|cafe|bakery|kitchen)/.test(n)) return "Food and hospitality website with menu and gallery focus";
+  if (/(shop|shopping|e-commerce|grocery|delivery|deals|coupon)/.test(n)) return "Ecommerce website with product cards, pricing, and conversion CTAs";
+  if (/(school|college|course|coaching|tuition|study|exam|quiz|education)/.test(n)) return "Education website with courses, teachers, admissions, and contact";
+  if (/(gym|fitness|yoga|meditation|wellness|diet|trainer)/.test(n)) return "Fitness and wellness website with classes, plans, and trainer sections";
+  if (/(travel|tour|hotel|booking|rent|rental|cab)/.test(n)) return "Travel and booking website with destination packages and inquiry flow";
+  if (/(news|blog|story|poetry|writing|wiki|knowledge)/.test(n)) return "Content publishing website with article cards, category blocks, and newsletter";
+  if (/(doctor|hospital|health|pharmacy|medicine|mental)/.test(n)) return "Healthcare website with services, specialists, and appointment section";
+  if (/(finance|bank|loan|insurance|investment|trading|crypto|accounting|billing)/.test(n)) return "Finance website with solutions, trust blocks, pricing, and contact";
+  if (/(saas|software|app|ai|tool|api|cloud|data|analytics|developer|debug)/.test(n)) return "Tech product website with hero, feature grid, pricing tiers, and FAQ";
+  if (/(portfolio|photography|design|logo|template|ui|icon|font|video|audio|music|podcast)/.test(n)) return "Creative portfolio website with case studies and project showcase";
+  if (/(ngo|donation|charity|volunteer|environment|pollution|farming|agriculture)/.test(n)) return "Impact-focused organization website with mission, programs, and donation CTA";
+  if (/(dashboard|admin|crm|erp|project|task|planner|calendar|habit|goal)/.test(n)) return "Productivity web app style site with dashboard-like sections and feature modules";
+  return "Professional business website with strong visual hierarchy and conversion-first sections";
+}
+
+function buildGenerationPrompt(cfg) {
+  const pages = (cfg.templatePages || ["home","about","services","contact"]).join(", ");
+  const darkModeHint = cfg.darkMode === "on" ? "Use a dark-themed design language." : "Use a bright and clean design language.";
+  return [
+    `Create a complete multi-page website for ${cfg.templateName}.`,
+    `Intent: ${intentFromTemplateName(cfg.templateName)}.`,
+    `Brand: ${cfg.brandName} (${cfg.company}). Tagline: ${cfg.tagline}.`,
+    `Hero title: ${cfg.heroTitle}. Subtitle: ${cfg.heroSubtitle}. CTA: ${cfg.ctaText}.`,
+    `Primary color: ${cfg.primary}, secondary: ${cfg.secondary}, accent: ${cfg.accent}.`,
+    `Typography: ${cfg.fontFamily}, font size mode ${cfg.fontSize}.`,
+    `Layout style: ${selected ? selected.layout : "modern"}, header style ${cfg.headerStyle}, spacing ${cfg.spacing}, radius ${cfg.radius}.`,
+    `${darkModeHint}`,
+    `Create ${Math.max(3, cfg.totalPages)} pages based on: ${pages}.`,
+    `Include ${cfg.sectionCount} meaningful content sections, with realistic text and proper call-to-actions.`,
+    `Testimonials: ${cfg.showTestimonials}, newsletter: ${cfg.showNewsletter}, pricing section: ${cfg.showPricing}.`,
+    `SEO title: ${cfg.seoTitle}. SEO description: ${cfg.seoDesc}. Keywords: ${cfg.seoKeywords}.`,
+    `Return complete HTML pages with clean navigation links and responsive design.`
+  ].join("\n");
+}
+
+function renderGeneratedResult(result, siteId, fallbackHTML) {
+  generatedSiteId = siteId || "";
+  generatedPages = Array.isArray(result.pages) ? result.pages : [];
+
+  if (!generatedPages.length && fallbackHTML) {
+    generatedPages = [{ filename: "index.html", html: fallbackHTML }];
+  }
+
+  const foundIndex = generatedPages.find(p => (p.filename || "").toLowerCase() === "index.html");
+  generatedFilename = foundIndex ? "index.html" : ((generatedPages[0] && generatedPages[0].filename) || "index.html");
+
+  const page = generatedPages.find(p => p.filename === generatedFilename) || generatedPages[0];
+  const finalHTML = (page && page.html) || fallbackHTML || "";
+  currentPreviewHTML = finalHTML;
+  document.getElementById("liveFrame").srcdoc = finalHTML;
+
+  generatedHTML = finalHTML;
+  document.getElementById("codeView").textContent = generatedHTML;
+  document.getElementById("result").classList.add("show");
+  showResult("preview");
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function showResult(mode) {
+  const p = document.getElementById("rtPreview");
+  const c = document.getElementById("rtCode");
+  const lv = document.getElementById("live");
+  const cd = document.getElementById("code");
+  if (mode === "code") {
+    p.classList.remove("active"); c.classList.add("active");
+    lv.classList.add("hide"); cd.classList.add("show");
+  } else {
+    c.classList.remove("active"); p.classList.add("active");
+    cd.classList.remove("show"); lv.classList.remove("hide");
+  }
+}
+
+async function generateWebsite() {
+  const cfg = collectConfig();
+  const allPages = buildAllPages(cfg);
+  const btn = document.querySelector(".gen");
+  const original = btn ? btn.textContent : "Generate Website";
+  if (btn) { btn.disabled = true; btn.textContent = "Saving..."; }
+
+  try {
+    const res = await fetch("/save-custom-site", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        site_name: cfg.brandName + " — " + cfg.templateName,
+        pages: allPages.map(p => ({ filename: p.filename, name: p.name, html: p.html }))
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.result) throw new Error((data && data.error) || "Save failed");
+    
+    // Get AI Design Suggestions (Local Heuristic)
+    try {
+      const aRes = await fetch("/api/analyze-design", {
+        method: "POST", headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ colors: { primary: cfg.primary, secondary: cfg.secondary }, advanced: { totalPages: cfg.totalPages }, home: { showTestimonials: cfg.showTestimonials }, hero: { title: cfg.heroTitle, subtitle: cfg.heroSubtitle } })
+      });
+      if (aRes.ok) {
+        const aData = await aRes.json();
+        if (aData.suggestions && aData.suggestions.length) {
+          alert("💡 AI Design Analysis:\n\n" + aData.suggestions.join("\n\n"));
+        }
+      }
+    } catch(e) {}
+
+    renderGeneratedResult(data.result, data.site_id || "", allPages[0].html);
+  } catch (err) {
+    renderGeneratedResult({ pages: allPages }, "", allPages[0].html);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = original; }
+  }
+}
+
+function copyCode(){navigator.clipboard.writeText(generatedHTML || "");}
+function downloadCode(){
+  if (generatedSiteId) {
+    window.location = `/download/${encodeURIComponent(generatedSiteId)}`;
+    return;
+  }
+  const blob = new Blob([generatedHTML || ""], {type:"text/html;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "website.html"; a.click();
+  URL.revokeObjectURL(url);
+}
+function downloadReact(){
+  if (generatedSiteId) {
+    window.location = `/download-react/${encodeURIComponent(generatedSiteId)}`;
+  } else {
+    alert("Please generate the website first.");
+  }
+}
+function downloadEmail(){
+  if (generatedSiteId) {
+    window.location = `/api/generate-email/${encodeURIComponent(generatedSiteId)}`;
+  } else {
+    alert("Please generate the website first.");
+  }
+}
+
+window.addEventListener('message', function(e) {
+  if (!e.data || e.data.type !== 'nav') return;
+  var pageKey = e.data.page;
+  if (!currentBuiltPages || !currentBuiltPages.length) return;
+  var page = currentBuiltPages.find(function(p){ return p.key === pageKey; });
+  if (!page) return;
+  currentPreviewPage = pageKey;
+  currentPreviewHTML = page.html;
+  document.getElementById('liveFrame').srcdoc = page.html;
+  document.getElementById('codeView').textContent = page.html;
+});
+
+document.getElementById("drawer").addEventListener("input", refreshLivePreview);
+document.getElementById("drawer").addEventListener("change", refreshLivePreview);
+
+renderGrid();
+</script>
+</body>
+</html>

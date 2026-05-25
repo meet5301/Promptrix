@@ -1,0 +1,9 @@
+flask>=3.0.0
+flask-cors>=4.0.0
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+python-dotenv>=0.19.0
+gunicorn>=20.1.0
+pillow>=9.0.0
+colorsys>=1.0.0
+requests>=2.28.0
