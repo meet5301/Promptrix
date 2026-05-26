@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ecommerce store for premium sneakers · Home</title>
+<meta name="description" content="Dark navy background, gold accent color. 6 product cards with prices and Add to Cart buttons. Navbar with cart icon. Hero section with big CTA. pages: Home, Shop, About, Contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+        :root {
+            --primary: #0a1628;
+            --accent: #d4af37;
+            --surface: #3b2d20;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { opacity: 0.85; }
+        button:hover, .px-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .px-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        section { scroll-margin-top: 88px; }
+        img { max-width: 100%; }
+        @media (max-width: 768px) {
+            .px-nav { padding: 0.75rem 1rem !important; }
+            .px-hero { min-height: 55vh !important; padding: 3rem 1rem !important; }
+            h1 { font-size: 1.85rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            section { padding: 2.5rem 1rem !important; }
+        }
+        
+</style>
+</head>
+<body style="background:#0a1628;color:#f8fafc">
+<header class="px-nav" style="
+            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+            padding:1rem 5%;background:#0a1628;border-bottom:3px solid #d4af37;
+            position:sticky;top:0;z-index:200;backdrop-filter:blur(14px);
+        ">
+            <a href="index.html" style="font-size:1.35rem;font-weight:800;color:#ffffff;text-decoration:none">
+                ecommerce store for premium sneakers
+            </a>
+            <nav style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap"><a href="index.html" style="font-weight:800;color:#d4af37;text-decoration:none;font-size:0.9rem">Home</a><a href="shop.html" style="color:#cbd5e1;opacity:0.9;text-decoration:none;font-size:0.9rem">Shop</a><a href="about.html" style="color:#cbd5e1;opacity:0.9;text-decoration:none;font-size:0.9rem">About</a><a href="contact.html" style="color:#cbd5e1;opacity:0.9;text-decoration:none;font-size:0.9rem">Contact</a></nav>
+            <a href="contact.html" style="
+                background:#d4af37;color:#0f172a;text-decoration:none;
+                padding:0.55rem 1.35rem;border-radius:1.25rem;font-weight:700;font-size:0.9rem;
+            ">Get Started</a>
+        </header>
+<main>
+<section id="hero" class="px-hero" style="
+            background:#0a1628;padding:5rem 5%;text-align:center;min-height:82vh;
+            display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;
+        ">
+            <h1 style="font-size:clamp(2rem,5vw,3.75rem);font-weight:800;margin-bottom:1rem;color:#fff;letter-spacing:-0.03em;max-width:900px">
+                ecommerce store for premium sneakers
+            </h1>
+            <p style="font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,0.9);margin-bottom:2rem;max-width:640px;line-height:1.65">
+                Dark navy background, gold accent color. 6 product cards with prices and Add to Cart buttons. Navbar with cart icon. Hero section with big CTA. pages: Home, Shop, About, Contact
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                <a href="contact.html" style="
+                    background:#d4af37;color:#0f172a;text-decoration:none;
+                    padding:0.85rem 2rem;border-radius:999px;font-weight:700;font-size:1rem;
+                ">Browse Collection</a>
+                <a href="#features" style="
+                    background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;
+                    border:2px solid rgba(255,255,255,0.5);padding:0.8rem 1.75rem;border-radius:999px;font-weight:600;
+                ">Explore</a>
+            </div>
+        </section><section id="products" style="padding:4rem 5%"><h2 style="font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:2.5rem;color:#f8fafc">Our Products</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.75rem;max-width:1200px;margin:0 auto"><article class="px-card" style="background:#0a1628;border-radius:1rem;overflow:hidden;border:1px solid #0a162822">
+                <img src="https://source.unsplash.com/600x400/?product,shopping&sig=1416112190" alt="Premium Headphones" style="width:100%;height:200px;object-fit:cover" loading="lazy">
+                <div style="padding:1.25rem">
+                    <h3 style="font-weight:700;color:#f8fafc;margin-bottom:0.35rem">Premium Headphones</h3>
+                    <p style="color:#0a1628;font-weight:800;font-size:1.25rem;margin-bottom:1rem">₹5,999</p>
+                    <button style="width:100%;background:#0a1628;color:#fff;border:none;padding:0.65rem;border-radius:0.5rem;font-weight:600;cursor:pointer">Add to Cart</button>
+                </div>
+            </article><article class="px-card" style="background:#0a1628;border-radius:1rem;overflow:hidden;border:1px solid #0a162822">
+                <img src="https://source.unsplash.com/600x400/?product,shopping&sig=1416112191" alt="Smartwatch Pro" style="width:100%;height:200px;object-fit:cover" loading="lazy">
+                <div style="padding:1.25rem">
+                    <h3 style="font-weight:700;color:#f8fafc;margin-bottom:0.35rem">Smartwatch Pro</h3>
+                    <p style="color:#0a1628;font-weight:800;font-size:1.25rem;margin-bottom:1rem">₹2,499</p>
+                    <button style="width:100%;background:#0a1628;color:#fff;border:none;padding:0.65rem;border-radius:0.5rem;font-weight:600;cursor:pointer">Add to Cart</button>
+                </div>
+            </article><article class="px-card" style="background:#0a1628;border-radius:1rem;overflow:hidden;border:1px solid #0a162822">
+                <img src="https://source.unsplash.com/600x400/?product,shopping&sig=1416112192" alt="Wireless Charger" style="width:100%;height:200px;object-fit:cover" loading="lazy">
+                <div style="padding:1.25rem">
+                    <h3 style="font-weight:700;color:#f8fafc;margin-bottom:0.35rem">Wireless Charger</h3>
+                    <p style="color:#0a1628;font-weight:800;font-size:1.25rem;margin-bottom:1rem">₹1,299</p>
+                    <button style="width:100%;background:#0a1628;color:#fff;border:none;padding:0.65rem;border-radius:0.5rem;font-weight:600;cursor:pointer">Add to Cart</button>
+                </div>
+            </article><article class="px-card" style="background:#0a1628;border-radius:1rem;overflow:hidden;border:1px solid #0a162822">
+                <img src="https://source.unsplash.com/600x400/?product,shopping&sig=1416112193" alt="USB-C Cable" style="width:100%;height:200px;object-fit:cover" loading="lazy">
+                <div style="padding:1.25rem">
+                    <h3 style="font-weight:700;color:#f8fafc;margin-bottom:0.35rem">USB-C Cable</h3>
+                    <p style="color:#0a1628;font-weight:800;font-size:1.25rem;margin-bottom:1rem">₹499</p>
+                    <button style="width:100%;background:#0a1628;color:#fff;border:none;padding:0.65rem;border-radius:0.5rem;font-weight:600;cursor:pointer">Add to Cart</button>
+                </div>
+            </article><article class="px-card" style="background:#0a1628;border-radius:1rem;overflow:hidden;border:1px solid #0a162822">
+                <img src="https://source.unsplash.com/600x400/?product,shopping&sig=1416112194" alt="Phone Case" style="width:100%;height:200px;object-fit:cover" loading="lazy">
+                <div style="padding:1.25rem">
+                    <h3 style="font-weight:700;color:#f8fafc;margin-bottom:0.35rem">Phone Case</h3>
+                    <p style="color:#0a1628;font-weight:800;font-size:1.25rem;margin-bottom:1rem">₹5,999</p>
+                    <button style="width:100%;background:#0a1628;color:#fff;border:none;padding:0.65rem;border-radius:0.5rem;font-weight:600;cursor:pointer">Add to Cart</button>
+                </div>
+            </article><article class="px-card" style="background:#0a1628;border-radius:1rem;overflow:hidden;border:1px solid #0a162822">
+                <img src="https://source.unsplash.com/600x400/?product,shopping&sig=1416112195" alt="Screen Protector" style="width:100%;height:200px;object-fit:cover" loading="lazy">
+                <div style="padding:1.25rem">
+                    <h3 style="font-weight:700;color:#f8fafc;margin-bottom:0.35rem">Screen Protector</h3>
+                    <p style="color:#0a1628;font-weight:800;font-size:1.25rem;margin-bottom:1rem">₹5,999</p>
+                    <button style="width:100%;background:#0a1628;color:#fff;border:none;padding:0.65rem;border-radius:0.5rem;font-weight:600;cursor:pointer">Add to Cart</button>
+                </div>
+            </article></div></section><section id="cta" style="
+            background:linear-gradient(135deg, #0a1628, #28388a);
+            padding:4rem 5%; text-align:center; color:white;
+        ">
+            <h2 style="font-size:2.5rem; font-weight:800; margin-bottom:1rem;">Ready to Get Started?</h2>
+            <p style="font-size:1.25rem; margin-bottom:2rem; opacity:0.9;">
+                Join thousands of happy customers today.
+            </p>
+            <button style="
+                background:white; color:#0a1628; border:none;
+                padding:0.75rem 2rem; border-radius:0.5rem; font-weight:700;
+                font-size:1rem; cursor:pointer;
+            ">Shop Now →</button>
+        </section><section id="contact" style="padding:4rem 5%;background:#3b2d20">
+            <h2 style="font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:2rem;color:#f8fafc">Contact Us</h2>
+            <form style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:1rem" onsubmit="event.preventDefault();alert('Thanks! We will reply soon.');">
+                <input type="text" placeholder="Your name" required style="padding:0.85rem;border:1px solid #0a162844;border-radius:0.5rem;font-size:1rem">
+                <input type="email" placeholder="Email" required style="padding:0.85rem;border:1px solid #0a162844;border-radius:0.5rem;font-size:1rem">
+                <textarea placeholder="Message" rows="4" required style="padding:0.85rem;border:1px solid #0a162844;border-radius:0.5rem;font-size:1rem"></textarea>
+                <button type="submit" style="background:#0a1628;color:#fff;border:none;padding:0.9rem;border-radius:0.5rem;font-weight:700;cursor:pointer">Send Message</button>
+            </form>
+        </section>
+</main>
+<footer style="background:#28388a;color:#ffffff;padding:3rem 5%;border-top:4px solid #d4af37">
+            <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:2rem">
+                <div>
+                    <div style="font-weight:800;margin-bottom:1rem;font-size:1.2rem;color:#d4af37">ecommerce store for premium sneakers</div>
+                    <p style="color:rgba(255,255,255,0.55);font-size:0.875rem;line-height:1.6">Built dynamically from your prompt — header, hero, containers &amp; multi-page.</p>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:1rem">Pages</div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem"><a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">Home</a><a href="shop.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">Shop</a><a href="about.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">About</a><a href="contact.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">Contact</a></div>
+                </div>
+            </div>
+            <div style="border-top:1px solid #d4af3744;padding-top:1.5rem;text-align:center;color:rgba(255,255,255,0.55);font-size:0.875rem">
+                © 2025 ecommerce store for premium sneakers. All rights reserved.
+            </div>
+        </footer>
+<script>
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        </script>
+</body>
+</html>

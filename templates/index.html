@@ -232,7 +232,7 @@ pre.code-block{font-family:var(--mono);font-size:11px;line-height:1.85;color:#c9
         <div class="auth-brand">Prompt<span>rix</span></div>
         <div class="auth-tagline">Build websites<br><em>from plain words.</em></div>
         <div class="auth-pills">
-          <div class="auth-pill"><div class="auth-pill-icon">⚡</div>Instant multi-page generation</div>
+          <div class="auth-pill"><div class="auth-pill-icon">⚡</div>Instant single-page generation</div>
           <div class="auth-pill"><div class="auth-pill-icon">🎨</div>Real colors, fonts & layouts</div>
           <div class="auth-pill"><div class="auth-pill-icon">📁</div>Your history saved to cloud</div>
           <div class="auth-pill"><div class="auth-pill-icon">⬇</div>Download full website ZIP</div>
@@ -396,9 +396,9 @@ pre.code-block{font-family:var(--mono);font-size:11px;line-height:1.85;color:#c9
           <div class="empty-state" id="empty-state">
             <div class="empty-icon-wrap">✦</div>
             <div class="empty-title">Your site appears here</div>
-            <div class="empty-sub">Write a prompt describing your website — type, colors, pages, sections. Hit Generate and see it live.</div>
+            <div class="empty-sub">Write a prompt describing your website — type, colors, sections, menu links. Hit Generate and see it live.</div>
             <div class="empty-features">
-              <span class="empty-feat">Multi-page</span>
+              <span class="empty-feat">Single-page</span>
               <span class="empty-feat">Real content</span>
               <span class="empty-feat">Live preview</span>
               <span class="empty-feat">Download ZIP</span>
@@ -594,11 +594,19 @@ async function refine(){
 }
 
 /* ═══ RENDER ═══ */
-function renderResult(result,siteId){
+function setPreviewContent(iframe, html, siteId, filename){
+  if(html){
+    iframe.removeAttribute('src');
+    iframe.srcdoc = html;
+  }else if(siteId){
+    iframe.removeAttribute('srcdoc');
+    iframe.src = `/site/${siteId}/${filename}?t=${Date.now()}`;
+  }
+}
 
-  // ✅ FIX 1: pages fallback fix
-  currentPages = Array.isArray(result.pages) 
-    ? result.pages 
+function renderResult(result,siteId){
+  currentPages = Array.isArray(result.pages)
+    ? result.pages
     : (result.html ? [{filename:'index.html',name:'Home',key:'home',html:result.html}] : []);
 
   if(!currentPages.length){
@@ -606,19 +614,13 @@ function renderResult(result,siteId){
     return;
   }
 
-  // ✅ FIX 2: always safe filename
   currentFilename = currentPages.find(p => (p.filename||'').toLowerCase()==='index.html')
     ? 'index.html'
     : (currentPages[0].filename || 'index.html');
 
   const iframe=document.getElementById('preview');
-
-  // ✅ FIX 3: preview load fix
-  if(siteId){
-    iframe.src = `/site/${siteId}/${currentFilename}?t=${Date.now()}`;
-  }else{
-    iframe.srcdoc = currentPages[0].html || '';
-  }
+  const cur=currentPages.find(p=>(p.filename||'').toLowerCase()===currentFilename.toLowerCase()) || currentPages[0];
+  setPreviewContent(iframe, cur.html||'', siteId, currentFilename);
 
   iframe.style.display='block';
   document.getElementById('empty-state').style.display='none';
@@ -637,8 +639,6 @@ function renderResult(result,siteId){
   }
 
   sel.style.display=currentPages.length>1?'inline-flex':'none';
-
-  const cur=currentPages.find(p=>(p.filename||'').toLowerCase()===currentFilename) || currentPages[0];
 
   currentHTML=cur.html||'';
   document.getElementById('code-block').textContent=currentHTML;
@@ -659,7 +659,7 @@ function switchPage(filename){
 
   currentFilename=filename;
 
-  const cur=currentPages.find(p=>p.filename===filename);
+  const cur=currentPages.find(p=>(p.filename||'').toLowerCase()===filename.toLowerCase());
 
   if(cur && cur.html){
     currentHTML=cur.html;
@@ -669,13 +669,7 @@ function switchPage(filename){
   }
 
   const iframe=document.getElementById('preview');
-
-  // ✅ FIX 4: preview safe load
-  if(currentSiteId){
-    iframe.src = `/site/${currentSiteId}/${filename}?t=${Date.now()}`;
-  }else if(cur?.html){
-    iframe.srcdoc = cur.html;
-  }
+  setPreviewContent(iframe, cur?.html||'', currentSiteId, filename);
 }
 
 
@@ -691,7 +685,8 @@ function renderSchema(result){
   if(result.font)html+=sc('Font',`<span class="schema-val">${escHtml(result.font)}</span>`);
   if(result.sections_detected?.length){const tags=result.sections_detected.map(s=>`<span class="tag">${s}</span>`).join('');html+=sc('Sections',`<div class="tags-row">${tags}</div>`);}
   if(result.color_palette){const p=result.color_palette;const sw=Object.entries(p).map(([k,v])=>`<div class="swatch" style="background:${v}" title="${k}: ${v}"></div>`).join('');html+=sc('Colors',`<div class="swatch-row">${sw}</div>`);}
-  if(result.pages?.length)html+=sc('Pages',`<span class="schema-val">${result.pages.map(p=>p.name||p.filename).join(', ')}</span>`);
+  if(result.nav_items?.length)html+=sc('Menu links',`<span class="schema-val">${result.nav_items.map(n=>n.label).join(', ')}</span>`);
+  else if(result.pages?.length)html+=sc('Sections',`<span class="schema-val">${result.pages.map(p=>p.name||p.filename).join(', ')}</span>`);
   el.innerHTML=html||'<div class="schema-empty">No schema yet</div>';
 }
 function sc(key,inner){return`<div class="schema-card"><div class="schema-key">${key}</div>${inner}</div>`;}
@@ -734,9 +729,12 @@ function downloadHTML(){
 function startNew(){
   document.getElementById('prompt').value='';
   document.getElementById('refine-input').value='';
-  currentHTML='';lastPrompt='';currentSiteId='';
-  document.getElementById('preview').srcdoc='';
-  document.getElementById('preview').style.display='none';
+  currentHTML='';lastPrompt='';currentSiteId='';currentPages=[];
+  const iframe=document.getElementById('preview');
+  iframe.removeAttribute('src');
+  iframe.srcdoc='';
+  iframe.style.display='none';
+  document.getElementById('code-block').textContent='// No code yet — generate a website first';
   document.getElementById('empty-state').style.display='flex';
   document.getElementById('schema-section').innerHTML='<div class="schema-empty">Generate a website<br>to see its schema here</div>';
   document.getElementById('copy-btn').style.display='none';

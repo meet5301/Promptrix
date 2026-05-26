@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>hospital and clinic website · Services</title>
+<meta name="description" content="White and teal theme. 6 specialty service cards. 4 doctor profiles. Appointment booking. pages: Home, Services, Doctors, Contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+        :root {
+            --primary: #ffffff;
+            --accent: #e0ca28;
+            --surface: #293b20;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { opacity: 0.85; }
+        button:hover, .px-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .px-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        section { scroll-margin-top: 88px; }
+        img { max-width: 100%; }
+        @media (max-width: 768px) {
+            .px-nav { padding: 0.75rem 1rem !important; }
+            .px-hero { min-height: 55vh !important; padding: 3rem 1rem !important; }
+            h1 { font-size: 1.85rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            section { padding: 2.5rem 1rem !important; }
+        }
+        
+</style>
+</head>
+<body style="background:#0d9488;color:#f8fafc">
+<header class="px-nav" style="
+            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+            padding:1rem 5%;background:#ffffff;border-bottom:3px solid #e0ca28;
+            position:sticky;top:0;z-index:200;
+        ">
+            <a href="index.html" style="font-size:1.35rem;font-weight:800;color:#ffffff;text-decoration:none">
+                hospital and clinic website
+            </a>
+            <nav style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap"><a href="index.html" style="color:#cbd5e1;opacity:0.9;text-decoration:none;font-size:0.9rem">Home</a><a href="services.html" style="font-weight:800;color:#e0ca28;text-decoration:none;font-size:0.9rem">Services</a><a href="doctors.html" style="color:#cbd5e1;opacity:0.9;text-decoration:none;font-size:0.9rem">Doctors</a><a href="contact.html" style="color:#cbd5e1;opacity:0.9;text-decoration:none;font-size:0.9rem">Contact</a></nav>
+            <a href="contact.html" style="
+                background:#e0ca28;color:#0f172a;text-decoration:none;
+                padding:0.55rem 1.35rem;border-radius:0.35rem;font-weight:700;font-size:0.9rem;
+            ">Get Started</a>
+        </header>
+<main>
+<section id="hero" class="px-hero" style="
+            background:#ffffff;padding:5rem 5%;text-align:center;min-height:40vh;
+            display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;
+        ">
+            <h1 style="font-size:clamp(2rem,5vw,3.75rem);font-weight:800;margin-bottom:1rem;color:#fff;letter-spacing:-0.03em;max-width:900px">
+                hospital and clinic website
+            </h1>
+            <p style="font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,0.9);margin-bottom:2rem;max-width:640px;line-height:1.65">
+                White and teal theme. 6 specialty service cards. 4 doctor profiles. Appointment booking. pages: Home, Services, Doctors, Contact
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                <a href="contact.html" style="
+                    background:#e0ca28;color:#0f172a;text-decoration:none;
+                    padding:0.85rem 2rem;border-radius:999px;font-weight:700;font-size:1rem;
+                ">Learn More</a>
+                <a href="#features" style="
+                    background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;
+                    border:2px solid rgba(255,255,255,0.5);padding:0.8rem 1.75rem;border-radius:999px;font-weight:600;
+                ">Explore</a>
+            </div>
+        </section><section id="features" style="padding:4rem 5%;background:#293b20">
+            <h2 style="font-size:2.5rem;font-weight:800;margin-bottom:1rem;text-align:center;color:#f8fafc">
+                Features
+            </h2>
+            <p style="text-align:center;color:#94a3b8;margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto">
+                Everything you need to succeed
+            </p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; max-width:1200px; margin:0 auto;">
+                <div class="px-card" style="
+                padding:2rem;background:#1e293b;border:1px solid #ffffff22;
+                border-radius:1rem;text-align:center;transition:transform .2s;
+            ">
+                <div style="font-size:2rem;margin-bottom:0.5rem;color:#e0ca28">✨</div>
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#f8fafc">Feature One</h3>
+                <p style="color:#94a3b8;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#1e293b;border:1px solid #ffffff22;
+                border-radius:1rem;text-align:center;transition:transform .2s;
+            ">
+                <div style="font-size:2rem;margin-bottom:0.5rem;color:#e0ca28">✨</div>
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#f8fafc">Feature Two</h3>
+                <p style="color:#94a3b8;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#1e293b;border:1px solid #ffffff22;
+                border-radius:1rem;text-align:center;transition:transform .2s;
+            ">
+                <div style="font-size:2rem;margin-bottom:0.5rem;color:#e0ca28">✨</div>
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#f8fafc">Feature Three</h3>
+                <p style="color:#94a3b8;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#1e293b;border:1px solid #ffffff22;
+                border-radius:1rem;text-align:center;transition:transform .2s;
+            ">
+                <div style="font-size:2rem;margin-bottom:0.5rem;color:#e0ca28">✨</div>
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#f8fafc">Feature Four</h3>
+                <p style="color:#94a3b8;line-height:1.6">Description goes here</p>
+            </div>
+            </div>
+        </section><section id="cta" style="
+            background:linear-gradient(135deg, #ffffff, #8a7528);
+            padding:4rem 5%; text-align:center; color:white;
+        ">
+            <h2 style="font-size:2.5rem; font-weight:800; margin-bottom:1rem;">Ready to Get Started?</h2>
+            <p style="font-size:1.25rem; margin-bottom:2rem; opacity:0.9;">
+                Join thousands of happy customers today.
+            </p>
+            <button style="
+                background:white; color:#ffffff; border:none;
+                padding:0.75rem 2rem; border-radius:0.5rem; font-weight:700;
+                font-size:1rem; cursor:pointer;
+            ">Learn More →</button>
+        </section>
+</main>
+<footer style="background:#8a7528;color:#ffffff;padding:3rem 5%;border-top:4px solid #e0ca28">
+            <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:2rem">
+                <div>
+                    <div style="font-weight:800;margin-bottom:1rem;font-size:1.2rem;color:#e0ca28">hospital and clinic website</div>
+                    <p style="color:rgba(255,255,255,0.55);font-size:0.875rem;line-height:1.6">Built dynamically from your prompt — header, hero, containers &amp; multi-page.</p>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:1rem">Pages</div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem"><a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">Home</a><a href="services.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">Services</a><a href="doctors.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">Doctors</a><a href="contact.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.875rem">Contact</a></div>
+                </div>
+            </div>
+            <div style="border-top:1px solid #e0ca2844;padding-top:1.5rem;text-align:center;color:rgba(255,255,255,0.55);font-size:0.875rem">
+                © 2025 hospital and clinic website. All rights reserved.
+            </div>
+        </footer>
+<script>
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        </script>
+</body>
+</html>

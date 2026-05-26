@@ -157,10 +157,6 @@ class ContentItem(Base):
     site = relationship("Site", back_populates="content_items")
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# EMAIL TEMPLATE MODEL
-# ──────────────────────────────────────────────────────────────────────────────
-
 class EmailTemplate(Base):
     """Email templates for marketing"""
     __tablename__ = "email_templates"
@@ -193,10 +189,6 @@ class EmailTemplate(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-
-# ──────────────────────────────────────────────────────────────────────────────
-# EMAIL CAMPAIGN MODEL
-# ──────────────────────────────────────────────────────────────────────────────
 
 class EmailCampaign(Base):
     """Email marketing campaigns"""
@@ -237,10 +229,6 @@ class EmailCampaign(Base):
     # Relationships
     user = relationship("User", back_populates="email_campaigns")
 
-
-# ──────────────────────────────────────────────────────────────────────────────
-# AB TEST MODEL
-# ──────────────────────────────────────────────────────────────────────────────
 
 class ABTest(Base):
     """A/B testing data"""
@@ -316,7 +304,7 @@ class SiteAnalytics(Base):
 def init_db():
     """Create all tables"""
     Base.metadata.create_all(bind=engine)
-    print("✅ Database tables created successfully")
+    print("Database tables created successfully")
 
 
 def get_db_session():
@@ -327,4 +315,4 @@ def get_db_session():
 def drop_all_tables():
     """Drop all tables (USE CAREFULLY!)"""
     Base.metadata.drop_all(bind=engine)
-    print("⚠️  All database tables dropped")
+    print("All database tables dropped")

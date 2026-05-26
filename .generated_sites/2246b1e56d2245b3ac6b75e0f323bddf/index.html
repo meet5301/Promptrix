@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>portfolio for UI/UX designer · Home</title>
+<meta name="description" content="White minimal theme with black typography. Hero with tagline. 6 projects grid. Skills section, about page. pages: Home, Work, About, Contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+        :root {
+            --primary: #ffffff;
+            --accent: #bee028;
+            --surface: #e4f0eb;
+            --text: #0f172a;
+            --muted: #64748b;
+            --radius: 0.35rem;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { opacity: 0.85; }
+        button:hover, .px-nav-cta:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        .px-card:hover { transform: translateY(-4px); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .px-card, .px-container, .px-gallery-item { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .px-hero::after {
+            content:''; position:absolute; inset:0;
+            background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12), transparent 40%);
+            pointer-events:none;
+        }
+        section { scroll-margin-top: 88px; position: relative; }
+        img { max-width: 100%; display: block; }
+        @keyframes px-fade-up {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        main > section { animation: px-fade-up 0.6s ease both; }
+        main > section:nth-child(2) { animation-delay: 0.05s; }
+        main > section:nth-child(3) { animation-delay: 0.1s; }
+        @media (max-width: 768px) {
+            .px-nav { padding: 0.75rem 1rem !important; }
+            .px-hero { min-height: 55vh !important; padding: 3rem 1rem !important; }
+            h1 { font-size: 1.85rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            section { padding: 2.5rem 1rem !important; }
+        }
+        
+</style>
+</head>
+<body style="background:#f2f7f2;color:#0f172a">
+<header class="px-nav" style="
+            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+            padding:1rem 5%;background:#ffffff;border-bottom:3px solid #bee028;
+            position:sticky;top:0;z-index:200;
+        ">
+            <a href="#hero" class="px-nav-link" style="font-size:1.35rem;font-weight:800;color:#ffffff;text-decoration:none">
+                portfolio for UI/UX designer
+            </a>
+            <nav style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;"><a href="#hero" class="px-nav-link" style="color:#ffffff;opacity:0.9;text-decoration:none;font-size:0.9rem">Home</a><a href="#contact" class="px-nav-link" style="color:#ffffff;opacity:0.9;text-decoration:none;font-size:0.9rem">Contact</a></nav>
+            <a href="#contact" class="px-nav-cta px-nav-link" style="
+                background:#bee028;color:#0f172a;text-decoration:none;
+                padding:0.55rem 1.35rem;border-radius:0.35rem;font-weight:700;font-size:0.9rem;
+            ">Get Started</a>
+        </header>
+<main>
+<section id="hero" class="px-hero" style="
+            background-image:linear-gradient(135deg, #ffffffcc 0%, #bee02888 100%),url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiPgogICAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iaGciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiLz4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iIzhhNTcyOCIvPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2JlZTAyOCIvPgogICAgICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICAgICAgICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjcwJSIgY3k9IjIwJSIgcj0iNTAlIj4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYmVlMDI4IiBzdG9wLW9wYWNpdHk9IjAuNDUiLz4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgICAgICAgICAgICAgPC9yYWRpYWxHcmFkaWVudD4KICAgICAgICAgICAgPC9kZWZzPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2hnKSIvPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dsb3cpIi8+CiAgICAgICAgICAgIDxyZWN0IHg9IjEyNTAiIHk9IjgxOCIgd2lkdGg9IjE5NCIgaGVpZ2h0PSIxOTQiIHJ4PSIxOS40MDAwMDAwMDAwMDAwMDIiIGZpbGw9IiM4YTU3MjgiIG9wYWNpdHk9IjAuMTgiLz48cmVjdCB4PSI0MDgiIHk9IjU1OCIgd2lkdGg9IjIxNiIgaGVpZ2h0PSIyMTYiIHJ4PSIyMS42IiBmaWxsPSIjYmVlMDI4IiBvcGFjaXR5PSIwLjI2Ii8+PHJlY3QgeD0iMTQ4NiIgeT0iMjk4IiB3aWR0aD0iMjM4IiBoZWlnaHQ9IjIzOCIgcng9IjIzLjgiIGZpbGw9IiM4YTU3MjgiIG9wYWNpdHk9IjAuMzM5OTk5OTk5OTk5OTk5OTciLz48cmVjdCB4PSI2NDQiIHk9IjM4IiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI2MCIgcng9IjI2LjAiIGZpbGw9IiNiZWUwMjgiIG9wYWNpdHk9IjAuMTgiLz48cmVjdCB4PSIxNzIyIiB5PSI4NTgiIHdpZHRoPSIyODIiIGhlaWdodD0iMjgyIiByeD0iMjguMjAwMDAwMDAwMDAwMDAzIiBmaWxsPSIjOGE1NzI4IiBvcGFjaXR5PSIwLjI2Ii8+PHJlY3QgeD0iODgwIiB5PSI1OTgiIHdpZHRoPSIzMDQiIGhlaWdodD0iMzA0IiByeD0iMzAuNDAwMDAwMDAwMDAwMDAyIiBmaWxsPSIjYmVlMDI4IiBvcGFjaXR5PSIwLjMzOTk5OTk5OTk5OTk5OTk3Ii8+PHJlY3QgeD0iMTU4IiB5PSI0NTgiIHdpZHRoPSI4NiIgaGVpZ2h0PSI4NiIgcng9IjguNiIgZmlsbD0iIzhhNTcyOCIgb3BhY2l0eT0iMC4xOCIvPjxyZWN0IHg9IjEyMzYiIHk9IjE5OCIgd2lkdGg9IjEwOCIgaGVpZ2h0PSIxMDgiIHJ4PSIxMC44IiBmaWxsPSIjYmVlMDI4IiBvcGFjaXR5PSIwLjI2Ii8+CiAgICAgICAgICAgIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjaGcpIiBvcGFjaXR5PSIwLjE1Ii8+CiAgICAgICAgPC9zdmc+");background-size:cover;background-position:center;padding:5rem 5%;text-align:center;min-height:82vh;
+            display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;
+        ">
+            <h1 style="font-size:clamp(2rem,5vw,3.75rem);font-weight:800;margin-bottom:1rem;color:#fff;letter-spacing:-0.03em;max-width:900px">
+                portfolio for UI/UX designer
+            </h1>
+            <p style="font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,0.92);margin-bottom:2rem;max-width:640px;line-height:1.65">
+                White minimal theme with black typography. Hero with tagline. 6 projects grid. Skills section, about page. pages: Home, Work, About, Contact
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                <a href="#contact" class="px-nav-link" style="
+                    background:#bee028;color:#0f172a;text-decoration:none;
+                    padding:0.85rem 2rem;border-radius:999px;font-weight:700;font-size:1rem;
+                ">Let&#x27;s Collaborate</a>
+                <a href="#features" style="
+                    background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;
+                    border:2px solid rgba(255,255,255,0.5);padding:0.8rem 1.75rem;border-radius:999px;font-weight:600;
+                ">Explore</a>
+            </div>
+        </section><section id="contact" style="padding:4rem 5%;background:#e4f0eb">
+            <h2 style="font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:2rem;color:#0f172a">Contact Us</h2>
+            <form style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:1rem" onsubmit="event.preventDefault();alert('Thanks! We will reply soon.');">
+                <input type="text" placeholder="Your name" required style="padding:0.85rem;border:1px solid #ffffff44;border-radius:0.5rem;font-size:1rem">
+                <input type="email" placeholder="Email" required style="padding:0.85rem;border:1px solid #ffffff44;border-radius:0.5rem;font-size:1rem">
+                <textarea placeholder="Message" rows="4" required style="padding:0.85rem;border:1px solid #ffffff44;border-radius:0.5rem;font-size:1rem"></textarea>
+                <button type="submit" style="background:#ffffff;color:#fff;border:none;padding:0.9rem;border-radius:0.5rem;font-weight:700;cursor:pointer">Send Message</button>
+            </form>
+        </section>
+</main>
+<footer style="background:#8a5728;color:#ffffff;padding:3rem 5%;border-top:4px solid #bee028">
+            <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:2rem">
+                <div>
+                    <div style="font-weight:800;margin-bottom:1rem;font-size:1.2rem;color:#bee028">portfolio for UI/UX designer</div>
+                    <p style="color:rgba(255,255,255,0.65);font-size:0.875rem;line-height:1.6">Single-page website built from your prompt — click menu to jump to any section.</p>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:1rem">Quick Links</div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem"><a href="#hero" class="px-nav-link" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Home</a><a href="#contact" class="px-nav-link" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Contact</a></div>
+                </div>
+            </div>
+            <div style="border-top:1px solid #bee02844;padding-top:1.5rem;text-align:center;color:rgba(255,255,255,0.65);font-size:0.875rem">
+                © 2025 portfolio for UI/UX designer. All rights reserved.
+            </div>
+        </footer>
+<script>
+        document.querySelectorAll('a.px-nav-link[href^="#"], a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const id = this.getAttribute('href');
+                if (!id || id === '#') return;
+                const target = document.querySelector(id);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', id);
+                }
+            });
+        });
+        </script>
+</body>
+</html>

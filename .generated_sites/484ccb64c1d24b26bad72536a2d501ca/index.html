@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>e commarce website 4 · Home</title>
+<meta name="description" content="Custom default experience — built exactly from your prompt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+        :root {
+            --primary: #dc2626;
+            --accent: #5328e0;
+            --surface: #ede4f0;
+            --text: #0f172a;
+            --muted: #64748b;
+            --radius: 1.25rem;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { opacity: 0.85; }
+        button:hover, .px-nav-cta:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        .px-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+        .px-card, .px-container, .px-gallery-item { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .px-hero::after {
+            content:''; position:absolute; inset:0;
+            background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12), transparent 40%);
+            pointer-events:none;
+        }
+        section { scroll-margin-top: 88px; position: relative; }
+        img { max-width: 100%; display: block; }
+        @keyframes px-fade-up {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        main > section { animation: px-fade-up 0.6s ease both; }
+        main > section:nth-child(2) { animation-delay: 0.05s; }
+        main > section:nth-child(3) { animation-delay: 0.1s; }
+        @media (max-width: 768px) {
+            .px-nav { padding: 0.75rem 1rem !important; }
+            .px-hero { min-height: 55vh !important; padding: 3rem 1rem !important; }
+            h1 { font-size: 1.85rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            section { padding: 2.5rem 1rem !important; }
+        }
+        
+</style>
+</head>
+<body style="background:#f2f2f7;color:#0f172a">
+<header class="px-nav" style="
+            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+            padding:1rem 5%;background:#ffffff;border-bottom:3px solid #5328e0;
+            position:sticky;top:0;z-index:200;backdrop-filter:blur(14px);background:rgba(255,255,255,0.08);
+        ">
+            <a href="#hero" class="px-nav-link" style="font-size:1.35rem;font-weight:800;color:#dc2626;text-decoration:none">
+                e commarce website 4
+            </a>
+            <nav style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;"><a href="#hero" class="px-nav-link" style="color:#dc2626;opacity:0.9;text-decoration:none;font-size:0.9rem">Home</a></nav>
+            <a href="#cta" class="px-nav-cta px-nav-link" style="
+                background:#5328e0;color:#0f172a;text-decoration:none;
+                padding:0.55rem 1.35rem;border-radius:1.25rem;font-weight:700;font-size:0.9rem;
+            ">Get Started</a>
+        </header>
+<main>
+<section id="hero" class="px-hero" style="
+            background:#dc2626;padding:5rem 5%;text-align:center;min-height:82vh;
+            display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;
+        ">
+            <h1 style="font-size:clamp(2rem,5vw,3.75rem);font-weight:800;margin-bottom:1rem;color:#fff;letter-spacing:-0.03em;max-width:900px">
+                e commarce website 4
+            </h1>
+            <p style="font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,0.9);margin-bottom:2rem;max-width:640px;line-height:1.65">
+                Custom default experience — built exactly from your prompt.
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                <a href="#contact" class="px-nav-link" style="
+                    background:#5328e0;color:#0f172a;text-decoration:none;
+                    padding:0.85rem 2rem;border-radius:999px;font-weight:700;font-size:1rem;
+                ">Join Us</a>
+                <a href="#features" style="
+                    background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;
+                    border:2px solid rgba(255,255,255,0.5);padding:0.8rem 1.75rem;border-radius:999px;font-weight:600;
+                ">Explore</a>
+            </div>
+        </section><section id="features" style="padding:4rem 5%;background:#ede4f0">
+            <h2 style="font-size:2.5rem;font-weight:800;margin-bottom:1rem;text-align:center;color:#0f172a">
+                Features
+            </h2>
+            <p style="text-align:center;color:#64748b;margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto">
+                Everything you need to succeed
+            </p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; max-width:1200px; margin:0 auto;">
+                <div class="px-card" style="
+                padding:2rem;background:#f2f2f7;border:1px solid #dc262622;
+                border-radius:1.25rem;text-align:center;transition:transform .2s;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgICAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjE2IiBmaWxsPSIjZGMyNjI2MjIiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTAuMCw0OC4wIEwzMi4wLDE2LjAgTDY0LjAsNDguMCBaIiBmaWxsPSIjZGMyNjI2IiBvcGFjaXR5PSIwLjk1Ii8+CiAgICAgICAgPC9zdmc+" alt="" style="width:56px;height:56px;margin-bottom:0.75rem">
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#0f172a">Feature One</h3>
+                <p style="color:#64748b;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#f2f2f7;border:1px solid #dc262622;
+                border-radius:1.25rem;text-align:center;transition:transform .2s;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgICAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjE2IiBmaWxsPSIjZGMyNjI2MjIiLz4KICAgICAgICAgICAgPHBvbHlnb24gcG9pbnRzPSI0NS44NTY0MDY0NjA1NTEwMiwyNC4wIDQ1Ljg1NjQwNjQ2MDU1MTAyLDQwLjAgMzIuMCw0OC4wIDE4LjE0MzU5MzUzOTQ0ODk4LDQwLjAgMTguMTQzNTkzNTM5NDQ4OTgsMjQuMDAwMDAwMDAwMDAwMDA0IDMxLjk5OTk5OTk5OTk5OTk4MiwxNi4wIiBmaWxsPSIjZGMyNjI2IiBvcGFjaXR5PSIwLjk1Ii8+CiAgICAgICAgPC9zdmc+" alt="" style="width:56px;height:56px;margin-bottom:0.75rem">
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#0f172a">Feature Two</h3>
+                <p style="color:#64748b;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#f2f2f7;border:1px solid #dc262622;
+                border-radius:1.25rem;text-align:center;transition:transform .2s;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgICAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjE2IiBmaWxsPSIjZGMyNjI2MjIiLz4KICAgICAgICAgICAgPGNpcmNsZSBjeD0iMzIuMCIgY3k9IjMyLjAiIHI9IjE2LjAiIGZpbGw9IiNkYzI2MjYiIG9wYWNpdHk9IjAuOTUiLz4KICAgICAgICA8L3N2Zz4=" alt="" style="width:56px;height:56px;margin-bottom:0.75rem">
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#0f172a">Feature Three</h3>
+                <p style="color:#64748b;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#f2f2f7;border:1px solid #dc262622;
+                border-radius:1.25rem;text-align:center;transition:transform .2s;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgICAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjE2IiBmaWxsPSIjZGMyNjI2MjIiLz4KICAgICAgICAgICAgPHBvbHlnb24gcG9pbnRzPSIzMi4wLDEyLjggNTEuMiwzMi4wIDMyLjAsNTEuMiAxMi44LDMyLjAiIGZpbGw9IiNkYzI2MjYiIG9wYWNpdHk9IjAuOTUiLz4KICAgICAgICA8L3N2Zz4=" alt="" style="width:56px;height:56px;margin-bottom:0.75rem">
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#0f172a">Feature Four</h3>
+                <p style="color:#64748b;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#f2f2f7;border:1px solid #dc262622;
+                border-radius:1.25rem;text-align:center;transition:transform .2s;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgICAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjE2IiBmaWxsPSIjZGMyNjI2MjIiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTAuMCw0OC4wIEwzMi4wLDE2LjAgTDY0LjAsNDguMCBaIiBmaWxsPSIjZGMyNjI2IiBvcGFjaXR5PSIwLjk1Ii8+CiAgICAgICAgPC9zdmc+" alt="" style="width:56px;height:56px;margin-bottom:0.75rem">
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#0f172a">Feature Five</h3>
+                <p style="color:#64748b;line-height:1.6">Description goes here</p>
+            </div><div class="px-card" style="
+                padding:2rem;background:#f2f2f7;border:1px solid #dc262622;
+                border-radius:1.25rem;text-align:center;transition:transform .2s;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgICAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjE2IiBmaWxsPSIjZGMyNjI2MjIiLz4KICAgICAgICAgICAgPHBvbHlnb24gcG9pbnRzPSI0NS44NTY0MDY0NjA1NTEwMiwyNC4wIDQ1Ljg1NjQwNjQ2MDU1MTAyLDQwLjAgMzIuMCw0OC4wIDE4LjE0MzU5MzUzOTQ0ODk4LDQwLjAgMTguMTQzNTkzNTM5NDQ4OTgsMjQuMDAwMDAwMDAwMDAwMDA0IDMxLjk5OTk5OTk5OTk5OTk4MiwxNi4wIiBmaWxsPSIjZGMyNjI2IiBvcGFjaXR5PSIwLjk1Ii8+CiAgICAgICAgPC9zdmc+" alt="" style="width:56px;height:56px;margin-bottom:0.75rem">
+                <h3 style="font-weight:700;margin-bottom:0.5rem;color:#0f172a">Feature Six</h3>
+                <p style="color:#64748b;line-height:1.6">Description goes here</p>
+            </div>
+            </div>
+        </section>
+</main>
+<footer style="background:#52288a;color:#ffffff;padding:3rem 5%;border-top:4px solid #5328e0">
+            <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:2rem">
+                <div>
+                    <div style="font-weight:800;margin-bottom:1rem;font-size:1.2rem;color:#5328e0">e commarce website 4</div>
+                    <p style="color:rgba(255,255,255,0.65);font-size:0.875rem;line-height:1.6">Single-page website built from your prompt — click menu to jump to any section.</p>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:1rem">Quick Links</div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem"><a href="#hero" class="px-nav-link" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Home</a></div>
+                </div>
+            </div>
+            <div style="border-top:1px solid #5328e044;padding-top:1.5rem;text-align:center;color:rgba(255,255,255,0.65);font-size:0.875rem">
+                © 2025 e commarce website 4. All rights reserved.
+            </div>
+        </footer>
+<script>
+        document.querySelectorAll('a.px-nav-link[href^="#"], a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const id = this.getAttribute('href');
+                if (!id || id === '#') return;
+                const target = document.querySelector(id);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', id);
+                }
+            });
+        });
+        </script>
+</body>
+</html>

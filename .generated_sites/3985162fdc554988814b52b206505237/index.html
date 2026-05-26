@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>gym website 5 navbar · Home</title>
+<meta name="description" content="Custom gym experience — built exactly from your prompt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+        :root {
+            --primary: #ec4899;
+            --accent: #e0289d;
+            --surface: #ebf0e4;
+            --text: #0f172a;
+            --muted: #64748b;
+            --radius: 1.5rem;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Inter', 'Inter', 'Segoe UI', system-ui, sans-serif; font-weight: 800; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { opacity: 0.85; }
+        button:hover, .px-nav-cta:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        .px-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .px-card, .px-container, .px-gallery-item { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .px-hero::after {
+            content:''; position:absolute; inset:0;
+            background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12), transparent 40%);
+            pointer-events:none;
+        }
+        section { scroll-margin-top: 88px; position: relative; }
+        img { max-width: 100%; display: block; }
+        
+        @keyframes px-fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        main > section { animation: px-fade-up 0.6s ease both; }
+        main > section:nth-child(2) { animation-delay: 0.05s; }
+        main > section:nth-child(3) { animation-delay: 0.1s; }
+            
+        @media (max-width: 768px) {
+            .px-nav { padding: 0.75rem 1rem !important; }
+            .px-hero { min-height: 55vh !important; padding: 3rem 1rem !important; }
+            h1 { font-size: 1.85rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            section { padding: 2.5rem 1rem !important; }
+        }
+        
+</style>
+</head>
+<body style="background:#f7f6f2;color:#0f172a">
+<header class="px-nav" style="
+            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+            padding:1rem 5%;background:#ffffff;border-bottom:3px solid #e0289d;
+            position:sticky;top:0;z-index:200;
+        ">
+            <a href="#hero" class="px-nav-link" style="font-size:1.35rem;font-weight:800;color:#ec4899;text-decoration:none">
+                gym website 5 navbar
+            </a>
+            <nav style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;"><a href="#hero" class="px-nav-link" style="color:#ec4899;opacity:0.9;text-decoration:none;font-size:0.9rem">Home</a></nav>
+            <a href="#cta" class="px-nav-cta px-nav-link" style="
+                background:#e0289d;color:#0f172a;text-decoration:none;
+                padding:0.55rem 1.35rem;border-radius:1.5rem;font-weight:700;font-size:0.9rem;
+            ">Get Started</a>
+        </header>
+<main>
+<section id="hero" class="px-hero" style="
+            background-image:linear-gradient(135deg, #ec4899cc 0%, #e0289d88 100%),url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiPgogICAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iaGciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNlYzQ4OTkiLz4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iIzI4MmI4YSIvPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2UwMjg5ZCIvPgogICAgICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICAgICAgICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjcwJSIgY3k9IjIwJSIgcj0iNTAlIj4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZTAyODlkIiBzdG9wLW9wYWNpdHk9IjAuNDUiLz4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYzQ4OTkiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgICAgICAgICAgICAgPC9yYWRpYWxHcmFkaWVudD4KICAgICAgICAgICAgPC9kZWZzPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2hnKSIvPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dsb3cpIi8+CiAgICAgICAgICAgIDxyZWN0IHg9IjE1MCIgeT0iNTY2IiB3aWR0aD0iMzE4IiBoZWlnaHQ9IjMxOCIgcng9IjMxLjgiIGZpbGw9IiMyODJiOGEiIG9wYWNpdHk9IjAuMTgiLz48cmVjdCB4PSIzNjIiIHk9IjE3MiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHJ4PSIxMC4wIiBmaWxsPSIjZTAyODlkIiBvcGFjaXR5PSIwLjI2Ii8+PHJlY3QgeD0iNDU0IiB5PSI3MzgiIHdpZHRoPSIxMjIiIGhlaWdodD0iMTIyIiByeD0iMTIuMjAwMDAwMDAwMDAwMDAxIiBmaWxsPSIjMjgyYjhhIiBvcGFjaXR5PSIwLjMzOTk5OTk5OTk5OTk5OTk3Ii8+PHJlY3QgeD0iNTQ2IiB5PSIyMjQiIHdpZHRoPSIxNDQiIGhlaWdodD0iMTQ0IiByeD0iMTQuNCIgZmlsbD0iI2UwMjg5ZCIgb3BhY2l0eT0iMC4xOCIvPjxyZWN0IHg9IjYzOCIgeT0iNzkwIiB3aWR0aD0iMTY2IiBoZWlnaHQ9IjE2NiIgcng9IjE2LjYiIGZpbGw9IiMyODJiOGEiIG9wYWNpdHk9IjAuMjYiLz48cmVjdCB4PSI3MzAiIHk9IjI3NiIgd2lkdGg9IjE4OCIgaGVpZ2h0PSIxODgiIHJ4PSIxOC44IiBmaWxsPSIjZTAyODlkIiBvcGFjaXR5PSIwLjMzOTk5OTk5OTk5OTk5OTk3Ii8+PHJlY3QgeD0iODIyIiB5PSI4NDIiIHdpZHRoPSIyMTAiIGhlaWdodD0iMjEwIiByeD0iMjEuMCIgZmlsbD0iIzI4MmI4YSIgb3BhY2l0eT0iMC4xOCIvPjxyZWN0IHg9IjkxNCIgeT0iMzI4IiB3aWR0aD0iMjMyIiBoZWlnaHQ9IjIzMiIgcng9IjIzLjIwMDAwMDAwMDAwMDAwMyIgZmlsbD0iI2UwMjg5ZCIgb3BhY2l0eT0iMC4yNiIvPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2hnKSIgb3BhY2l0eT0iMC4xNSIvPgogICAgICAgIDwvc3ZnPg==");background-size:cover;background-position:center;padding:5rem 5%;text-align:center;min-height:82vh;
+            display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;
+        ">
+            <h1 style="font-size:clamp(2rem,5vw,3.75rem);font-weight:800;margin-bottom:1rem;color:#fff;letter-spacing:-0.03em;max-width:900px">
+                gym website 5 navbar
+            </h1>
+            <p style="font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,0.92);margin-bottom:2rem;max-width:640px;line-height:1.65">
+                Custom gym experience — built exactly from your prompt.
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                <a href="#contact" class="px-nav-link" style="
+                    background:#e0289d;color:#0f172a;text-decoration:none;
+                    padding:0.85rem 2rem;border-radius:999px;font-weight:700;font-size:1rem;
+                ">Start Training</a>
+                <a href="#features" class="px-nav-link" style="
+                    background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;
+                    border:2px solid rgba(255,255,255,0.5);padding:0.8rem 1.75rem;border-radius:999px;font-weight:600;
+                ">Explore</a>
+            </div>
+        </section><section id="containers" style="padding:4rem 5%;background:#f7f6f2">
+            <h2 style="font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:2.5rem;color:#0f172a">Our Sections</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem;max-width:1200px;margin:0 auto"><div class="px-container px-card" style="
+                padding:2rem;background:#ffffff;border-radius:1.5rem;
+                border:2px solid #e0289d44;box-shadow:0 8px 30px #ec489918;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNDgwIDE2MCI+CiAgICAgICAgICAgIDxkZWZzPgogICAgICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJjZzEwMCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VjNDg5OSIvPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2UwMjg5ZCIvPgogICAgICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICAgICAgPC9kZWZzPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2NnMTAwKSIvPgogICAgICAgICAgICA8cmVjdCB4PSIwIiB5PSI4OC4wIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSI3Mi4wIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICAgICAgICAgIDxyZWN0IHg9IjMxNi43OTk5OTk5OTk5OTk5NSIgeT0iMzIuMCIgd2lkdGg9IjU3LjU5OTk5OTk5OTk5OTk5NCIgaGVpZ2h0PSI1Ny41OTk5OTk5OTk5OTk5OTQiIHJ4PSI1Ljc2IiBmaWxsPSIjZTAyODlkIiBvcGFjaXR5PSIwLjU1Ii8+PGNpcmNsZSBjeD0iMTIwLjAiIGN5PSIxMTIuMCIgcj0iMTkuMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMiIvPgogICAgICAgICAgICA8dGV4dCB4PSIyNCIgeT0iMTM2IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgb3BhY2l0eT0iMC45MiI+QmxvY2sgMTwvdGV4dD4KICAgICAgICAgICAgPHRleHQgeD0iMjQiIHk9IjM0IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgb3BhY2l0eT0iMC42NSI+IzY2PC90ZXh0PgogICAgICAgIDwvc3ZnPg==" alt="Section 1" style="width:100%;height:140px;object-fit:cover;border-radius:1.5rem;margin-bottom:1rem" loading="lazy">
+                <h3 style="font-size:1.35rem;font-weight:800;color:#ec4899;margin-bottom:0.75rem">Section 1</h3>
+                <p style="color:#64748b;line-height:1.7">Premium content block 1 — styled from your prompt colors, layout theme, and section count.</p>
+            </div><div class="px-container px-card" style="
+                padding:2rem;background:#ffffff;border-radius:1.5rem;
+                border:2px solid #e0289d44;box-shadow:0 8px 30px #ec489918;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNDgwIDE2MCI+CiAgICAgICAgICAgIDxkZWZzPgogICAgICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJjZzEwMSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI4MmI4YSIvPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2UwMjg5ZCIvPgogICAgICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICAgICAgPC9kZWZzPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2NnMTAxKSIvPgogICAgICAgICAgICA8cmVjdCB4PSIwIiB5PSI4OC4wIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSI3Mi4wIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICAgICAgICAgIDxyZWN0IHg9IjMxNi43OTk5OTk5OTk5OTk5NSIgeT0iMzIuMCIgd2lkdGg9IjU3LjU5OTk5OTk5OTk5OTk5NCIgaGVpZ2h0PSI1Ny41OTk5OTk5OTk5OTk5OTQiIHJ4PSI1Ljc2IiBmaWxsPSIjZTAyODlkIiBvcGFjaXR5PSIwLjU1Ii8+PGNpcmNsZSBjeD0iMTIwLjAiIGN5PSIxMTIuMCIgcj0iMTkuMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMiIvPgogICAgICAgICAgICA8dGV4dCB4PSIyNCIgeT0iMTM2IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgb3BhY2l0eT0iMC45MiI+QmxvY2sgMjwvdGV4dD4KICAgICAgICAgICAgPHRleHQgeD0iMjQiIHk9IjM0IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgb3BhY2l0eT0iMC42NSI+IzExMzwvdGV4dD4KICAgICAgICA8L3N2Zz4=" alt="Section 2" style="width:100%;height:140px;object-fit:cover;border-radius:1.5rem;margin-bottom:1rem" loading="lazy">
+                <h3 style="font-size:1.35rem;font-weight:800;color:#ec4899;margin-bottom:0.75rem">Section 2</h3>
+                <p style="color:#64748b;line-height:1.7">Premium content block 2 — styled from your prompt colors, layout theme, and section count.</p>
+            </div><div class="px-container px-card" style="
+                padding:2rem;background:#ffffff;border-radius:1.5rem;
+                border:2px solid #e0289d44;box-shadow:0 8px 30px #ec489918;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNDgwIDE2MCI+CiAgICAgICAgICAgIDxkZWZzPgogICAgICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJjZzEwMiIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VjNDg5OSIvPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2UwMjg5ZCIvPgogICAgICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICAgICAgPC9kZWZzPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2NnMTAyKSIvPgogICAgICAgICAgICA8cmVjdCB4PSIwIiB5PSI4OC4wIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSI3Mi4wIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICAgICAgICAgIDxyZWN0IHg9IjMxNi43OTk5OTk5OTk5OTk5NSIgeT0iMzIuMCIgd2lkdGg9IjU3LjU5OTk5OTk5OTk5OTk5NCIgaGVpZ2h0PSI1Ny41OTk5OTk5OTk5OTk5OTQiIHJ4PSI1Ljc2IiBmaWxsPSIjZTAyODlkIiBvcGFjaXR5PSIwLjU1Ii8+PGNpcmNsZSBjeD0iMTIwLjAiIGN5PSIxMTIuMCIgcj0iMTkuMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMiIvPgogICAgICAgICAgICA8dGV4dCB4PSIyNCIgeT0iMTM2IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgb3BhY2l0eT0iMC45MiI+QmxvY2sgMzwvdGV4dD4KICAgICAgICAgICAgPHRleHQgeD0iMjQiIHk9IjM0IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgb3BhY2l0eT0iMC42NSI+IzE2MDwvdGV4dD4KICAgICAgICA8L3N2Zz4=" alt="Section 3" style="width:100%;height:140px;object-fit:cover;border-radius:1.5rem;margin-bottom:1rem" loading="lazy">
+                <h3 style="font-size:1.35rem;font-weight:800;color:#ec4899;margin-bottom:0.75rem">Section 3</h3>
+                <p style="color:#64748b;line-height:1.7">Premium content block 3 — styled from your prompt colors, layout theme, and section count.</p>
+            </div><div class="px-container px-card" style="
+                padding:2rem;background:#ffffff;border-radius:1.5rem;
+                border:2px solid #e0289d44;box-shadow:0 8px 30px #ec489918;
+            ">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNDgwIDE2MCI+CiAgICAgICAgICAgIDxkZWZzPgogICAgICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJjZzEwMyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI4MmI4YSIvPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2UwMjg5ZCIvPgogICAgICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICAgICAgPC9kZWZzPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2NnMTAzKSIvPgogICAgICAgICAgICA8cmVjdCB4PSIwIiB5PSI4OC4wIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSI3Mi4wIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICAgICAgICAgIDxyZWN0IHg9IjMxNi43OTk5OTk5OTk5OTk5NSIgeT0iMzIuMCIgd2lkdGg9IjU3LjU5OTk5OTk5OTk5OTk5NCIgaGVpZ2h0PSI1Ny41OTk5OTk5OTk5OTk5OTQiIHJ4PSI1Ljc2IiBmaWxsPSIjZTAyODlkIiBvcGFjaXR5PSIwLjU1Ii8+PGNpcmNsZSBjeD0iMTIwLjAiIGN5PSIxMTIuMCIgcj0iMTkuMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMiIvPgogICAgICAgICAgICA8dGV4dCB4PSIyNCIgeT0iMTM2IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgb3BhY2l0eT0iMC45MiI+QmxvY2sgNDwvdGV4dD4KICAgICAgICAgICAgPHRleHQgeD0iMjQiIHk9IjM0IiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iU2Vnb2UgVUksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgb3BhY2l0eT0iMC42NSI+IzIwNzwvdGV4dD4KICAgICAgICA8L3N2Zz4=" alt="Section 4" style="width:100%;height:140px;object-fit:cover;border-radius:1.5rem;margin-bottom:1rem" loading="lazy">
+                <h3 style="font-size:1.35rem;font-weight:800;color:#ec4899;margin-bottom:0.75rem">Section 4</h3>
+                <p style="color:#64748b;line-height:1.7">Premium content block 4 — styled from your prompt colors, layout theme, and section count.</p>
+            </div></div>
+        </section>
+</main>
+<footer style="background:#282b8a;color:#ffffff;padding:3rem 5%;border-top:4px solid #e0289d">
+            <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:2rem">
+                <div>
+                    <div style="font-weight:800;margin-bottom:1rem;font-size:1.2rem;color:#e0289d">gym website 5 navbar</div>
+                    <p style="color:rgba(255,255,255,0.65);font-size:0.875rem;line-height:1.6">Single-page website built from your prompt — click menu to jump to any section.</p>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:1rem">Quick Links</div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem"><a href="#hero" class="px-nav-link" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Home</a></div>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:1rem">Contact</div>
+                    <div style="color:rgba(255,255,255,0.65);font-size:0.875rem">Reach us anytime</div>
+                </div>
+            </div>
+            <div style="border-top:1px solid #e0289d44;padding-top:1.5rem;text-align:center;color:rgba(255,255,255,0.65);font-size:0.875rem">
+                © 2025 gym website 5 navbar. All rights reserved.
+            </div>
+        </footer>
+<script>
+        document.querySelectorAll('a.px-nav-link[href^="#"], a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const id = this.getAttribute('href');
+                if (!id || id === '#') return;
+                const target = document.querySelector(id);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', id);
+                }
+            });
+        });
+        </script>
+</body>
+</html>

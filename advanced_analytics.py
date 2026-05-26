@@ -13,7 +13,6 @@ import sqlite3
 
 logger = logging.getLogger(__name__)
 
-
 class AnalyticsEvent:
     """Analytics event"""
 

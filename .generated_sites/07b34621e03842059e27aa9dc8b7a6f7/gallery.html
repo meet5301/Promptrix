@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Upscale Italian restaurant website · Gallery</title>
+<meta name="description" content="Warm earthy tones, terracotta accent. Hero with reservation CTA. 8 menu item cards. Food gallery. pages: Home, Menu, Gallery, Contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+        :root {
+            --primary: #c2410c;
+            --accent: #c2410c;
+            --surface: #e4eef0;
+            --text: #0f172a;
+            --muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { opacity: 0.85; }
+        button:hover, .px-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .px-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        section { scroll-margin-top: 88px; }
+        img { max-width: 100%; }
+        @media (max-width: 768px) {
+            .px-nav { padding: 0.75rem 1rem !important; }
+            .px-hero { min-height: 55vh !important; padding: 3rem 1rem !important; }
+            h1 { font-size: 1.85rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            section { padding: 2.5rem 1rem !important; }
+        }
+        
+</style>
+</head>
+<body style="background:#f2f7f4;color:#0f172a">
+<header class="px-nav" style="
+            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+            padding:1rem 5%;background:#ffffff;border-bottom:3px solid #c2410c;
+            position:sticky;top:0;z-index:200;
+        ">
+            <a href="index.html" style="font-size:1.35rem;font-weight:800;color:#c2410c;text-decoration:none">
+                Upscale Italian restaurant website
+            </a>
+            <nav style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap"><a href="index.html" style="color:#c2410c;opacity:0.9;text-decoration:none;font-size:0.9rem">Home</a><a href="menu.html" style="color:#c2410c;opacity:0.9;text-decoration:none;font-size:0.9rem">Menu</a><a href="gallery.html" style="font-weight:800;color:#c2410c;text-decoration:none;font-size:0.9rem">Gallery</a><a href="contact.html" style="color:#c2410c;opacity:0.9;text-decoration:none;font-size:0.9rem">Contact</a></nav>
+            <a href="contact.html" style="
+                background:#c2410c;color:#0f172a;text-decoration:none;
+                padding:0.55rem 1.35rem;border-radius:0.35rem;font-weight:700;font-size:0.9rem;
+            ">Get Started</a>
+        </header>
+<main>
+<section id="hero" class="px-hero" style="
+            background:#c2410c;padding:5rem 5%;text-align:center;min-height:40vh;
+            display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;
+        ">
+            <h1 style="font-size:clamp(2rem,5vw,3.75rem);font-weight:800;margin-bottom:1rem;color:#fff;letter-spacing:-0.03em;max-width:900px">
+                Upscale Italian restaurant website
+            </h1>
+            <p style="font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,0.9);margin-bottom:2rem;max-width:640px;line-height:1.65">
+                Warm earthy tones, terracotta accent. Hero with reservation CTA. 8 menu item cards. Food gallery. pages: Home, Menu, Gallery, Contact
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                <a href="contact.html" style="
+                    background:#c2410c;color:#0f172a;text-decoration:none;
+                    padding:0.85rem 2rem;border-radius:999px;font-weight:700;font-size:1rem;
+                ">Reserve Now</a>
+                <a href="#features" style="
+                    background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;
+                    border:2px solid rgba(255,255,255,0.5);padding:0.8rem 1.75rem;border-radius:999px;font-weight:600;
+                ">Explore</a>
+            </div>
+        </section><section id="gallery" style="padding:4rem 5%"><h2 style="font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:2rem;color:#0f172a">Gallery</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;max-width:1200px;margin:0 auto"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120231" alt="Gallery 1" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120232" alt="Gallery 2" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120233" alt="Gallery 3" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120234" alt="Gallery 4" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120235" alt="Gallery 5" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120236" alt="Gallery 6" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120237" alt="Gallery 7" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"><img src="https://source.unsplash.com/600x400/?food,dining&sig=295120238" alt="Gallery 8" style="width:100%;height:220px;object-fit:cover;border-radius:0.75rem" loading="lazy"></div></section><section id="cta" style="
+            background:linear-gradient(135deg, #c2410c, #288a6e);
+            padding:4rem 5%; text-align:center; color:white;
+        ">
+            <h2 style="font-size:2.5rem; font-weight:800; margin-bottom:1rem;">Ready to Get Started?</h2>
+            <p style="font-size:1.25rem; margin-bottom:2rem; opacity:0.9;">
+                Join thousands of happy customers today.
+            </p>
+            <button style="
+                background:white; color:#c2410c; border:none;
+                padding:0.75rem 2rem; border-radius:0.5rem; font-weight:700;
+                font-size:1rem; cursor:pointer;
+            ">Order Online →</button>
+        </section>
+</main>
+<footer style="background:#288a6e;color:#ffffff;padding:3rem 5%;border-top:4px solid #c2410c">
+            <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:2rem">
+                <div>
+                    <div style="font-weight:800;margin-bottom:1rem;font-size:1.2rem;color:#c2410c">Upscale Italian restaurant website</div>
+                    <p style="color:rgba(255,255,255,0.65);font-size:0.875rem;line-height:1.6">Built dynamically from your prompt — header, hero, containers &amp; multi-page.</p>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:1rem">Pages</div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem"><a href="index.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Home</a><a href="menu.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Menu</a><a href="gallery.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Gallery</a><a href="contact.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem">Contact</a></div>
+                </div>
+            </div>
+            <div style="border-top:1px solid #c2410c44;padding-top:1.5rem;text-align:center;color:rgba(255,255,255,0.65);font-size:0.875rem">
+                © 2025 Upscale Italian restaurant website. All rights reserved.
+            </div>
+        </footer>
+<script>
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        </script>
+</body>
+</html>

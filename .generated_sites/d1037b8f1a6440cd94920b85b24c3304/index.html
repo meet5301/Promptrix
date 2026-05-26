@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Yoga website template 10</title>
+<meta name="description" content="High-converting template for Yoga with clean layout and tabs interactions">
+<meta name="keywords" content="yoga, website, template, business, clean, glow, tabs">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Plus Jakarta Sans,sans-serif;background:#0e1117;color:#eef2ff;font-size:14px;line-height:1.6}
+a{text-decoration:none}
+.shell{max-width:1180px;margin:auto;padding:0 18px}
+
+    /* Default Business Styles */
+    .business-hero { background: linear-gradient(135deg, #1f2937dd, #4b5563dd), url('https://picsum.photos/seed/promptrix-hero-10/1600/900'); }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .business-footer { background: #1f2937; color: white; padding: 40px 0; }
+  
+.top{position:sticky;top:0;z-index:100;background:linear-gradient(120deg,#1f2937,#4b5563);box-shadow:0 2px 12px rgba(0,0,0,0.12)}
+.top-inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px;gap:16px}
+.brand{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.brand strong{color:#fff;font-size:18px;font-weight:800;letter-spacing:-.3px}
+.brand small{color:rgba(255,255,255,.7);font-size:11px}
+/* Navigation Styles */
+.mega-nav,.shop-nav,.standard-nav{display:flex;align-items:center;justify-content:space-between;width:100%}
+.mega-nav .nav-brand,.shop-nav .nav-brand,.standard-nav .nav-brand{display:none}
+.mega-nav .nav-menu,.shop-nav .nav-menu,.standard-nav .nav-menu{display:flex;align-items:center;gap:4px;flex:1;justify-content:center}
+.mega-nav .nav-item{display:flex}
+.nav-link{color:rgba(255,255,255,.85);font-weight:600;font-size:13px;padding:8px 14px;border-radius:6px;transition:all .2s;border:none;background:transparent;cursor:pointer;text-decoration:none}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.15)}
+.shop-nav .nav-link{color:#1f2937;background:transparent}
+.shop-nav .nav-link:hover{background:rgba(0,0,0,.05);color:#1f2937}
+.mega-nav .nav-cta,.standard-nav .nav-cta{background:#fff;color:#1f2937;border:none;padding:9px 18px;border-radius:2px;font-weight:800;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.mega-nav .nav-cta:hover,.standard-nav .nav-cta:hover{opacity:.9;transform:translateY(-1px)}
+.mega-nav .nav-actions,.shop-nav .nav-actions,.standard-nav .nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.shop-nav .nav-search,.shop-nav .nav-cart,.shop-nav .nav-account{background:transparent;border:1.5px solid #1f2937;color:#1f2937;padding:7px 11px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .2s}
+.shop-nav .nav-search:hover,.shop-nav .nav-cart:hover,.shop-nav .nav-account:hover{background:#1f2937;color:#fff}
+
+/* Category-specific Card Styles */
+.menu-card{background:#151a24;border-radius:2px;overflow:hidden;box-shadow:0 10px 24px rgba(2,8,23,.14);transition:all 0.3s ease}
+.menu-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+.menu-card .card-image{height:200px;background:center/cover no-repeat;position:relative}
+.menu-card .card-content{padding:14px}
+.menu-card .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.menu-card .price{color:#1f2937;font-size:24px;font-weight:800}
+.menu-card .card-actions{display:flex;gap:10px;margin-top:16px}
+.menu-card .btn-primary{background:#1f2937;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer}
+.menu-card .btn-secondary{background:transparent;color:#1f2937;border:2px solid #1f2937;padding:8px 18px;border-radius:8px;font-weight:600;cursor:pointer}
+
+.product-card{background:#151a24;border-radius:2px;overflow:hidden;box-shadow:0 10px 24px rgba(2,8,23,.14);transition:all 0.3s ease;position:relative}
+.product-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+.product-card .badge{position:absolute;top:15px;right:15px;background:#84cc16;color:#fff;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:800;z-index:2}
+.product-card .card-image{height:220px;background:center/cover no-repeat}
+.product-card .card-content{padding:14px}
+.product-card .rating{color:#fbbf24;margin:8px 0;font-size:14px}
+.product-card .price{color:#1f2937;font-size:28px;font-weight:800;margin:12px 0}
+.product-card .btn-primary{background:#1f2937;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;width:100%;transition:all 0.3s ease}
+.product-card .btn-primary:hover{background:#84cc16}
+
+.course-card{background:#151a24;border-radius:2px;overflow:hidden;box-shadow:0 10px 24px rgba(2,8,23,.14);transition:all 0.3s ease}
+.course-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+.course-card .card-image{height:180px;background:center/cover no-repeat;position:relative}
+.course-card .card-content{padding:14px}
+.course-card .course-meta{display:flex;gap:10px;margin-bottom:12px}
+.course-card .duration{background:#e0f2fe;color:#0277bd;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.course-card .level{background:#f3e5f5;color:#7b1fa2;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.course-card .instructor{color:#94a3b8;font-size:13px;margin:12px 0;font-style:italic}
+.course-card .btn-primary{background:#1f2937;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;width:100%;transition:all 0.3s ease}
+
+.hero{padding:64px 0}
+.hero-title{font-size:clamp(34px,5vw,66px);line-height:1.04;margin:8px 0 14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:#94a3b8;margin:0}
+.hero p{margin:0 0 18px;color:#94a3b8}
+.hero button,.newsletter button{border:0;border-radius:2px;padding:11px 16px;background:linear-gradient(135deg,#1f2937,#84cc16);color:#fff;font-weight:800;cursor:pointer;transition:all 0.3s ease}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:center}
+.hero-image{min-height:360px;background:center/cover no-repeat;border-radius:2px;box-shadow:0 10px 24px rgba(2,8,23,.14)}
+.glass{background:rgba(255,255,255,.82);padding:14px;border-radius:2px;box-shadow:0 10px 24px rgba(2,8,23,.14)}
+.center{text-align:center;max-width:760px}
+.hero-center{background:center/cover no-repeat;color:#fff}
+.hero-center .eyebrow,.hero-center p{color:#e2e8f0}
+.bento{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+.b1,.b2,.b3{border-radius:2px;padding:14px;background:#151a24;box-shadow:0 10px 24px rgba(2,8,23,.14)}
+.b2{min-height:320px;background:center/cover no-repeat}
+.line{width:80px;height:6px;background:linear-gradient(90deg,#1f2937,#84cc16);border-radius:999px}
+.sub{max-width:760px}
+.media{height:360px;margin-top:22px;border-radius:2px;background:center/cover no-repeat;box-shadow:0 10px 24px rgba(2,8,23,.14)}
+.metrics{display:grid;gap:12px}
+.metrics div{padding:16px;border-radius:2px;background:#151a24;box-shadow:0 10px 24px rgba(2,8,23,.14)}
+.metrics strong{display:block;font-size:30px;line-height:1}
+.spot{min-height:420px;border-radius:2px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;background:center/cover no-repeat;box-shadow:0 10px 24px rgba(2,8,23,.14)}
+.with-side{display:grid;grid-template-columns:320px 1fr;gap:14px}
+.with-side aside{padding:14px;background:#151a24;border-radius:2px;box-shadow:0 10px 24px rgba(2,8,23,.14)}
+.with-side aside nav{display:grid;gap:8px;margin-top:12px}
+.with-side aside a{color:#1f2937;font-weight:700}
+.hero-immersive{background:center/cover no-repeat;color:#fff}
+.hero-immersive .eyebrow,.hero-immersive p{color:#dbeafe}
+.page-hero{padding:40px 0 28px;background:linear-gradient(135deg,#1f293715,#0e1117);border-bottom:1px solid rgba(148,163,184,.15)}
+.page-title{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.page-subtitle{color:#94a3b8;font-size:15px}
+.block{padding:56px 0}
+.soft{background:#0b1220}
+.feature-grid,.three-col,.two-col{display:grid;gap:14px}
+.feature-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.three-col{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.two-col{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.section-head p{margin:0;color:#94a3b8}
+.feature-card,.p-card,blockquote,.faq-item,.stat-box,.proof-card{background:#151a24;border-radius:2px;box-shadow:0 10px 24px rgba(2,8,23,.14);margin:0}
+.feature-card{overflow:hidden}
+.image-card .card-media{height:170px;background:center/cover no-repeat}
+.image-card .card-body{padding:14px}
+.feature-card p,.p-card p,blockquote,.faq-item p,.proof-card p,.stat-box span{color:#94a3b8}
+.focus{outline:2px solid #84cc16}
+.stats-wrap{padding-top:24px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat-box{padding:14px;border:1px solid rgba(148,163,184,.2)}
+.stat-box strong{display:block;font-size:28px;line-height:1;color:#1f2937}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.gallery-card{min-height:220px;border-radius:2px;padding:14px;display:flex;align-items:flex-end;background:center/cover no-repeat;box-shadow:0 10px 24px rgba(2,8,23,.14);color:#fff;font-weight:800;text-shadow:0 8px 18px rgba(0,0,0,.35)}
+.faq-list{display:grid;gap:12px}
+.faq-item{padding:14px;border:1px solid rgba(148,163,184,.15)}
+.proof-wall{padding-top:10px}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.proof-card{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:14px;align-items:center}
+.proof-image{height:100px;border-radius:2px;background:center/cover no-repeat}
+.proof-card h3,.faq-item strong{margin:0 0 6px}
+.newsletter{padding:30px 0;background:linear-gradient(120deg,#1f2937,#4b5563);color:#fff}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.newsletter input{padding:10px 12px;border:0;border-radius:2px;min-width:240px}
+.final-cta{min-height:220px;border-radius:2px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:center/cover no-repeat;box-shadow:0 10px 24px rgba(2,8,23,.14);color:#fff}
+.final-cta p{color:#eef2ff;margin:0 0 10px}
+.final-cta button{border:0;border-radius:2px;padding:12px 18px;background:#fff;color:#1f2937;font-weight:900;cursor:pointer}
+footer{padding:28px 0;background:#05070f;color:#dbeafe}
+@media (max-width:980px){
+  .hero-grid,.bento,.with-side{grid-template-columns:1fr}
+  .hero-image,.b2,.media{min-height:260px}
+  .top-inner{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:760px){
+  .hero{padding:48px 0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="shell top-inner">
+    <div class="brand"><strong>Yoga Studio 10</strong><small>sharp Yoga experience</small></div>
+    <nav class="standard-nav">
+    <div class="nav-menu"><a href="index.html" class="nav-link active">Home</a><a href="programs.html" class="nav-link">Programs</a><a href="schedule.html" class="nav-link">Schedule</a><a href="trainers.html" class="nav-link">Trainers</a><a href="contact.html" class="nav-link">Contact</a></div>
+    <div class="nav-actions"><button class="nav-cta">Book a demo</button></div>
+  </nav>
+  </div>
+</header>
+<section class="hero hero-center" style="background-image:linear-gradient(140deg,#1f2937cc,#4b5563cc),url('https://picsum.photos/seed/promptrix-hero-10/1600/900')"><div class="shell center"><p class="eyebrow">Yoga</p><h1 class="hero-title">Yoga that feels different</h1><p>High-end preset #10 with a unique page flow</p><button>Book a demo</button></div></section>
+
+<section class="block stats-wrap"><div class="shell stats-grid"><article class="stat-box"><strong>01</strong><span>Trusted brand</span></article><article class="stat-box"><strong>02</strong><span>High conversion</span></article><article class="stat-box"><strong>03</strong><span>Responsive build</span></article><article class="stat-box"><strong>04</strong><span>Professional team</span></article></div></section>
+<section class="block"><div class="shell"><div class="section-head"><h2>Core sections</h2><p>Business blocks for Yoga Website.</p></div><div class="feature-grid"><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-1/1200/800')"></div>
+    <div class="card-body">
+      <h3>Value</h3>
+      <p>Yoga block with premium spacing and clean flow.</p>
+    </div>
+  </article><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-2/1200/800')"></div>
+    <div class="card-body">
+      <h3>Features</h3>
+      <p>Designed to feel custom for Yoga Studio 10 and Yoga Group.</p>
+    </div>
+  </article><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-3/1200/800')"></div>
+    <div class="card-body">
+      <h3>Contact</h3>
+      <p>Conversion-focused content for Yoga pages.</p>
+    </div>
+  </article><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-4/1200/800')"></div>
+    <div class="card-body">
+      <h3>About us</h3>
+      <p>Yoga block with premium spacing and clean flow.</p>
+    </div>
+  </article><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-5/1200/800')"></div>
+    <div class="card-body">
+      <h3>Overview</h3>
+      <p>Designed to feel custom for Yoga Studio 10 and Yoga Group.</p>
+    </div>
+  </article><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-6/1200/800')"></div>
+    <div class="card-body">
+      <h3>Value</h3>
+      <p>Conversion-focused content for Yoga pages.</p>
+    </div>
+  </article><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-7/1200/800')"></div>
+    <div class="card-body">
+      <h3>Features</h3>
+      <p>Yoga block with premium spacing and clean flow.</p>
+    </div>
+  </article><article class="feature-card">
+    <div class="card-media" style="background-image:url('https://picsum.photos/seed/promptrix-card-10-8/1200/800')"></div>
+    <div class="card-body">
+      <h3>Contact</h3>
+      <p>Designed to feel custom for Yoga Studio 10 and Yoga Group.</p>
+    </div>
+  </article></div></div></section>
+<section class="block"><div class="shell"><div class="section-head"><h2>Business Gallery</h2><p>Visual sections tailored for Yoga Website.</p></div><div class="gallery-grid"><article class="gallery-card" style="background-image:linear-gradient(135deg,#1f293733,#4b556333),url('https://picsum.photos/seed/promptrix-card-13-0/1200/800')"><span>Showcase 1</span></article><article class="gallery-card" style="background-image:linear-gradient(135deg,#1f293733,#4b556333),url('https://picsum.photos/seed/promptrix-card-13-1/1200/800')"><span>Showcase 2</span></article><article class="gallery-card" style="background-image:linear-gradient(135deg,#1f293733,#4b556333),url('https://picsum.photos/seed/promptrix-card-13-2/1200/800')"><span>Showcase 3</span></article><article class="gallery-card" style="background-image:linear-gradient(135deg,#1f293733,#4b556333),url('https://picsum.photos/seed/promptrix-card-13-3/1200/800')"><span>Showcase 4</span></article></div></div></section>
+
+
+<section class="block proof-wall"><div class="shell"><div class="proof-grid"><article class="proof-card"><div class="proof-image" style="background-image:url('https://picsum.photos/seed/promptrix-card-17-0/1200/800')"></div><div><h3>Overview</h3><p>Business proof block 1 for Yoga Group.</p></div></article><article class="proof-card"><div class="proof-image" style="background-image:url('https://picsum.photos/seed/promptrix-card-17-1/1200/800')"></div><div><h3>Value</h3><p>Business proof block 2 for Yoga Group.</p></div></article><article class="proof-card"><div class="proof-image" style="background-image:url('https://picsum.photos/seed/promptrix-card-17-2/1200/800')"></div><div><h3>Features</h3><p>Business proof block 3 for Yoga Group.</p></div></article></div></div></section>
+<section class="newsletter"><div class="shell row"><strong>Weekly updates from Yoga Studio 10</strong><input placeholder="Enter your email"><button>Book a demo</button></div></section>
+<section class="block"><div class="shell"><div class="section-head"><h2>Frequently Asked Questions</h2><p>Common questions your users will ask.</p></div><div class="faq-list"><article class="faq-item"><strong>How fast can we launch?</strong><p>Yoga answer 1 for Yoga Studio 10 and clean setup.</p></article><article class="faq-item"><strong>Can we edit sections later?</strong><p>Yoga answer 2 for Yoga Studio 10 and clean setup.</p></article><article class="faq-item"><strong>Do you support multiple pages?</strong><p>Yoga answer 3 for Yoga Studio 10 and clean setup.</p></article></div></div></section>
+<section class="block"><div class="shell"><div class="final-cta" style="background-image:linear-gradient(120deg,#1f2937cc,#4b5563cc),url('https://picsum.photos/seed/promptrix-hero-10/1600/900')"><div><p class="eyebrow">clean ready</p><h2>Launch Yoga Studio 10 with a distinct look</h2><p>Professional Yoga website template with sharp tone and glow animations</p></div><button>Book a demo</button></div></div></section>
+<footer><div class="shell">&copy; 2026 Yoga Group. All rights reserved. Yoga Website &middot; clean theme.</div></footer>
+
+<script>
+(function(){
+  document.querySelectorAll('a[href]').forEach(function(a){
+    var href=a.getAttribute('href');
+    if(href&&!href.startsWith('#')&&!href.startsWith('http')&&href.endsWith('.html')){
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        window.parent.postMessage({type:'nav',page:href.replace('.html','').replace('index','home')},'*');
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

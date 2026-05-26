@@ -20,10 +20,6 @@ class CMSBackend:
     def __init__(self):
         self.db = get_db_session()
     
-    # ──────────────────────────────────────────────────────────────────────────────
-    # SITE OPERATIONS
-    # ──────────────────────────────────────────────────────────────────────────────
-    
     def create_site(self, user_id: int, config: Dict) -> Optional[Site]:
         """Create new site"""
         try:
@@ -132,10 +128,6 @@ class CMSBackend:
             print(f"Error duplicating site: {e}")
             return None
     
-    # ──────────────────────────────────────────────────────────────────────────────
-    # CONTENT OPERATIONS
-    # ──────────────────────────────────────────────────────────────────────────────
-    
     def create_content_item(self, user_id: int, site_id: str, content_data: Dict) -> Optional[ContentItem]:
         """Create content item"""
         try:
@@ -225,10 +217,6 @@ class CMSBackend:
             print(f"Error translating content: {e}")
             return None
     
-    # ──────────────────────────────────────────────────────────────────────────────
-    # EMAIL OPERATIONS
-    # ──────────────────────────────────────────────────────────────────────────────
-    
     def create_email_template(self, site_id: str, template_data: Dict) -> Optional[EmailTemplate]:
         """Create email template"""
         try:
@@ -300,10 +288,6 @@ class CMSBackend:
             print(f"Error deleting email template: {e}")
             return False
     
-    # ──────────────────────────────────────────────────────────────────────────────
-    # EMAIL CAMPAIGN OPERATIONS
-    # ──────────────────────────────────────────────────────────────────────────────
-    
     def create_email_campaign(self, user_id: int, campaign_data: Dict) -> Optional[EmailCampaign]:
         """Create email campaign"""
         try:
@@ -353,10 +337,6 @@ class CMSBackend:
             self.db.rollback()
             print(f"Error sending campaign: {e}")
             return False
-    
-    # ──────────────────────────────────────────────────────────────────────────────
-    # A/B TEST OPERATIONS
-    # ──────────────────────────────────────────────────────────────────────────────
     
     def create_ab_test(self, site_id: str, test_data: Dict) -> Optional[ABTest]:
         """Create A/B test"""
